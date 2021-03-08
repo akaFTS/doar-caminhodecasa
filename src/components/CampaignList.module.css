@@ -1,0 +1,44 @@
+.campaignList {
+  padding: var(--p5) var(--p4);
+  background-color: var(--grey-300);
+}
+
+.title {
+  font-size: var(--f2);
+  text-transform: uppercase;
+  font-weight: 600;
+  text-align: center;
+  color: var(--grey-800);
+
+  & .highlight {
+    color: var(--red-800);
+  }
+}
+
+.underline {
+  border-bottom: 3px solid var(--red-800);
+  width: 200px;
+  margin: var(--p3) auto;
+}
+
+.campaigns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.campaignWrapper {
+  height: 200px;
+  background-color: red;
+  width: calc(100% - var(--p3));
+  margin: var(--p2);
+  max-width: 400px;
+
+  @media (min-width: 40em) {
+    width: calc(50% - var(--p3));
+  }
+
+  @media (min-width: 65em) {
+    width: calc(33.3% - var(--p3));
+  }
+}

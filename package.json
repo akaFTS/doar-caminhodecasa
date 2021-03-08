@@ -1,38 +1,28 @@
 {
-  "name": "doar",
+  "name": "doar-caminhodecasa",
   "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.11.9",
-    "@testing-library/react": "^11.2.5",
-    "@testing-library/user-event": "^12.8.1",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-scripts": "4.0.3",
-    "web-vitals": "^1.1.0"
-  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "parcel serve ./src/index.html",
+    "build": "parcel build ./src/index.html",
+    "preinstall": "npx npm-force-resolutions"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.34",
+    "@fortawesome/free-brands-svg-icons": "^5.15.2",
+    "@fortawesome/free-regular-svg-icons": "^5.15.2",
+    "@fortawesome/react-fontawesome": "^0.1.14",
+    "eslint": "^7.21.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "devDependencies": {
+    "parcel": "next",
+    "postcss-preset-env": "^6.7.0",
+    "postcss-custom-media": "^7.0.0",
+    "postcss-modules": "^3.0.0",
+    "postcss-nested": "^4.2.3"
+  },
+  "resolutions": {
+    "@babel/preset-env": "7.13.8"
   }
 }
