@@ -1,0 +1,99 @@
+.campaign {
+  width: calc(100% - var(--p3));
+  margin: var(--p2);
+  max-width: 400px;
+
+  background-color: white;
+  border-radius: var(--br2);
+  overflow: hidden;
+  box-shadow: var(--shadow-4);
+
+  @media (min-width: 40em) {
+    max-width: 300px;
+    width: calc(50% - var(--p3));
+  }
+
+  @media (min-width: 65em) {
+    width: calc(33.3% - var(--p3));
+  }
+}
+
+.header {
+  /* height: calc(var(--h4) + var(--h3)); */
+  width: 100%;
+  overflow-y: hidden;
+  position: relative;
+  padding-top: 75%; /* 4:3 aspect ratio */
+
+  & .cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+}
+
+.main {
+  padding: var(--p4);
+  padding-bottom: var(--p3);
+
+  & h3 {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--red-800);
+    font-size: var(--f3);
+    margin-bottom: var(--p2);
+  }
+
+  & p {
+    text-align: center;
+    color: var(--grey-800);
+    font-size: var(--f5);
+    line-height: 1.2;
+  }
+}
+
+.underline {
+  border-bottom: 3px solid var(--grey-800);
+  width: 100px;
+  margin: 0 auto;
+  margin-bottom: var(--p4);
+}
+
+.footer {
+  padding: var(--p4);
+  padding-top: var(--p3);
+
+  & p {
+    text-align: center;
+    color: var(--grey-800);
+    font-size: var(--f4);
+    font-weight: 600;
+    margin-bottom: var(--p2);
+  }
+
+  & h4 {
+    text-align: center;
+    color: var(--red-800);
+    font-size: var(--f3);
+    font-weight: 600;
+    margin-bottom: var(--p4);
+  }
+}
+
+.donateButton {
+  display: block;
+  margin: 0 auto;
+  background-color: var(--red-800);
+  color: white;
+  font-size: var(--f4);
+  text-transform: uppercase;
+  font-weight: 600;
+  border: none;
+  padding: var(--p2) var(--p4);
+
+  &:hover {
+    background-color: var(--red-900);
+  }
+}

@@ -1,7 +1,7 @@
 {
   "plugins": {
-    "postcss-nested": {},
     "postcss-custom-media": {},
+    "postcss-nested": {},
     "postcss-modules": {},
     "postcss-preset-env": {}
   }

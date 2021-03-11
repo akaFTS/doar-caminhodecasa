@@ -3,7 +3,7 @@
   color: white;
   padding: var(--p3);
 
-  @media (--not-small) {
+  @media (min-width: 30em) {
     padding: var(--p4);
   }
 }
@@ -14,7 +14,7 @@
   justify-content: space-between;
   align-items: center;
 
-  @media (--not-small) {
+  @media (min-width: 30em) {
     justify-content: start;
   }
 }

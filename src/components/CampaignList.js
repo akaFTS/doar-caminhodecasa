@@ -1,4 +1,5 @@
 import React from "react";
+import Campaign from "./Campaign";
 import * as styles from "./CampaignList.module.css";
 
 export default function CampaignList() {
@@ -9,11 +10,11 @@ export default function CampaignList() {
       </h2>
       <div className={styles.underline} />
       <div className={styles.campaigns}>
-        <div className={styles.campaignWrapper}>oi</div>
-        <div className={styles.campaignWrapper}>oi</div>
-        <div className={styles.campaignWrapper}>oi</div>
-        <div className={styles.campaignWrapper}>oi</div>
-        <div className={styles.campaignWrapper}>oi</div>
+        <Campaign />
+        <Campaign />
+        <Campaign />
+        <Campaign />
+        <Campaign />
       </div>
     </section>
   );

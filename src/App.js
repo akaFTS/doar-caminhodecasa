@@ -1,5 +1,5 @@
 import React from "react";
-import Campaign from "./components/Campaign";
+import CampaignDetails from "./components/CampaignDetails";
 import CampaignList from "./components/CampaignList";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -10,7 +10,7 @@ export default function App() {
     <>
       <Header />
       <Hero />
-      <Campaign />
+      <CampaignDetails />
       <CampaignList />
       <Footer />
     </>

@@ -19,26 +19,11 @@
   border-bottom: 3px solid var(--red-800);
   width: 200px;
   margin: var(--p3) auto;
+  margin-bottom: var(--p5);
 }
 
 .campaigns {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-}
-
-.campaignWrapper {
-  height: 200px;
-  background-color: red;
-  width: calc(100% - var(--p3));
-  margin: var(--p2);
-  max-width: 400px;
-
-  @media (min-width: 40em) {
-    width: calc(50% - var(--p3));
-  }
-
-  @media (min-width: 65em) {
-    width: calc(33.3% - var(--p3));
-  }
 }
