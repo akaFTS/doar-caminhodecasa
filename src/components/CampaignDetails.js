@@ -11,6 +11,7 @@ import * as styles from "./CampaignDetails.module.css";
 import manto1 from "url:../assets/manto1.jpg";
 import manto2 from "url:../assets/manto2.jpg";
 import manto3 from "url:../assets/manto3.jpg";
+import Donation from "./Donation";
 
 export default function CampaignDetails() {
   return (
@@ -52,9 +53,10 @@ export default function CampaignDetails() {
             <DotGroup className={styles.dotGroup}></DotGroup>
           </CarouselProvider>
         </div>
-        <div class={styles.donations}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        <div class={styles.donationsWrapper}>
+          <Donation />
+          <Donation />
+          <Donation />
         </div>
       </main>
     </section>

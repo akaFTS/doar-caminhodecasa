@@ -1,0 +1,53 @@
+.donation {
+  border-radius: var(--br4);
+  box-shadow: var(--shadow-4);
+  background-color: var(--grey-200);
+  margin-bottom: var(--p3);
+  padding: var(--p3);
+}
+
+.donationDetails {
+  margin-bottom: var(--p4);
+
+  & h4 {
+    font-size: var(--f4);
+    font-weight: 600;
+    color: var(--grey-800);
+    margin-bottom: var(--p2);
+  }
+
+  & p {
+    font-size: var(--f6);
+    color: var(--grey-600);
+    line-height: 1.2;
+  }
+}
+
+.donationAction {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  & h5 {
+    font-size: var(--f3);
+    font-weight: 600;
+    color: var(--red-800);
+    text-align: center;
+    margin-right: var(--p3);
+  }
+
+  & button {
+    display: block;
+    background-color: var(--red-800);
+    color: white;
+    font-size: var(--f4);
+    text-transform: uppercase;
+    font-weight: 600;
+    border: none;
+    padding: var(--p2) var(--p4);
+
+    &:hover {
+      background-color: var(--red-900);
+    }
+  }
+}

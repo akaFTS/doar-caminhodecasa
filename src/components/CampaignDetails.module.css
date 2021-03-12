@@ -86,9 +86,8 @@
   }
 }
 
-.donations {
+.donationsWrapper {
   flex: 1;
-  background-color: red;
 
   @media (min-width: 40em) {
     margin: var(--p4);
