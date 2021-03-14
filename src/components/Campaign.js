@@ -17,9 +17,11 @@ export default function Campaign() {
         </p>
       </main>
       <footer className={styles.footer}>
-        <p>a partir de</p>
-        <h4>R$50,00</h4>
-        <button className={styles.donateButton}>Doar Agora</button>
+        <div className={styles.from}>
+          <p>a partir de</p>
+          <h4>R$50,00</h4>
+        </div>
+        <button className={styles.donateButton}>Conheça</button>
       </footer>
     </article>
   );

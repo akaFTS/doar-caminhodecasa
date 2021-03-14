@@ -1,13 +1,12 @@
 .donation {
-  border-radius: var(--br4);
   box-shadow: var(--shadow-4);
-  background-color: var(--grey-200);
+  background-color: var(--grey-100);
   margin-bottom: var(--p3);
   padding: var(--p3);
 }
 
 .donationDetails {
-  margin-bottom: var(--p4);
+  margin-bottom: var(--p3);
 
   & h4 {
     font-size: var(--f4);
