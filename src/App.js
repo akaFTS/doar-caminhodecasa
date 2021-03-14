@@ -1,18 +1,15 @@
 import React from "react";
-import CampaignDetails from "./components/CampaignDetails";
-import CampaignList from "./components/CampaignList";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import Hero from "./components/Hero";
+import MainPage from "./MainPage";
+import CampaignPage from "./CampaignPage";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 
 export default function App() {
   return (
-    <>
-      <Header />
-      <Hero />
-      <CampaignDetails />
-      <CampaignList />
-      <Footer />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<MainPage />}></Route>
+        <Route path="/:campaign" element={<CampaignPage />}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }

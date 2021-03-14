@@ -65,3 +65,40 @@
     font-size: var(--f5);
   }
 }
+
+.header.inverted {
+  background: rgb(0, 0, 0, 0);
+
+  @media (min-width: 30em) {
+    padding: 0 var(--p3);
+  }
+
+  & .separator {
+    border-right: 1px solid var(--grey-600);
+  }
+
+  & .instagram {
+    color: var(--purple-600);
+
+    &:hover {
+      color: var(--purple-900);
+    }
+  }
+
+  & .facebook {
+    color: var(--blue-700);
+
+    &:hover {
+      color: var(--blue-900);
+    }
+  }
+
+  & .barItem {
+    color: var(--grey-700);
+    font-weight: 400;
+
+    &:hover {
+      color: var(--grey-900);
+    }
+  }
+}

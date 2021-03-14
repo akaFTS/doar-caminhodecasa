@@ -7,9 +7,9 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function Header() {
+export default function Header({ inverted }) {
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${inverted ? styles.inverted : ""}`}>
       <a href="https://www.caminhodecasa.org.br" className={styles.logoWrap}>
         <img src={logo} className={styles.logo} />
       </a>

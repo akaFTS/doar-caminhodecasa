@@ -13,10 +13,14 @@ import manto2 from "url:../assets/manto2.jpg";
 import manto3 from "url:../assets/manto3.jpg";
 import Donation from "./Donation";
 
-export default function CampaignDetails() {
+export default function CampaignDetails({ featured }) {
   return (
-    <section className={styles.details}>
-      <h5 className={styles.featured}>Campanha em Destaque</h5>
+    <section
+      className={`${styles.details} ${featured ? "" : styles.extraPadding}`}
+    >
+      {featured ? (
+        <h5 className={styles.featured}>Campanha em Destaque</h5>
+      ) : null}
       <h2 className={styles.title}>Manto Azul</h2>
       <div className={styles.underline}></div>
       <div className={styles.description}>
@@ -53,7 +57,7 @@ export default function CampaignDetails() {
             <DotGroup className={styles.dotGroup}></DotGroup>
           </CarouselProvider>
         </div>
-        <div class={styles.donationsWrapper}>
+        <div className={styles.donationsWrapper}>
           <Donation />
           <Donation />
           <Donation />
