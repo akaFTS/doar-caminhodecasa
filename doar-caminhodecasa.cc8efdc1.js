@@ -29269,25 +29269,25 @@ try {
   _c = ScrollToTop;
 
   function App() {
-    return /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, {
+    return /*#__PURE__*/_react.default.createElement(_reactRouterDom.HashRouter, {
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 24,
+        lineNumber: 18,
         columnNumber: 5
       }
     }, /*#__PURE__*/_react.default.createElement(ScrollToTop, {
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 25,
+        lineNumber: 19,
         columnNumber: 7
       }
     }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Routes, {
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 26,
+        lineNumber: 20,
         columnNumber: 7
       }
     }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
@@ -29296,14 +29296,14 @@ try {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 27,
+          lineNumber: 21,
           columnNumber: 35
         }
       }),
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 27,
+        lineNumber: 21,
         columnNumber: 9
       }
     }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
@@ -29312,14 +29312,14 @@ try {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 28,
+          lineNumber: 22,
           columnNumber: 48
         }
       }),
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 28,
+        lineNumber: 22,
         columnNumber: 9
       }
     })));
