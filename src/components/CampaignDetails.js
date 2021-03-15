@@ -8,12 +8,10 @@ import {
 } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
 import * as styles from "./CampaignDetails.module.css";
-import manto1 from "url:../assets/manto1.jpg";
-import manto2 from "url:../assets/manto2.jpg";
-import manto3 from "url:../assets/manto3.jpg";
+import images from "../images.js";
 import Donation from "./Donation";
 
-export default function CampaignDetails({ featured }) {
+export default function CampaignDetails({ campaign, featured }) {
   return (
     <section
       className={`${styles.details} ${featured ? "" : styles.extraPadding}`}
@@ -21,16 +19,10 @@ export default function CampaignDetails({ featured }) {
       {featured ? (
         <h5 className={styles.featured}>Campanha em Destaque</h5>
       ) : null}
-      <h2 className={styles.title}>Manto Azul</h2>
+      <h2 className={styles.title}>{campaign.name}</h2>
       <div className={styles.underline}></div>
       <div className={styles.description}>
-        <p>
-          O Manto Azul é um projeto que se encarrega de auxiliar gestantes e
-          mães de bebês. Nós preparamos um enxoval contendo fraldas, roupas, e
-          tudo que o bebê possa precisar, e distribuímos para mães de
-          comunidades da região do Jardim Pantanal em São Paulo. Atualmente,
-          mais de 50 família são atendidas pelo projeto.
-        </p>
+        <p>{campaign.long_description}</p>
       </div>
       <main className={styles.content}>
         <div className={styles.carouselWrapper}>
@@ -44,23 +36,23 @@ export default function CampaignDetails({ featured }) {
             className={styles.carousel}
           >
             <Slider>
-              <Slide index={0}>
-                <Image hasMasterSpinner={false} src={manto1} isBgImage={true} />
-              </Slide>
-              <Slide index={1}>
-                <Image hasMasterSpinner={false} src={manto2} isBgImage={true} />
-              </Slide>
-              <Slide index={2}>
-                <Image hasMasterSpinner={false} src={manto3} isBgImage={true} />
-              </Slide>
+              {campaign.slide_pictures.map((slide, index) => (
+                <Slide index={index} key={slide}>
+                  <Image
+                    hasMasterSpinner={false}
+                    src={images[slide]}
+                    isBgImage={true}
+                  />
+                </Slide>
+              ))}
             </Slider>
             <DotGroup className={styles.dotGroup}></DotGroup>
           </CarouselProvider>
         </div>
         <div className={styles.donationsWrapper}>
-          <Donation />
-          <Donation />
-          <Donation />
+          {campaign.donations.map((donation) => (
+            <Donation donation={donation} key={donation.name} />
+          ))}
         </div>
       </main>
     </section>

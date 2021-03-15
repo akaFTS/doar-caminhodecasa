@@ -1,15 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MainPage from "./MainPage";
 import CampaignPage from "./CampaignPage";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route, useLocation, HashRouter } from "react-router-dom";
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
+      <ScrollToTop />
       <Routes>
-        <Route path="/" element={<MainPage />}></Route>
-        <Route path="/:campaign" element={<CampaignPage />}></Route>
+        <Route path="/*" element={<MainPage />}></Route>
+        <Route path="/projetos/:slug" element={<CampaignPage />}></Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }

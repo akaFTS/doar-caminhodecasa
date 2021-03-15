@@ -1,0 +1,43 @@
+[
+  {
+    "featured": true,
+    "name": "Manto Azul",
+    "slug": "manto-azul",
+    "short_description": "Com a sua contribuição, montamos e distribuímos enxovais completos para gestantes.",
+    "long_description": "O Manto Azul é um projeto que se encarrega de auxiliar gestantes e mães de bebês. Nós preparamos um enxoval contendo fraldas, roupas, e tudo que o bebê possa precisar, e distribuímos para mães de comunidades da região do Jardim Pantanal em São Paulo. Atualmente, mais de 50 família são atendidas pelo projeto.",
+    "cover_picture": "manto.jpg",
+    "slide_pictures": ["manto1.jpg", "manto2.jpg", "manto3.jpg"],
+    "donations": [
+      {
+        "name": "Cesta Grande",
+        "description": "Esta cesta contém: arroz, feijão, óleo, macarrão, farinha, água e açúcar.",
+        "price": 50
+      },
+      {
+        "name": "Cesta Pequena",
+        "description": " Esta cesta contém: arroz, feijão e óleo.",
+        "price": 20
+      }
+    ]
+  },
+  {
+    "name": "Manto Verde",
+    "slug": "manto-verde",
+    "short_description": "Com a sua contribuição, montamos e distribuímos enxovais completos para gestantes.",
+    "long_description": "O Manto Azul é um projeto que se encarrega de auxiliar gestantes e mães de bebês. Nós preparamos um enxoval contendo fraldas, roupas, e tudo que o bebê possa precisar, e distribuímos para mães de comunidades da região do Jardim Pantanal em São Paulo. Atualmente, mais de 50 família são atendidas pelo projeto.",
+    "cover_picture": "manto.jpg",
+    "slide_pictures": ["manto1.jpg", "manto2.jpg", "manto3.jpg"],
+    "donations": [
+      {
+        "name": "Cesta Grande",
+        "description": "Esta cesta contém: arroz, feijão, óleo, macarrão, farinha, água e açúcar.",
+        "price": 50
+      },
+      {
+        "name": "Cesta Pequena",
+        "description": " Esta cesta contém: arroz, feijão e óleo.",
+        "price": 20
+      }
+    ]
+  }
+]

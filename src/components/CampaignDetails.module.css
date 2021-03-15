@@ -2,7 +2,7 @@
   padding: var(--p5) var(--p3);
 
   &.extraPadding {
-    padding-top: var(--p6);
+    padding-top: calc(var(--p6) + var(--p3));
   }
 }
 

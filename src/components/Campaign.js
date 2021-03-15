@@ -1,27 +1,32 @@
 import React from "react";
 import * as styles from "./Campaign.module.css";
-import manto from "url:../assets/manto.jpg";
+import images from "../images.js";
+import { Link } from "react-router-dom";
 
-export default function Campaign() {
+export default function Campaign({ campaign }) {
+  const lowest_donation = campaign.donations.reduce(
+    (min, current) => (current.price < min ? current.price : min),
+    999999
+  );
+
   return (
     <article className={styles.campaign}>
       <header className={styles.header}>
-        <img className={styles.cover} src={manto} />
+        <img className={styles.cover} src={images[campaign.cover_picture]} />
       </header>
       <main className={styles.main}>
-        <h3>Manto Azul</h3>
+        <h3>{campaign.name}</h3>
         <div className={styles.underline} />
-        <p>
-          Com a sua contribuição, montamos e distribuímos enxovais completos
-          para gestantes.
-        </p>
+        <p>{campaign.short_description}</p>
       </main>
       <footer className={styles.footer}>
         <div className={styles.from}>
           <p>a partir de</p>
-          <h4>R$50,00</h4>
+          <h4>R${lowest_donation},00</h4>
         </div>
-        <button className={styles.donateButton}>Conheça</button>
+        <Link to={`/projetos/${campaign.slug}`} className={styles.donateButton}>
+          Conheça
+        </Link>
       </footer>
     </article>
   );

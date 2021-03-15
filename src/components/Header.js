@@ -6,6 +6,7 @@ import {
   faFacebookSquare,
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 
 export default function Header({ inverted }) {
   return (
@@ -14,7 +15,9 @@ export default function Header({ inverted }) {
         <img src={logo} className={styles.logo} />
       </a>
       <div className={styles.buttonBar}>
-        <a className={styles.barItem}>Campanhas</a>
+        <Link to="/" className={styles.barItem}>
+          Campanhas
+        </Link>
         <div className={styles.separator} />
         <a href="https://www.instagram.com/associacao_caminhodecasa">
           <FontAwesomeIcon
