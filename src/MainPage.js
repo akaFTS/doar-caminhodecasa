@@ -13,7 +13,7 @@ export default function App() {
   return (
     <>
       <Helmet>
-        <title>Doar - Caminho de Casa</title>
+        <title>Doar2 - Caminho de Casa</title>
         <meta property="og:title" content="Doar - Caminho de Casa" />
         <meta property="og:site_name" content="Caminho de Casa" />
         <meta
