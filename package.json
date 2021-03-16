@@ -5,7 +5,8 @@
     "start": "parcel serve ./src/index.html",
     "build": "parcel build ./src/index.html",
     "preinstall": "npx npm-force-resolutions",
-    "deploy": "npm run build && gh-pages -d dist"
+    "deploy": "npm run build && gh-pages -d dist",
+    "postbuild": "echo '/* /index.html 200' | cat >dist/_redirects"
   },
   "targets": {
     "default": {
