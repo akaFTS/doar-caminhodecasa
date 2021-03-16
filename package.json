@@ -8,11 +8,6 @@
     "deploy": "npm run build && gh-pages -d dist",
     "postbuild": "echo '/* /index.html 200' | cat >dist/_redirects"
   },
-  "targets": {
-    "default": {
-      "publicUrl": "./"
-    }
-  },
   "reactSnap": {
     "source": "./dist"
   },
