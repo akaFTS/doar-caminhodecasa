@@ -5,7 +5,7 @@
     "slug": "manto-azul",
     "short_description": "Com a sua contribuição, montamos e distribuímos enxovais completos para gestantes.",
     "long_description": "O Manto Azul é um projeto que se encarrega de auxiliar gestantes e mães de bebês. Nós preparamos um enxoval contendo fraldas, roupas, e tudo que o bebê possa precisar, e distribuímos para mães de comunidades da região do Jardim Pantanal em São Paulo. Atualmente, mais de 50 família são atendidas pelo projeto.",
-    "cover_picture": "manto.jpg",
+    "cover_picture": "manto_cover.jpg",
     "slide_pictures": ["manto1.jpg", "manto2.jpg", "manto3.jpg"],
     "donations": [
       {
@@ -25,7 +25,7 @@
     "slug": "manto-verde",
     "short_description": "Com a sua contribuição, montamos e distribuímos enxovais completos para gestantes.",
     "long_description": "O Manto Azul é um projeto que se encarrega de auxiliar gestantes e mães de bebês. Nós preparamos um enxoval contendo fraldas, roupas, e tudo que o bebê possa precisar, e distribuímos para mães de comunidades da região do Jardim Pantanal em São Paulo. Atualmente, mais de 50 família são atendidas pelo projeto.",
-    "cover_picture": "manto.jpg",
+    "cover_picture": "manto_cover.jpg",
     "slide_pictures": ["manto1.jpg", "manto2.jpg", "manto3.jpg"],
     "donations": [
       {
