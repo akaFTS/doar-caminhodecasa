@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import MainPage from "./MainPage";
 import CampaignPage from "./CampaignPage";
-import { Routes, Route, useLocation, HashRouter } from "react-router-dom";
+import { Routes, Route, useLocation, BrowserRouter } from "react-router-dom";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -15,12 +15,12 @@ function ScrollToTop() {
 
 export default function App() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <ScrollToTop />
       <Routes>
         <Route path="/*" element={<MainPage />}></Route>
         <Route path="/projetos/:slug" element={<CampaignPage />}></Route>
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
