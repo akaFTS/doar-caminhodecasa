@@ -104,6 +104,7 @@
 
 .donationsWrapper {
   flex: 1;
+  width: 100%;
 
   @media (min-width: 50em) {
     margin: var(--p4);

@@ -6,8 +6,8 @@ export default function CampaignList({ campaigns, others }) {
   return (
     <section className={styles.campaignList}>
       <h2 className={styles.title}>
-        {others ? "Outras" : "Nossas"}{" "}
-        <span className={styles.highlight}>Campanhas</span>
+        {others ? "Outros" : "Nossos"}{" "}
+        <span className={styles.highlight}>Projetos</span>
       </h2>
       <div className={styles.underline} />
       <div className={styles.campaigns}>

@@ -17,7 +17,7 @@ export default function CampaignDetails({ campaign, featured }) {
       className={`${styles.details} ${featured ? "" : styles.extraPadding}`}
     >
       {featured ? (
-        <h5 className={styles.featured}>Campanha em Destaque</h5>
+        <h5 className={styles.featured}>Projeto em Destaque</h5>
       ) : null}
       <h2 className={styles.title}>{campaign.name}</h2>
       <div className={styles.underline}></div>

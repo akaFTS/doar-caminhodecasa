@@ -10,12 +10,12 @@
     "donations": [
       {
         "name": "Cesta Grande",
-        "description": "Esta cesta contém: arroz, feijão, óleo, macarrão, farinha, água e açúcar.",
+        "picture": "cesta.png",
         "price": 50
       },
       {
         "name": "Cesta Pequena",
-        "description": " Esta cesta contém: arroz, feijão e óleo.",
+        "picture": "cesta.png",
         "price": 20
       }
     ]
@@ -30,12 +30,12 @@
     "donations": [
       {
         "name": "Cesta Grande",
-        "description": "Esta cesta contém: arroz, feijão, óleo, macarrão, farinha, água e açúcar.",
+        "picture": "cesta.png",
         "price": 50
       },
       {
         "name": "Cesta Pequena",
-        "description": " Esta cesta contém: arroz, feijão e óleo.",
+        "picture": "cesta.png",
         "price": 20
       }
     ]

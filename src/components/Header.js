@@ -16,7 +16,7 @@ export default function Header({ inverted }) {
       </a>
       <div className={styles.buttonBar}>
         <Link to="/" className={styles.barItem}>
-          Campanhas
+          Projetos
         </Link>
         <div className={styles.separator} />
         <a href="https://www.instagram.com/associacao_caminhodecasa">
