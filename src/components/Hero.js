@@ -11,12 +11,16 @@ export default function Hero() {
             <br />
             da sua ajuda
           </h2>
-          <p className={styles.subtitle}>
-            Todos os meses, dezenas de famílias são atendidas pela Associação
-            Caminho de Casa. Com poucos cliques, você poderá nos ajudar a
-            continuar provendo sustento para essas pessoas utilizando cartão de
-            crédito ou Pix.
-          </p>
+          <div className={styles.subtitle}>
+            <p>
+              Todos os meses, centenas de famílias que vivem em comunidades
+              carentes e moradores em situação de rua são atendidos pela
+              Associação Caminho de Casa. Ajude-nos a manter acesa essa luz de
+              solidariedade.
+            </p>
+            <p>Doe. Participe. Faça a sua parte.</p>
+            <p>Juntos levaremos esperança a quem mais precisa!</p>
+          </div>
         </div>
       </div>
     </section>

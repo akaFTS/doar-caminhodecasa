@@ -13,12 +13,11 @@
 
 .heroBackdrop {
   height: 100%;
-  backdrop-filter: brightness(60%);
+  backdrop-filter: brightness(50%) blur(1px);
 }
 
 .heroInside {
   background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(5px);
   padding: var(--p3);
   padding-top: var(--p5);
   height: 100%;
@@ -35,7 +34,7 @@
   text-transform: uppercase;
   font-weight: 600;
   color: var(--grey-300);
-  margin-bottom: var(--p3);
+  margin-bottom: var(--p4);
 
   & .highlight {
     color: var(--red-600);
@@ -53,4 +52,12 @@
   font-weight: 300;
   line-height: 1.2;
   max-width: 600px;
+
+  & p {
+    margin-bottom: var(--p2);
+  }
+
+  & p:nth-child(2) {
+    font-weight: 600;
+  }
 }
