@@ -11,9 +11,9 @@ import { Link } from "react-router-dom";
 export default function Header({ inverted }) {
   return (
     <header className={`${styles.header} ${inverted ? styles.inverted : ""}`}>
-      <a href="https://www.caminhodecasa.org.br" className={styles.logoWrap}>
+      <Link to="/" className={styles.logoWrap}>
         <img src={logo} className={styles.logo} />
-      </a>
+      </Link>
       <div className={styles.buttonBar}>
         <Link to="/" className={styles.barItem}>
           Projetos
