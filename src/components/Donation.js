@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import * as styles from "./Donation.module.css";
 import images from "../images.js";
+import BasketContext from "../BasketContext";
 
 export default function Donation({ donation }) {
+  const { basket, setBasket } = useContext(BasketContext);
+
+  const addToBasket = (donation) => {
+    setBasket(["bla"]);
+  };
+
   return (
     <div className={styles.donation}>
       <div className={styles.imageSlot}>
@@ -12,7 +19,7 @@ export default function Donation({ donation }) {
         <h4>{donation.name}</h4>
         <div className={styles.donationAction}>
           <h5>R${donation.price},00</h5>
-          <button>Doar</button>
+          <button onClick={addToBasket}>Doar</button>
         </div>
       </div>
     </div>

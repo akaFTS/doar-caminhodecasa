@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import logo from "url:../assets/logo.png";
 import * as styles from "./Header.module.css";
 import {
@@ -7,8 +7,11 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { HashLink as Link } from "react-router-hash-link";
+import BasketContext from "../BasketContext";
 
 export default function Header({ inverted }) {
+  const { basket } = useContext(BasketContext);
+
   return (
     <header className={`${styles.header} ${inverted ? styles.inverted : ""}`}>
       <Link to="/" className={styles.logoWrap}>
@@ -16,7 +19,7 @@ export default function Header({ inverted }) {
       </Link>
       <div className={styles.buttonBar}>
         <Link to="/cesta" className={styles.barItem}>
-          Minha Cesta
+          Minha Cesta ({basket.length})
         </Link>
         <div className={styles.separator} />
         <a href="https://www.instagram.com/associacao_caminhodecasa">

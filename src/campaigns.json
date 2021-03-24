@@ -9,11 +9,13 @@
     "slide_pictures": ["manto1.jpg", "manto2.jpg", "manto3.jpg"],
     "donations": [
       {
+        "slug": "cesta-grande",
         "name": "Cesta Grande",
         "picture": "cesta.png",
         "price": 50
       },
       {
+        "slug": "cesta-pequena",
         "name": "Cesta Pequena",
         "picture": "cesta.png",
         "price": 20
@@ -29,11 +31,13 @@
     "slide_pictures": ["manto1.jpg", "manto2.jpg", "manto3.jpg"],
     "donations": [
       {
+        "slug": "cesta-grande",
         "name": "Cesta Grande",
         "picture": "cesta.png",
         "price": 50
       },
       {
+        "slug": "cesta-pequena",
         "name": "Cesta Pequena",
         "picture": "cesta.png",
         "price": 20
