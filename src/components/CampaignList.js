@@ -4,7 +4,7 @@ import * as styles from "./CampaignList.module.css";
 
 export default function CampaignList({ campaigns, others }) {
   return (
-    <section className={styles.campaignList}>
+    <section className={styles.campaignList} id="projetos">
       <h2 className={styles.title}>
         {others ? "Outros" : "Nossos"}{" "}
         <span className={styles.highlight}>Projetos</span>

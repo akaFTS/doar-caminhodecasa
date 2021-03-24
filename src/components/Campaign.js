@@ -1,7 +1,7 @@
 import React from "react";
 import * as styles from "./Campaign.module.css";
 import images from "../images.js";
-import { Link } from "react-router-dom";
+import { HashLink as Link } from "react-router-hash-link";
 
 export default function Campaign({ campaign }) {
   const lowest_donation = campaign.donations.reduce(

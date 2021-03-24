@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import MainPage from "./MainPage";
+import BasketPage from "./BasketPage";
 import CampaignPage from "./CampaignPage";
 import { Routes, Route, useLocation, BrowserRouter } from "react-router-dom";
 
@@ -19,6 +20,7 @@ export default function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/*" element={<MainPage />}></Route>
+        <Route path="/cesta" element={<BasketPage />}></Route>
         <Route path="/projetos/:slug" element={<CampaignPage />}></Route>
       </Routes>
     </BrowserRouter>

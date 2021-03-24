@@ -1,7 +1,9 @@
 .footer {
+  height: 8em;
   background-color: var(--grey-800);
   color: white;
   padding: var(--p3);
+  box-sizing: border-box;
 
   @media (min-width: 30em) {
     padding: var(--p4);

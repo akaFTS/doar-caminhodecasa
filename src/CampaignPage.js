@@ -7,7 +7,7 @@ import CampaignList from "./components/CampaignList";
 import campaigns from "./campaigns.json";
 import { Helmet } from "react-helmet";
 
-export default function App() {
+export default function CampaignPage() {
   const { slug } = useParams();
   const campaign = campaigns.find((cp) => cp.slug == slug);
   const other_campaigns = campaigns.filter((cp) => cp.slug != slug);

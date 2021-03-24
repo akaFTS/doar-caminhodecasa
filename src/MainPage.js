@@ -18,17 +18,17 @@ export default function App() {
         <meta property="og:site_name" content="Caminho de Casa" />
         <meta
           property="og:description"
-          content="Todos os meses, dezenas de famílias são atendidas pela Associação
-          Caminho de Casa. Com poucos cliques, você poderá nos ajudar a
-          continuar provendo sustento para essas pessoas utilizando cartão de
-          crédito ou Pix."
+          content="Todos os meses, centenas de famílias que vivem em comunidades
+          carentes e moradores em situação de rua são atendidos pela
+          Associação Caminho de Casa. Ajude-nos a manter acesa essa luz de
+          solidariedade."
         />
         <meta
           name="description"
-          content="Todos os meses, dezenas de famílias são atendidas pela Associação
-          Caminho de Casa. Com poucos cliques, você poderá nos ajudar a
-          continuar provendo sustento para essas pessoas utilizando cartão de
-          crédito ou Pix."
+          content="Todos os meses, centenas de famílias que vivem em comunidades
+          carentes e moradores em situação de rua são atendidos pela
+          Associação Caminho de Casa. Ajude-nos a manter acesa essa luz de
+          solidariedade."
         />
       </Helmet>
       <Header inverted={false} />
