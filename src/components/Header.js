@@ -19,7 +19,10 @@ export default function Header({ inverted }) {
       </Link>
       <div className={styles.buttonBar}>
         <Link to="/cesta" className={styles.barItem}>
-          Minha Cesta ({basket.length})
+          {Object.keys(basket).length > 0 ? (
+            <span className={styles.badge}>{Object.keys(basket).length}</span>
+          ) : null}{" "}
+          Minha Cesta
         </Link>
         <div className={styles.separator} />
         <a href="https://www.instagram.com/associacao_caminhodecasa">

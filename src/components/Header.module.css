@@ -33,6 +33,14 @@
   }
 }
 
+.badge {
+  background-color: var(--red-800);
+  color: white;
+  font-weight: bold;
+  padding: 0 var(--p2);
+  border-radius: var(--br-pill);
+}
+
 .buttonBar {
   display: flex;
   align-items: center;

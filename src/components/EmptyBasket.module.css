@@ -1,27 +1,3 @@
-.main {
-  padding: var(--p5) var(--p3);
-  padding-top: calc(var(--p6) + var(--p3));
-  min-height: calc(100vh - 8em);
-  box-sizing: border-box;
-}
-
-.title {
-  font-size: var(--f2);
-  font-weight: 600;
-  color: var(--grey-800);
-
-  @media (min-width: 30em) {
-    font-size: var(--f2);
-  }
-}
-
-.underline {
-  border-bottom: 3px solid var(--red-800);
-  width: 200px;
-  margin: var(--p3) 0;
-  margin-bottom: var(--p4);
-}
-
 .box {
   background-color: var(--grey-200);
   border-radius: var(--br4);

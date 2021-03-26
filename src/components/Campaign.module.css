@@ -5,7 +5,7 @@
 
   background-color: white;
   overflow: hidden;
-  box-shadow: var(--shadow-4);
+  border-radius: var(--br4);
 
   @media (min-width: 40em) {
     max-width: 300px;

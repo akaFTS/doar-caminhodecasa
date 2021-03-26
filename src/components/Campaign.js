@@ -25,7 +25,7 @@ export default function Campaign({ campaign }) {
           <h4>R${lowest_donation},00</h4>
         </div>
         <Link to={`/projetos/${campaign.slug}`} className={styles.donateButton}>
-          Conheça
+          Conhecer
         </Link>
       </footer>
     </article>

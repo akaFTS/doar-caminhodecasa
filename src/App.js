@@ -16,7 +16,12 @@ function ScrollToTop() {
 }
 
 export default function App() {
-  const [basket, setBasket] = useState([]);
+  const initialBasket = JSON.parse(localStorage.getItem("Basket")) || {};
+  const [basket, setBasket] = useState(initialBasket);
+
+  useEffect(() => {
+    localStorage.setItem("Basket", JSON.stringify(basket));
+  }, [basket]);
 
   return (
     <BasketContext.Provider value={{ basket, setBasket }}>
