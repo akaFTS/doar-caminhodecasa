@@ -1,10 +1,8 @@
 .main {
-  box-sizing: border-box;
-  min-height: calc(100vh - 8em);
   padding: var(--p4) var(--p3);
-  padding-top: calc(var(--p6) + var(--p3));
+  box-sizing: border-box;
 
-  @media (min-width: 30em) {
+  @media (min-width: 40em) {
     max-width: 800px;
     margin: 0 auto;
   }

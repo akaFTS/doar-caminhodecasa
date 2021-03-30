@@ -9,11 +9,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { HashLink as Link } from "react-router-hash-link";
 import BasketContext from "../BasketContext";
 
-export default function Header({ inverted }) {
+export default function Header() {
   const { basket } = useContext(BasketContext);
 
   return (
-    <header className={`${styles.header} ${inverted ? styles.inverted : ""}`}>
+    <header className={styles.header}>
       <Link to="/" className={styles.logoWrap}>
         <img src={logo} className={styles.logo} />
       </Link>

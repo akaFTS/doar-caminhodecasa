@@ -30,7 +30,6 @@ export default function Basket({ items, onItemsChanged }) {
     <main className={styles.main}>
       <h1 className={styles.title}>Minha Cesta de Doações</h1>
       <div className={styles.underline}></div>
-      {Object.keys(items).length == 0 && <EmptyBasket />}
       {orderedBasket.map(([slug, item]) => (
         <BasketItem
           key={slug}
@@ -38,7 +37,7 @@ export default function Basket({ items, onItemsChanged }) {
           onAmountChanged={(delta) => handleAmountChanged(slug, delta)}
         />
       ))}
-      {Object.keys(items).length > 0 && <BasketTotal items={items} />}
+      <BasketTotal items={items} />
     </main>
   );
 }

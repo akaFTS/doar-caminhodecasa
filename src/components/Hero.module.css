@@ -40,7 +40,7 @@
     color: var(--red-600);
   }
 
-  @media (min-width: 30em) {
+  @media (min-width: 40em) {
     font-size: 3rem;
   }
 }

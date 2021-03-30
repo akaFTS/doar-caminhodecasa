@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import CampaignList from "./components/CampaignList";
 import campaigns from "./campaigns.json";
 import { Helmet } from "react-helmet";
+import AltHeader from "./components/AltHeader";
 
 export default function CampaignPage() {
   const { slug } = useParams();
@@ -28,7 +29,7 @@ export default function CampaignPage() {
         <meta property="og:description" content={campaign.short_description} />
         <meta name="description" content={campaign.short_description} />
       </Helmet>
-      <Header inverted={true} />
+      <AltHeader />
       <CampaignDetails campaign={campaign} featured={false} />
       <CampaignList campaigns={other_campaigns} others={true} />
       <Footer />

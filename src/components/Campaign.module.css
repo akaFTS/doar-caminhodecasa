@@ -12,7 +12,7 @@
     width: calc(50% - var(--p4));
   }
 
-  @media (min-width: 65em) {
+  @media (min-width: 60em) {
     width: calc(33.3% - var(--p4));
   }
 }

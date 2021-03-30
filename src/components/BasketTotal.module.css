@@ -9,7 +9,10 @@
   padding: var(--p3);
   box-sizing: border-box;
   width: 100%;
-  max-width: 400px;
+
+  @media (min-width: 40em) {
+    width: 50%;
+  }
 
   & p {
     font-size: var(--f6);
@@ -21,7 +24,7 @@
 
   & .seeOthers {
     display: block;
-    background-color: var(--grey-500);
+    background-color: var(--red-800);
     font-size: var(--f4);
     color: white;
     text-decoration: none;
@@ -33,7 +36,7 @@
 
     &:hover {
       cursor: pointer;
-      background-color: var(--grey-600);
+      background-color: var(--red-900);
     }
   }
 

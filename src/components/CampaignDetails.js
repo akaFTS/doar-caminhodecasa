@@ -13,9 +13,7 @@ import Donation from "./Donation";
 
 export default function CampaignDetails({ campaign, featured }) {
   return (
-    <section
-      className={`${styles.details} ${featured ? "" : styles.extraPadding}`}
-    >
+    <section className={styles.details}>
       {featured ? (
         <h5 className={styles.featured}>Projeto em Destaque</h5>
       ) : null}
