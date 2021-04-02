@@ -11,28 +11,11 @@
   margin-bottom: var(--p4);
 }
 
-.cardWrap {
-  display: flex;
-  flex-direction: column;
-
-  @media (min-width: 40em) {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
-}
-
 .formWrap {
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: var(--p3);
   row-gap: var(--p3);
-  margin-top: var(--p4);
-
-  @media (min-width: 40em) {
-    margin-top: 0;
-    margin-left: var(--p3);
-  }
 }
 
 .input {
@@ -55,7 +38,7 @@
     border: 2px solid var(--grey-800);
   }
 
-  &.halfInput {
+  @media (min-width: 40em) {
     grid-column-end: span 1;
   }
 }

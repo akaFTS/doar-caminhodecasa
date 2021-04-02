@@ -25,12 +25,14 @@
     "react-credit-cards": "^0.8.3",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
+    "react-input-mask": "^3.0.0-alpha.2",
     "react-router": "^6.0.0-beta.0",
     "react-router-dom": "^6.0.0-beta.0",
     "react-router-hash-link": "^2.4.0"
   },
   "devDependencies": {
     "gh-pages": "^3.1.0",
+    "netlify-cli": "^3.13.10",
     "parcel": "2.0.0-beta.1",
     "postcss-custom-media": "^7.0.0",
     "postcss-modules": "^3.0.0",

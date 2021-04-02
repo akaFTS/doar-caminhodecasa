@@ -9,25 +9,23 @@ import {
   formatFormData,
 } from "../paymentUtils";
 
-export default function Payments({ total }) {
-  const [cvc, setCvc] = useState("");
-  const [expiry, setExpiry] = useState("");
-  const [name, setName] = useState("");
-  const [number, setNumber] = useState("");
+export default function Payments({
+  cardname,
+  number,
+  expiry,
+  cvc,
+  issuer,
+  setCardname,
+  setNumber,
+  setExpiry,
+  setCvc,
+  setIssuer,
+  setValidNumber,
+}) {
   const [focused, setFocused] = useState("");
-  const [issuer, setIssuer] = useState("");
-  const [isValidNumber, setValidNumber] = useState(false);
 
   const handleInputFocus = (e) => {
     setFocused(e.target.name);
-  };
-
-  const isButtonEnabled = () => {
-    const isBlank = (str) => {
-      return !str || /^\s*$/.test(str);
-    };
-
-    return isValidNumber && !isBlank(name) && !isBlank(expiry) && !isBlank(cvc);
   };
 
   const handleInputChange = (e) => {
@@ -38,7 +36,7 @@ export default function Payments({ total }) {
     } else if (e.target.name == "cvc") {
       setCvc(formatCVC(e.target.value));
     } else {
-      setName(e.target.value);
+      setCardname(e.target.value);
     }
   };
 
@@ -50,13 +48,13 @@ export default function Payments({ total }) {
   };
 
   return (
-    <main className={styles.main}>
+    <section>
       <h1 className={styles.title}>Dados de Pagamento</h1>
       <div className={styles.underline}></div>
       <div className={styles.cardWrap}>
         <Card
           number={number}
-          name={name}
+          name={cardname}
           expiry={expiry}
           cvc={cvc}
           focused={focused}
@@ -64,7 +62,7 @@ export default function Payments({ total }) {
           placeholders={{ name: "" }}
           callback={handleCardCallback}
         />
-        <form className={styles.form}>
+        <div className={styles.formWrap}>
           <input
             type="tel"
             name="number"
@@ -76,10 +74,10 @@ export default function Payments({ total }) {
           />
           <input
             type="text"
-            name="name"
+            name="cardname"
             placeholder="Nome (como consta no cartão)"
             className={styles.input}
-            value={name}
+            value={cardname}
             onChange={handleInputChange}
             onFocus={handleInputFocus}
           />
@@ -102,15 +100,8 @@ export default function Payments({ total }) {
             onFocus={handleInputFocus}
           />
           <input type="hidden" name="issuer" value={issuer} />
-          <button
-            type="submit"
-            className={styles.button}
-            disabled={!isButtonEnabled()}
-          >
-            Doar R${total},00
-          </button>
-        </form>
+        </div>
       </div>
-    </main>
+    </section>
   );
 }

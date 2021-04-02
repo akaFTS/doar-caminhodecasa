@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet";
 import Basket from "./components/Basket";
 import EmptyBasket from "./components/EmptyBasket";
 import BasketContext from "./BasketContext";
-import Payments from "./components/Payments";
+import Checkout from "./components/Checkout";
 
 export default function BasketPage() {
   const { basket, setBasket } = useContext(BasketContext);
@@ -26,7 +26,7 @@ export default function BasketPage() {
       {Object.keys(basket).length > 0 ? (
         <>
           <Basket items={basket} onItemsChanged={setBasket} />
-          <Payments total={totalPrice} />
+          <Checkout total={totalPrice} />
         </>
       ) : (
         <EmptyBasket />
