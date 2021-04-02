@@ -1,5 +1,6 @@
 import React from "react";
 import { hydrate, render } from "react-dom";
+import "regenerator-runtime/runtime";
 import App from "./App";
 import "./reset.css";
 import "./vars.css";
