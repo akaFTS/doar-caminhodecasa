@@ -23,6 +23,7 @@
   border: none;
   padding: var(--p3) var(--p3);
   text-decoration: none;
+  margin-bottom: var(--p3);
 
   &:hover {
     background-color: var(--red-900);
@@ -32,5 +33,25 @@
   &:disabled {
     background-color: var(--grey-400);
     cursor: not-allowed;
+  }
+}
+
+.spinner {
+  margin-right: var(--p3);
+}
+
+.alert {
+  background-color: var(--red-100);
+  border: 2px solid var(--red-600);
+  border-radius: var(--br3);
+  padding: var(--p3) var(--p3);
+  display: flex;
+  align-items: center;
+  color: var(--red-900);
+  line-height: 1.2;
+
+  & .icon {
+    font-size: var(--f2);
+    margin-right: var(--p3);
   }
 }

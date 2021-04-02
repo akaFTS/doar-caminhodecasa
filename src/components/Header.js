@@ -25,14 +25,20 @@ export default function Header() {
           Minha Cesta
         </Link>
         <div className={styles.separator} />
-        <a href="https://www.instagram.com/associacao_caminhodecasa">
+        <a
+          href="https://www.instagram.com/associacao_caminhodecasa"
+          target="_blank"
+        >
           <FontAwesomeIcon
             icon={faInstagram}
             className={`${styles.socialIcon} ${styles.instagram}`}
           />
         </a>
         <div className={styles.separator} />
-        <a href="https://www.facebook.com/associacaocaminhodecasa/">
+        <a
+          href="https://www.facebook.com/associacaocaminhodecasa/"
+          target="_blank"
+        >
           <FontAwesomeIcon
             icon={faFacebookSquare}
             className={`${styles.socialIcon} ${styles.facebook}`}

@@ -12,13 +12,18 @@
 }
 
 .cardWrap {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: var(--p3);
+  row-gap: var(--p3);
+  align-items: center;
 
-  @media (min-width: 40em) {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+  & > * {
+    grid-column-end: span 2;
+
+    @media (min-width: 40em) {
+      grid-column-end: span 1;
+    }
   }
 }
 
@@ -27,12 +32,6 @@
   grid-template-columns: 1fr 1fr;
   column-gap: var(--p3);
   row-gap: var(--p3);
-  margin-top: var(--p4);
-
-  @media (min-width: 40em) {
-    margin-top: 0;
-    margin-left: var(--p3);
-  }
 }
 
 .input {
@@ -58,4 +57,11 @@
   &.halfInput {
     grid-column-end: span 1;
   }
+}
+
+.info {
+  text-align: center;
+  font-size: var(--f6);
+  color: var(--grey-700);
+  margin-top: var(--p3);
 }

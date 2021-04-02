@@ -4,6 +4,7 @@ import BasketPage from "./BasketPage";
 import CampaignPage from "./CampaignPage";
 import { Routes, Route, useLocation, BrowserRouter } from "react-router-dom";
 import BasketContext from "./BasketContext";
+import ThanksPage from "./ThanksPage";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -30,6 +31,7 @@ export default function App() {
         <Routes>
           <Route path="/*" element={<MainPage />}></Route>
           <Route path="/cesta" element={<BasketPage />}></Route>
+          <Route path="/obrigado" element={<ThanksPage />}></Route>
           <Route path="/projetos/:slug" element={<CampaignPage />}></Route>
         </Routes>
       </BrowserRouter>

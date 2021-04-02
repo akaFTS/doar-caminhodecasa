@@ -102,6 +102,10 @@ export default function Payments({
           <input type="hidden" name="issuer" value={issuer} />
         </div>
       </div>
+      <p className={styles.info}>
+        Não armazenamos os dados do seu cartão. Eles serão transmitidos por uma
+        conexão encriptada até a operadora de pagamento.
+      </p>
     </section>
   );
 }

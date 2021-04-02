@@ -2,7 +2,6 @@ import React from "react";
 import { useParams, Navigate } from "react-router";
 import CampaignDetails from "./components/CampaignDetails";
 import Footer from "./components/Footer";
-import Header from "./components/Header";
 import CampaignList from "./components/CampaignList";
 import campaigns from "./campaigns.json";
 import { Helmet } from "react-helmet";
