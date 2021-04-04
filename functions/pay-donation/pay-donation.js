@@ -1,12 +1,5 @@
 const validator = require("validator");
-const {
-  getAccessToken,
-  createCharge,
-  processCharge,
-  getFromEnv,
-} = require("./juno_utils");
-
-const USE_SANDBOX = true;
+const { Juno } = require("./juno_utils");
 
 function checkCPF(cpf) {
   cpf = cpf.replace(/[^\d]+/g, "");
@@ -101,21 +94,17 @@ const handler = async (event) => {
     return { statusCode: 400 };
   }
 
-  // Acquire Juno token
-  const token = await getAccessToken(
-    getFromEnv("CLIENT_ID", USE_SANDBOX),
-    getFromEnv("CLIENT_SECRET", USE_SANDBOX),
-    USE_SANDBOX
-  );
+  // Initialize Juno access
+  const juno = new Juno();
+  await juno.initHeaders();
 
-  // Create charge
+  // Prepare charge
   const billing = {
     name: body.name,
     document: body.cpf,
     email: body.email,
     phone: body.phone,
   };
-
   const charge = {
     paymentTypes: ["CREDIT_CARD"],
     installments: 1,
@@ -123,23 +112,15 @@ const handler = async (event) => {
     description: body.description,
   };
 
-  const charges = await createCharge(
-    token,
-    getFromEnv("PRIVATE_TOKEN", USE_SANDBOX),
-    charge,
-    billing,
-    USE_SANDBOX
-  );
-
-  const error = await processCharge(
-    token,
-    getFromEnv("PRIVATE_TOKEN", USE_SANDBOX),
+  // Create charge and payment
+  const charges = await juno.createCharge(charge, billing);
+  const error = await juno.processCharge(
     charges[0].id,
     body.cardHash,
-    body.email,
-    USE_SANDBOX
+    body.email
   );
 
+  // Check for errors
   if (error == null) {
     return {
       statusCode: 200,

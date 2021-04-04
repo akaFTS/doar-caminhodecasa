@@ -1,4 +1,5 @@
 const axios = require("axios");
+const IS_SANDBOX = true;
 
 function getFromEnv(variable, useSandbox) {
   if (useSandbox) {
@@ -8,110 +9,113 @@ function getFromEnv(variable, useSandbox) {
   return process.env[variable];
 }
 
-function getClientHash(clientId, clientSecret) {
-  var data = clientId + ":" + clientSecret;
-  var buff = Buffer.from(data);
-  return buff.toString("base64");
-}
+class Juno {
+  constructor() {
+    this.api = axios.create({
+      baseURL: IS_SANDBOX
+        ? "https://sandbox.boletobancario.com/api-integration"
+        : "https://api.juno.com.br",
+    });
+  }
 
-async function getAccessToken(clientId, clientSecret, isSandbox) {
-  const hash = getClientHash(clientId, clientSecret);
-  const { data, status } = await axios.post(
-    isSandbox
-      ? "https://sandbox.boletobancario.com/authorization-server/oauth/token"
-      : "https://api.juno.com.br/authorization-server/oauth/token",
-    "grant_type=client_credentials",
-    {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        Authorization: `Basic ${hash}`,
-      },
+  async initHeaders() {
+    // Produce access hash
+    const hash = Buffer.from(
+      getFromEnv("CLIENT_ID", IS_SANDBOX) +
+        ":" +
+        getFromEnv("CLIENT_SECRET", IS_SANDBOX)
+    ).toString("base64");
+
+    // Acquire access token
+    const { data, status } = await axios.post(
+      IS_SANDBOX
+        ? "https://sandbox.boletobancario.com/authorization-server/oauth/token"
+        : "https://api.juno.com.br/authorization-server/oauth/token",
+      "grant_type=client_credentials",
+      {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          Authorization: `Basic ${hash}`,
+        },
+      }
+    );
+
+    if (status !== 200) {
+      console.log("Authorization error: " + status);
+      return;
     }
-  );
 
-  if (status !== 200) {
-    console.log("Authorization error: " + status);
-    return null;
+    // Set headers
+    this.headers = {
+      "X-Api-Version": 2,
+      "X-Resource-Token": getFromEnv("PRIVATE_TOKEN", IS_SANDBOX),
+      Authorization: `Bearer ${data.access_token}`,
+    };
   }
 
-  return data.access_token;
-}
-
-async function createCharge(
-  accessToken,
-  resourceToken,
-  charge,
-  billing,
-  isSandbox
-) {
-  const headers = {
-    "X-Api-Version": 2,
-    "X-Resource-Token": resourceToken,
-    Authorization: `Bearer ${accessToken}`,
-  };
-
-  const body = {
-    charge,
-    billing,
-  };
-
-  const baseUrl = isSandbox
-    ? "https://sandbox.boletobancario.com/api-integration"
-    : "https://api.juno.com.br";
-
-  try {
-    const { data } = await axios.post(baseUrl + "/charges", body, {
-      headers,
-    });
-    return data._embedded.charges;
-  } catch (e) {
-    console.log("Failed to create charge!");
-    console.log(e.response.data);
-    return null;
+  async createCharge(charge, billing) {
+    try {
+      const { data } = await this.api.post(
+        "/charges",
+        { charge, billing },
+        {
+          headers: this.headers,
+        }
+      );
+      return data._embedded.charges;
+    } catch (e) {
+      console.log("Failed to create charge!");
+      console.log(e.response.data);
+      return null;
+    }
   }
-}
 
-async function processCharge(
-  accessToken,
-  resourceToken,
-  chargeId,
-  creditCardHash,
-  email,
-  isSandbox
-) {
-  const headers = {
-    "X-Api-Version": 2,
-    "X-Resource-Token": resourceToken,
-    Authorization: `Bearer ${accessToken}`,
-  };
-
-  const body = {
-    chargeId,
-    creditCardDetails: { creditCardHash },
-    billing: {
-      email,
-      address: {
-        street: "Rua Padre Benedito de Camargo",
-        number: "356",
-        city: "São Paulo",
-        state: "SP",
-        postCode: "03604010",
+  async processCharge(chargeId, creditCardHash, email) {
+    const body = {
+      chargeId,
+      creditCardDetails: { creditCardHash },
+      billing: {
+        email,
+        address: {
+          street: "Rua Padre Benedito de Camargo",
+          number: "356",
+          city: "São Paulo",
+          state: "SP",
+          postCode: "03604010",
+        },
       },
-    },
-  };
+    };
 
-  const baseUrl = isSandbox
-    ? "https://sandbox.boletobancario.com/api-integration"
-    : "https://api.juno.com.br";
+    try {
+      await this.api.post("/payments", body, {
+        headers: this.headers,
+      });
+      return null;
+    } catch (e) {
+      return e.response.data.details[0].errorCode;
+    }
+  }
 
-  try {
-    const { data } = await axios.post(baseUrl + "/payments", body, {
-      headers,
-    });
-    return null;
-  } catch (e) {
-    return e.response.data.details[0].errorCode;
+  async fetchCharge(chargeCode) {
+    // Grab date to filter charges
+    const date = new Date();
+    date.setDate(date.getDate() - 1);
+    const yesterday = date.toISOString().split("T")[0];
+
+    try {
+      const { data } = await this.api.get(
+        "/charges?createdOnStart=" + yesterday,
+        {},
+        {
+          headers: this.headers,
+        }
+      );
+      console.log(data);
+    } catch (e) {
+      console.log("oops!");
+      console.log(e.response.details);
+    }
   }
 }
 
-module.exports = { getFromEnv, getAccessToken, createCharge, processCharge };
+module.exports = { Juno };
