@@ -20,7 +20,9 @@ export default function CampaignDetails({ campaign, featured }) {
       <h2 className={styles.title}>{campaign.name}</h2>
       <div className={styles.underline}></div>
       <div className={styles.description}>
-        <p>{campaign.long_description}</p>
+        {campaign.long_description.split("#").map((paragraph) => (
+          <p>{paragraph}</p>
+        ))}
       </div>
       <main className={styles.content}>
         <div className={styles.carouselWrapper}>

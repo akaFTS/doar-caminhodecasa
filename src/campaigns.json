@@ -4,7 +4,7 @@
     "name": "Manto Azul",
     "slug": "manto-azul",
     "short_description": "Com a sua contribuição, montamos e distribuímos enxovais completos para gestantes.",
-    "long_description": "O Manto Azul é um projeto que se encarrega de auxiliar gestantes e mães de bebês. Nós preparamos um enxoval contendo fraldas, roupas, e tudo que o bebê possa precisar, e distribuímos para mães de comunidades da região do Jardim Pantanal em São Paulo. Atualmente, mais de 50 família são atendidas pelo projeto.",
+    "long_description": "O Manto Azul é um projeto que atende gestantes a partir do terceiro mês de gravidez e em situação de vulnerabilidade social, com reuniões mensais para o desenvolvimento emocional e motivacional,  realização de trabalhos artesanais, rodas de conversa, esclarecimentos e orientações de psicólogos, assistentes sociais e enfermeiros.#No nascimento da criança, além de todo o carinho recebido da equipe de voluntários ao longo da gestação, a mamãe também ganha um lindo enxoval para o bebê, completo, incluindo os trabalhos artesanais desenvolvidos nas reuniões e peças em tricô e crochê feitas pelo grupo Histórias e Retalhos.#Ainda dentro dessa rede de afetividade e proteção, o bebê é acompanhado pelo projeto Manto Azul durante 6 meses após o nascimento e a família recebe mensalmente auxílio de mantimentos e fraldas nesse período.",
     "cover_picture": "manto_cover.jpg",
     "slide_pictures": ["manto1.jpg", "manto2.jpg", "manto3.jpg"],
     "donations": [
@@ -23,10 +23,10 @@
     ]
   },
   {
-    "name": "Manto Verde",
-    "slug": "manto-verde",
-    "short_description": "Com a sua contribuição, montamos e distribuímos enxovais completos para gestantes.",
-    "long_description": "O Manto Azul é um projeto que se encarrega de auxiliar gestantes e mães de bebês. Nós preparamos um enxoval contendo fraldas, roupas, e tudo que o bebê possa precisar, e distribuímos para mães de comunidades da região do Jardim Pantanal em São Paulo. Atualmente, mais de 50 família são atendidas pelo projeto.",
+    "name": "Projeto Acolher",
+    "slug": "acolher",
+    "short_description": "Doe alimentos, itens de higiene, leite e fraldas para famílias vulneráveis.",
+    "long_description": "Acolher é um projeto que visa atender as famílias em situação de vulnerabilidade social com orientações para melhorar a qualidade de vida de cada uma delas e auxiliar mensalmente com cestas de mantimentos, itens de higiene, leite para as crianças e fraldas para os bebês.#Uma vez ao mês as famílias assistem a palestras com temáticas variadas como Ética, Saúde Mental e Educação Financeira.#Nossos voluntários visitam as famílias nas comunidades onde vivem, ouvindo as suas necessidades básicas, confortando-as e acreditando que juntos, todos nós, podemos levar esperança e dignidade a quem mais precisa.",
     "cover_picture": "manto_cover.jpg",
     "slide_pictures": ["manto1.jpg", "manto2.jpg", "manto3.jpg"],
     "donations": [

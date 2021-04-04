@@ -31,12 +31,16 @@
 
 .description {
   font-size: var(--f5);
-  text-align: center;
+  text-align: justify;
   color: var(--grey-800);
   max-width: 800px;
   margin: 0 auto;
   margin-bottom: var(--p5);
-  line-height: 1.2;
+  line-height: 1.3;
+
+  & p {
+    margin-bottom: var(--p3);
+  }
 }
 
 .content {

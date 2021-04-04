@@ -6,7 +6,7 @@ const {
   getFromEnv,
 } = require("./juno_utils");
 
-const USE_SANDBOX = false;
+const USE_SANDBOX = true;
 
 function checkCPF(cpf) {
   cpf = cpf.replace(/[^\d]+/g, "");
