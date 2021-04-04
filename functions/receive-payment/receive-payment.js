@@ -8,16 +8,18 @@ const {
 const USE_SANDBOX = true;
 
 const handler = async (event) => {
-  const { chargeCode } = JSON.parse(event.body);
+  console.log(event);
 
-  // Initialize Juno access
-  const juno = new Juno();
-  await juno.initHeaders();
+  // const { chargeCode } = JSON.parse(event.body);
 
-  // Fetch charge by code
-  const charge = await juno.fetchCharge(chargeCode);
+  // // Initialize Juno access
+  // const juno = new Juno();
+  // await juno.initHeaders();
 
-  return { statusCode: 200 };
+  // // Fetch charge by code
+  // const charge = await juno.fetchCharge(chargeCode);
+
+  // return { statusCode: 200 };
 };
 
 module.exports = { handler };

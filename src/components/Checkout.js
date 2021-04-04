@@ -102,12 +102,12 @@ export default function Checkout({ basket, onCheckoutFinished }) {
         description,
       });
 
-      onCheckoutFinished({
-        orderNumber: response.data.orderNumber,
-        name,
-        total,
-        paymentCode: "card",
-      });
+      // onCheckoutFinished({
+      //   orderNumber: response.data.orderNumber,
+      //   name,
+      //   total,
+      //   paymentCode: "card",
+      // });
     } catch (e) {
       if (e.response.status == 400) {
         setError("server_validation");

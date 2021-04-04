@@ -19,6 +19,7 @@
     "@fortawesome/react-fontawesome": "^0.1.14",
     "axios": "^0.21.1",
     "eslint": "^7.21.0",
+    "faunadb": "^4.1.3",
     "history": "^5.0.0",
     "juno-nodejs": "^1.0.14",
     "payment": "^2.4.0",

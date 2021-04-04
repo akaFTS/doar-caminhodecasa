@@ -113,9 +113,10 @@ const handler = async (event) => {
   };
 
   // Create charge and payment
-  const charges = await juno.createCharge(charge, billing);
+  const recordedCharge = await juno.createCharge(charge, billing);
   const error = await juno.processCharge(
-    charges[0].id,
+    recordedCharge.id,
+    recordedCharge.code,
     body.cardHash,
     body.email
   );
@@ -124,7 +125,7 @@ const handler = async (event) => {
   if (error == null) {
     return {
       statusCode: 200,
-      body: JSON.stringify({ orderNumber: charges[0].code }),
+      body: JSON.stringify({ orderNumber: recordedCharge.code }),
     };
   }
 

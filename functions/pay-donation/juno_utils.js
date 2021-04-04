@@ -1,4 +1,5 @@
 const axios = require("axios");
+const { Fauna } = require("./fauna_utils");
 const IS_SANDBOX = true;
 
 function getFromEnv(variable, useSandbox) {
@@ -16,6 +17,8 @@ class Juno {
         ? "https://sandbox.boletobancario.com/api-integration"
         : "https://api.juno.com.br",
     });
+
+    this.fauna = new Fauna();
   }
 
   async initHeaders() {
@@ -62,7 +65,21 @@ class Juno {
           headers: this.headers,
         }
       );
-      return data._embedded.charges;
+
+      const recordedCharge = data._embedded.charges[0];
+
+      // Save charge to FaunaDB
+      this.fauna.recordCharge({
+        chargeCode: recordedCharge.code,
+        email: billing.email,
+        name: billing.name,
+        amount: charge.amount,
+        description: charge.description,
+        paymentType: charge.paymentTypes[0],
+        status: "PENDING",
+      });
+
+      return recordedCharge;
     } catch (e) {
       console.log("Failed to create charge!");
       console.log(e.response.data);
@@ -70,7 +87,7 @@ class Juno {
     }
   }
 
-  async processCharge(chargeId, creditCardHash, email) {
+  async processCharge(chargeId, chargeCode, creditCardHash, email) {
     const body = {
       chargeId,
       creditCardDetails: { creditCardHash },
@@ -90,9 +107,15 @@ class Juno {
       await this.api.post("/payments", body, {
         headers: this.headers,
       });
-      return null;
+      this.fauna.updateCharge(chargeCode, "PAID");
     } catch (e) {
-      return e.response.data.details[0].errorCode;
+      const error = e.response.data.details[0].errorCode;
+
+      if (error == 289999) {
+        await this.fauna.updateCharge(chargeCode, "DENIED");
+      }
+
+      return error;
     }
   }
 
