@@ -1,6 +1,7 @@
 const { Fauna } = require("../pay-donation/fauna_utils");
 
 const handler = async (event) => {
+  console.log(event);
   const { chargeCode } = JSON.parse(event.body);
 
   // Update in DB
