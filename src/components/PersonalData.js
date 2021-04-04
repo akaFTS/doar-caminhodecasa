@@ -11,7 +11,12 @@ export default function PersonalData({
   setCpf,
   setEmail,
   setPhone,
+  shouldFlagBlankFields,
 }) {
+  const isBlank = (str) => {
+    return !str || /^\s*$/.test(str);
+  };
+
   const beforeMaskedValueChange = ({ nextState }) => {
     const newValue = nextState.value.replace(/\D/g, "");
     if (newValue.length === 10) {
@@ -31,7 +36,9 @@ export default function PersonalData({
       <div className={styles.formWrap}>
         <input
           name="name"
-          className={styles.input}
+          className={`${styles.input} ${
+            shouldFlagBlankFields && isBlank(name) ? styles.blankInput : ""
+          }`}
           placeholder="Nome"
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -39,7 +46,9 @@ export default function PersonalData({
         <InputMask
           name="cpf"
           placeholder="CPF"
-          className={styles.input}
+          className={`${styles.input} ${
+            shouldFlagBlankFields && isBlank(cpf) ? styles.blankInput : ""
+          }`}
           value={cpf}
           onChange={(e) => setCpf(e.target.value)}
           mask={"999.999.999-99"}
@@ -48,7 +57,9 @@ export default function PersonalData({
         <input
           type="email"
           name="email"
-          className={styles.input}
+          className={`${styles.input} ${
+            shouldFlagBlankFields && isBlank(email) ? styles.blankInput : ""
+          }`}
           placeholder="E-mail"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -56,7 +67,9 @@ export default function PersonalData({
         <InputMask
           name="phone"
           placeholder="Telefone"
-          className={styles.input}
+          className={`${styles.input} ${
+            shouldFlagBlankFields && isBlank(phone) ? styles.blankInput : ""
+          }`}
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
           mask="(99) 99999-9999"

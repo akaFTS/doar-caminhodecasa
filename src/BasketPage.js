@@ -13,15 +13,9 @@ export default function BasketPage() {
   const { basket, setBasket } = useContext(BasketContext);
   const navigate = useNavigate();
 
-  const totalPrice = Object.values(basket).reduce(
-    (total, current) => total + current.amount * current.product.price,
-    0
-  );
-
   const handleCheckoutFinished = (payload) => {
     // Empty basket
     setBasket({});
-
     // Navigate to Thanks page
     const params = queryString.stringify(payload);
     navigate("/obrigado?" + params);
@@ -39,7 +33,7 @@ export default function BasketPage() {
         <>
           <Basket items={basket} onItemsChanged={setBasket} />
           <Checkout
-            total={totalPrice}
+            basket={basket}
             onCheckoutFinished={handleCheckoutFinished}
           />
         </>

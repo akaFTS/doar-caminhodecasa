@@ -20,9 +20,13 @@ export default function Payments({
   setExpiry,
   setCvc,
   setIssuer,
-  setValidNumber,
+  shouldFlagBlankFields,
 }) {
   const [focused, setFocused] = useState("");
+
+  const isBlank = (str) => {
+    return !str || /^\s*$/.test(str);
+  };
 
   const handleInputFocus = (e) => {
     setFocused(e.target.name);
@@ -41,7 +45,6 @@ export default function Payments({
   };
 
   const handleCardCallback = ({ issuer }, isValid) => {
-    setValidNumber(isValid);
     if (isValid) {
       setIssuer(issuer);
     }
@@ -66,7 +69,9 @@ export default function Payments({
           <input
             type="tel"
             name="number"
-            className={styles.input}
+            className={`${styles.input} ${
+              shouldFlagBlankFields && isBlank(number) ? styles.blankInput : ""
+            }`}
             placeholder="Número do cartão"
             value={number}
             onChange={handleInputChange}
@@ -76,7 +81,11 @@ export default function Payments({
             type="text"
             name="cardname"
             placeholder="Nome (como consta no cartão)"
-            className={styles.input}
+            className={`${styles.input} ${
+              shouldFlagBlankFields && isBlank(cardname)
+                ? styles.blankInput
+                : ""
+            }`}
             value={cardname}
             onChange={handleInputChange}
             onFocus={handleInputFocus}
@@ -85,7 +94,9 @@ export default function Payments({
             type="tel"
             name="expiry"
             placeholder="Validade"
-            className={`${styles.input} ${styles.halfInput}`}
+            className={`${styles.input} ${styles.halfInput} ${
+              shouldFlagBlankFields && isBlank(expiry) ? styles.blankInput : ""
+            }`}
             value={expiry}
             onChange={handleInputChange}
             onFocus={handleInputFocus}
@@ -94,7 +105,9 @@ export default function Payments({
             type="tel"
             name="cvc"
             placeholder="CVC"
-            className={`${styles.input} ${styles.halfInput}`}
+            className={`${styles.input} ${styles.halfInput} ${
+              shouldFlagBlankFields && isBlank(cvc) ? styles.blankInput : ""
+            }`}
             value={cvc}
             onChange={handleInputChange}
             onFocus={handleInputFocus}
@@ -103,8 +116,8 @@ export default function Payments({
         </div>
       </div>
       <p className={styles.info}>
-        Não armazenamos os dados do seu cartão. Eles serão transmitidos por uma
-        conexão encriptada até a operadora de pagamento.
+        Não lemos ou armazenamos os dados do seu cartão. Eles são encriptados e
+        transmitidos por uma conexão segura até a operadora de pagamento.
       </p>
     </section>
   );

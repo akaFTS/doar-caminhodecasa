@@ -20,6 +20,7 @@
     "axios": "^0.21.1",
     "eslint": "^7.21.0",
     "history": "^5.0.0",
+    "juno-nodejs": "^1.0.14",
     "payment": "^2.4.0",
     "pure-react-carousel": "^1.27.6",
     "query-string": "^7.0.0",

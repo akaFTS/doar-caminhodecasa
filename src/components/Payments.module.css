@@ -57,6 +57,10 @@
   &.halfInput {
     grid-column-end: span 1;
   }
+
+  &.blankInput {
+    border-color: var(--red-800);
+  }
 }
 
 .info {

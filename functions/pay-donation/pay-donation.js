@@ -1,4 +1,12 @@
 const validator = require("validator");
+const {
+  getAccessToken,
+  createCharge,
+  processCharge,
+  getFromEnv,
+} = require("./juno_utils");
+
+const USE_SANDBOX = false;
 
 function checkCPF(cpf) {
   cpf = cpf.replace(/[^\d]+/g, "");
@@ -46,13 +54,10 @@ function sanitize(body) {
     name: validator.escape(body.name),
     email: validator.escape(body.email),
     phone: validator.escape(body.phone),
-    cpf: validator.escape(body.cpf),
-    number: validator.escape(body.number),
-    cardname: validator.escape(body.cardname),
-    cvc: validator.escape(body.cvc),
-    issuer: validator.escape(body.issuer),
+    cpf: validator.escape(body.cpf.replace(/[.-]/g, "")),
+    cardHash: validator.escape(body.cardHash),
     total: validator.escape(body.total + ""),
-    expiry: body.expiry,
+    description: validator.escape(body.description),
   };
 }
 
@@ -73,27 +78,11 @@ function fieldsAreValid(body) {
     return false;
   }
 
-  if (!validator.isCreditCard(body.number)) {
-    return false;
-  }
-
-  if (!validator.isAlpha(body.cardname, "pt-BR", { ignore: " " })) {
-    return false;
-  }
-
-  if (!validator.isInt(body.cvc)) {
-    return false;
-  }
-
-  if (!validator.isAlpha(body.issuer)) {
+  if (!validator.matches(body.cardHash, /[a-zA-Z0-9-]+/)) {
     return false;
   }
 
   if (!validator.isInt(body.total)) {
-    return false;
-  }
-
-  if (!validator.isDate("01/" + body.expiry, { format: "DD/MM/YY" })) {
     return false;
   }
 
@@ -112,10 +101,57 @@ const handler = async (event) => {
     return { statusCode: 400 };
   }
 
-  // Perform Juno connection
-  // TODO
+  // Acquire Juno token
+  const token = await getAccessToken(
+    getFromEnv("CLIENT_ID", USE_SANDBOX),
+    getFromEnv("CLIENT_SECRET", USE_SANDBOX),
+    USE_SANDBOX
+  );
 
-  return { statusCode: 200, body: JSON.stringify({ orderNumber: 12345678 }) };
+  // Create charge
+  const billing = {
+    name: body.name,
+    document: body.cpf,
+    email: body.email,
+    phone: body.phone,
+  };
+
+  const charge = {
+    paymentTypes: ["CREDIT_CARD"],
+    installments: 1,
+    amount: body.total,
+    description: body.description,
+  };
+
+  const charges = await createCharge(
+    token,
+    getFromEnv("PRIVATE_TOKEN", USE_SANDBOX),
+    charge,
+    billing,
+    USE_SANDBOX
+  );
+
+  const error = await processCharge(
+    token,
+    getFromEnv("PRIVATE_TOKEN", USE_SANDBOX),
+    charges[0].id,
+    body.cardHash,
+    body.email,
+    USE_SANDBOX
+  );
+
+  if (error == null) {
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ orderNumber: charges[0].code }),
+    };
+  }
+
+  if (error == 289999) {
+    return { statusCode: 422 };
+  }
+
+  return { statusCode: 500 };
 };
 
 module.exports = { handler };
