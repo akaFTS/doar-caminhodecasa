@@ -107,10 +107,10 @@ class Juno {
       await this.api.post("/payments", body, {
         headers: this.headers,
       });
-      this.fauna.updateCharge(chargeCode, "PAID");
     } catch (e) {
       const error = e.response.data.details[0].errorCode;
 
+      // Record charge as rejected
       if (error == 289999) {
         await this.fauna.updateCharge(chargeCode, "DENIED");
       }

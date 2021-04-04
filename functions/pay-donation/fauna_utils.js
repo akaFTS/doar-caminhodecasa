@@ -31,7 +31,20 @@ class Fauna {
         )
       );
     } catch (error) {
-      console.log("An error occurred while recording: ", error);
+      console.log("An error occurred while updating: ", error);
+    }
+  }
+
+  async fetchCharge(chargeCode) {
+    try {
+      const charge = await this.client.query(
+        query.Get(query.Match(query.Index("chargeCode"), chargeCode))
+      );
+
+      console.log("success", charge);
+    } catch (error) {
+      console.log("An error occurred while fetching: ", error);
+      return null;
     }
   }
 }
