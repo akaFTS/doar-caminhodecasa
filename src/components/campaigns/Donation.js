@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import * as styles from "./Donation.module.css";
-import images from "../images.js";
-import BasketContext from "../BasketContext";
+import images from "../../images.js";
+import BasketContext from "../../BasketContext";
 
 export default function Donation({ donation }) {
   const { basket, setBasket } = useContext(BasketContext);

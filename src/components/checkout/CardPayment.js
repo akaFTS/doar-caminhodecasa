@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import * as styles from "./Payments.module.css";
+import * as styles from "./CardPayment.module.css";
 import Card from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
 import {
   formatCreditCardNumber,
   formatCVC,
   formatExpirationDate,
-  formatFormData,
-} from "../paymentUtils";
+} from "../../paymentUtils";
 
 export default function Payments({
   cardname,

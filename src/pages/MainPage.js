@@ -1,11 +1,11 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import CampaignDetails from "./components/CampaignDetails";
-import CampaignList from "./components/CampaignList";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import Hero from "./components/Hero";
-import campaigns from "./campaigns.json";
+import CampaignDetails from "../components/campaigns/CampaignDetails";
+import CampaignList from "../components/campaigns/CampaignList";
+import Footer from "../components/layout/Footer";
+import Header from "../components/layout/Header";
+import Hero from "../components/layout/Hero";
+import campaigns from "../campaigns.json";
 
 export default function App() {
   const featured_campaign = campaigns.find((c) => c.featured == true);

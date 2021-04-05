@@ -6,7 +6,7 @@ import {
   faSpinner,
 } from "@fortawesome/free-solid-svg-icons";
 import * as styles from "./Checkout.module.css";
-import Payments from "./Payments";
+import CardPayment from "./CardPayment";
 import PersonalData from "./PersonalData";
 
 function tokenizeCard(cardNumber, holderName, securityCode, expiry) {
@@ -135,7 +135,7 @@ export default function Checkout({ basket, onCheckoutFinished }) {
         setPhone={setPhone}
         shouldFlagBlankFields={error == "blank"}
       />
-      <Payments
+      <CardPayment
         cardname={cardname}
         number={number}
         cvc={cvc}

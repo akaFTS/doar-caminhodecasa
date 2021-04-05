@@ -1,11 +1,11 @@
 import React from "react";
 import { useParams, Navigate } from "react-router";
-import CampaignDetails from "./components/CampaignDetails";
-import Footer from "./components/Footer";
-import CampaignList from "./components/CampaignList";
-import campaigns from "./campaigns.json";
+import CampaignDetails from "../components/campaigns/CampaignDetails";
+import Footer from "../components/layout/Footer";
+import CampaignList from "../components/campaigns/CampaignList";
+import campaigns from "../campaigns.json";
 import { Helmet } from "react-helmet";
-import AltHeader from "./components/AltHeader";
+import AltHeader from "../components/layout/AltHeader";
 
 export default function CampaignPage() {
   const { slug } = useParams();

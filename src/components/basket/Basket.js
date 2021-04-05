@@ -1,5 +1,4 @@
 import React from "react";
-import EmptyBasket from "./EmptyBasket";
 import BasketItem from "./BasketItem";
 import * as styles from "./Basket.module.css";
 import BasketTotal from "./BasketTotal";

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import MainPage from "./MainPage";
-import BasketPage from "./BasketPage";
-import CampaignPage from "./CampaignPage";
+import MainPage from "./pages/MainPage";
+import BasketPage from "./pages/BasketPage";
+import CampaignPage from "./pages/CampaignPage";
+import ThanksPage from "./pages/ThanksPage";
 import { Routes, Route, useLocation, BrowserRouter } from "react-router-dom";
 import BasketContext from "./BasketContext";
-import ThanksPage from "./ThanksPage";
 
 function ScrollToTop() {
   const { pathname } = useLocation();

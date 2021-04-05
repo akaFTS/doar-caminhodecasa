@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import logo from "url:../assets/logo.png";
+import logo from "url:../../assets/logo.png";
 import * as styles from "./Header.module.css";
 import {
   faInstagram,
@@ -7,7 +7,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { HashLink as Link } from "react-router-hash-link";
-import BasketContext from "../BasketContext";
+import BasketContext from "../../BasketContext";
 
 export default function Header() {
   const { basket } = useContext(BasketContext);

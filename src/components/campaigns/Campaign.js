@@ -1,6 +1,6 @@
 import React from "react";
 import * as styles from "./Campaign.module.css";
-import images from "../images.js";
+import images from "../../images.js";
 import { HashLink as Link } from "react-router-hash-link";
 
 export default function Campaign({ campaign }) {

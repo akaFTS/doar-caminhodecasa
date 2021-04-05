@@ -5,7 +5,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import * as styles from "./ThanksBox.module.css";
-import thanks from "url:../assets/thanks.png";
+import thanks from "url:../../assets/thanks.png";
 
 export default function ThanksBox({ orderNumber, name, total, paymentCode }) {
   return (

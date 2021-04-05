@@ -2,7 +2,7 @@ import React from "react";
 import * as styles from "./BasketItem.module.css";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import cesta from "url:../assets/cesta.png";
+import cesta from "url:../../assets/cesta.png";
 
 export default function BasketItem({ item, onAmountChanged }) {
   return (

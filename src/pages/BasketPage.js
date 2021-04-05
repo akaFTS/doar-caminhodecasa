@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import queryString from "query-string";
 import { useNavigate } from "react-router-dom";
-import Footer from "./components/Footer";
-import AltHeader from "./components/AltHeader";
+import Footer from "../components/layout/Footer";
+import AltHeader from "../components/layout/AltHeader";
 import { Helmet } from "react-helmet";
-import Basket from "./components/Basket";
-import EmptyBasket from "./components/EmptyBasket";
-import BasketContext from "./BasketContext";
-import Checkout from "./components/Checkout";
+import Basket from "../components/basket/Basket";
+import EmptyBasket from "../components/basket/EmptyBasket";
+import BasketContext from "../BasketContext";
+import Checkout from "../components/checkout/Checkout";
 
 export default function BasketPage() {
   const { basket, setBasket } = useContext(BasketContext);

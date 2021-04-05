@@ -8,7 +8,7 @@ import {
 } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
 import * as styles from "./CampaignDetails.module.css";
-import images from "../images.js";
+import images from "../../images.js";
 import Donation from "./Donation";
 
 export default function CampaignDetails({ campaign, featured }) {

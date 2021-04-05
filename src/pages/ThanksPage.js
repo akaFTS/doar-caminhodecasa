@@ -2,9 +2,9 @@ import React from "react";
 import { useLocation, Navigate } from "react-router";
 import queryString from "query-string";
 import { Helmet } from "react-helmet";
-import AltHeader from "./components/AltHeader";
-import ThanksBox from "./components/ThanksBox";
-import Footer from "./components/Footer";
+import AltHeader from "../components/layout/AltHeader";
+import ThanksBox from "../components/layout/ThanksBox";
+import Footer from "../components/layout/Footer";
 
 export default function ThanksPage() {
   const query = queryString.parse(useLocation().search);
