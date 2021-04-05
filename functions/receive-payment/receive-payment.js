@@ -1,9 +1,12 @@
 const { Fauna } = require("../utils/fauna_utils");
 const { sendMail } = require("../utils/mail_utils");
+const queryString = require("query-string");
 
 const handler = async (event) => {
-  console.log(event);
-  const { chargeCode } = JSON.parse(event.body);
+  const { chargeCode } = queryString.parse(event.body);
+  console.log(chargeCode);
+
+  return;
 
   // Update in DB
   const fauna = new Fauna();
