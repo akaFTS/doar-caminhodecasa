@@ -109,16 +109,17 @@ export default function Checkout({ basket, onCheckoutFinished }) {
         paymentCode: "card",
       });
     } catch (e) {
-      console.log(e);
-      if (e.response.status == 400) {
+      if (!e.response) {
+        setError("server_validation");
+      } else if (e.response.status == 400) {
         setError("server_validation");
       } else if (e.response.status == 422) {
         setError("server_card");
       } else {
         setError("server_internal");
       }
+      setProcessing(false);
     }
-    setProcessing(false);
   };
 
   return (
