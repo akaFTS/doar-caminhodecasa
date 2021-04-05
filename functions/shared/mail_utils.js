@@ -4,6 +4,7 @@ const handlebars = require("handlebars");
 const mjml2html = require("mjml");
 const nodemailer = require("nodemailer");
 const { htmlToText } = require("html-to-text");
+const source = require("./mail_mjml");
 
 async function sendMail(info) {
   const htmlVersion = importMJML(info);
@@ -32,10 +33,7 @@ async function sendMail(info) {
 }
 
 function importMJML({ code, name, amount, paymentType }) {
-  const filePath = "./mail.mjml";
-  const source = fs.readFileSync(filePath, "utf-8").toString();
   const template = handlebars.compile(source);
-
   const vars = {
     code,
     name,

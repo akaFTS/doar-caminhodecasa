@@ -1,4 +1,4 @@
-<mjml>
+const mjml = `<mjml>
   <mj-body>
     <mj-section padding="0px 0px">
       <mj-column>
@@ -18,7 +18,7 @@
         <mj-text color="#444444" padding-bottom="30px" font-size="16px" line-height="20px" font-family="helvetica">
           <span style="font-weight:bold">Código:</span> #{{code}}<br />
           <span style="font-weight:bold">Nome:</span> {{name}}<br />
-          <span style="font-weight:bold">Valor:</span> R${{amount}},00<br />
+          <span style="font-weight:bold">Valor:</span> R${{ amount }},00<br />
           <span style="font-weight:bold">Forma de Pagamento:</span> {{payment}}<br />
         </mj-text>
 
@@ -57,4 +57,6 @@
       </mj-column>
     </mj-section>
   </mj-body>
-</mjml>
+</mjml>`;
+
+export default mjml;

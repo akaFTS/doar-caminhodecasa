@@ -1,5 +1,5 @@
 const { Fauna } = require("../shared/fauna_utils");
-const { sendMail } = require("./mail_utils");
+const { sendMail } = require("../shared/mail_utils");
 const queryString = require("query-string");
 
 const handler = async (event) => {
