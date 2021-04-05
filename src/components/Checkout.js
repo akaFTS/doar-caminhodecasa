@@ -109,6 +109,7 @@ export default function Checkout({ basket, onCheckoutFinished }) {
         paymentCode: "card",
       });
     } catch (e) {
+      console.log(e);
       if (e.response.status == 400) {
         setError("server_validation");
       } else if (e.response.status == 422) {
