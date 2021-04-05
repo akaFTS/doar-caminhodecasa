@@ -9,7 +9,7 @@ class Fauna {
 
   async recordCharge(charge) {
     try {
-      this.client.query(
+      return this.client.query(
         query.Create(query.Collection("doar-payments"), { data: charge })
       );
     } catch (error) {
@@ -19,7 +19,7 @@ class Fauna {
 
   async updateCharge(chargeCode, status) {
     try {
-      this.client.query(
+      return this.client.query(
         query.Update(
           query.Select(
             ["ref"],
@@ -37,9 +37,10 @@ class Fauna {
 
   async fetchCharge(chargeCode) {
     try {
-      return this.client.query(
+      const response = await this.client.query(
         query.Get(query.Match(query.Index("chargeCode"), chargeCode))
       );
+      return response.data;
     } catch (error) {
       console.log("An error occurred while fetching: ", error);
       return null;

@@ -3,22 +3,22 @@ const { sendMail } = require("../utils/mail_utils");
 const queryString = require("query-string");
 
 const handler = async (event) => {
-  const { chargeCode } = queryString.parse(event.body);
+  const query = queryString.parse(event.body);
+  const chargeCode = parseInt(query.chargeCode);
 
   // Update in DB
   const fauna = new Fauna();
   await fauna.updateCharge(chargeCode, "PAID");
   const charge = await fauna.fetchCharge(chargeCode);
-  console.log(charge);
 
   // Send success mail
-  // await sendMail({
-  //   code: "98765432",
-  //   name: "Jair Bolsonaro",
-  //   amount: "25",
-  //   paymentType: "CREDIT_CARD",
-  //   email: "gustavohfts1@gmail.com",
-  // });
+  await sendMail({
+    code: charge.chargeCode,
+    name: charge.name,
+    amount: charge.amount,
+    paymentType: charge.paymentType,
+    email: charge.email,
+  });
 
   return { statusCode: 200 };
 };

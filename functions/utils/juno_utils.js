@@ -74,7 +74,6 @@ class Juno {
         email: billing.email,
         name: billing.name,
         amount: charge.amount,
-        description: charge.description,
         paymentType: charge.paymentTypes[0],
         status: "PENDING",
       });
