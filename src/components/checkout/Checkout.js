@@ -1,40 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faExclamationCircle,
-  faSpinner,
-} from "@fortawesome/free-solid-svg-icons";
 import * as styles from "./Checkout.module.css";
 import CardPayment from "./CardPayment";
 import PersonalData from "./PersonalData";
-
-function tokenizeCard(cardNumber, holderName, securityCode, expiry) {
-  // Sandbox
-  const checkout = new DirectCheckout(
-    "3A17C3AB5700A8BCE54167690CF4605A061444C2D5484F975C719ED71D0D476B",
-    false
-  );
-
-  // Production
-  // const checkout = new DirectCheckout(
-  //   "EAE13EE6623EEC3F1C9381124D6EBE79D2B3579398D7BF0B47CF187137FACCBC217982970CA6740E"
-  // );
-
-  const cardData = {
-    cardNumber: cardNumber.replace(/\D/g, ""),
-    holderName,
-    securityCode,
-    expirationMonth: expiry.substring(0, 2),
-    expirationYear: "20" + expiry.substring(3, 5),
-  };
-
-  const cardPromise = new Promise((resolve, reject) =>
-    checkout.getCardHash(cardData, resolve, reject)
-  );
-
-  return cardPromise;
-}
+import ErrorBanner from "./ErrorBanner";
+import { tokenizeCard } from "../../paymentUtils";
+import PayButton from "./PayButton";
 
 export default function Checkout({ basket, onCheckoutFinished }) {
   const [cvc, setCvc] = useState("");
@@ -149,37 +120,8 @@ export default function Checkout({ basket, onCheckoutFinished }) {
         shouldFlagBlankFields={error == "blank"}
       />
       <div>
-        <button type="submit" className={styles.button} disabled={isProcessing}>
-          {isProcessing ? (
-            <span>
-              <FontAwesomeIcon
-                icon={faSpinner}
-                spin={true}
-                className={styles.spinner}
-              />
-              Processando...
-            </span>
-          ) : (
-            <span>Doar R${total},00</span>
-          )}
-        </button>
-        {error != "" && (
-          <div className={styles.alert}>
-            <FontAwesomeIcon
-              className={styles.icon}
-              icon={faExclamationCircle}
-            />
-            <p>
-              {error == "blank"
-                ? "Todos os campos são obrigatórios."
-                : error == "server_validation"
-                ? "Não foi possível completar sua doação. Verifique seus dados e tente novamente."
-                : error == "server_card"
-                ? "Não foi possível completar sua doação com este cartão. Por favor, tente novamente com outro."
-                : "Ocorreu um erro interno. Por favor, tente novamente mais tarde."}
-            </p>
-          </div>
-        )}
+        <PayButton isProcessing={isProcessing} total={total} />
+        {error != "" && <ErrorBanner error={error} />}
       </div>
     </form>
   );

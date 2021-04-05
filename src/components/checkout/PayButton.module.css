@@ -1,0 +1,28 @@
+.button {
+  display: block;
+  width: 100%;
+  background-color: var(--red-800);
+  color: white;
+  font-size: var(--f4);
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 600;
+  border: none;
+  padding: var(--p3) var(--p3);
+  text-decoration: none;
+  margin-bottom: var(--p3);
+
+  &:hover {
+    background-color: var(--red-900);
+    cursor: pointer;
+  }
+
+  &:disabled {
+    background-color: var(--grey-400);
+    cursor: not-allowed;
+  }
+}
+
+.spinner {
+  margin-right: var(--p3);
+}

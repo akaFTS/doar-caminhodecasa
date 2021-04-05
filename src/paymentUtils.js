@@ -59,6 +59,29 @@ export function formatExpirationDate(value) {
   return clearValue;
 }
 
-export function formatFormData(data) {
-  return Object.keys(data).map((d) => `${d}: ${data[d]}`);
+export function tokenizeCard(cardNumber, holderName, securityCode, expiry) {
+  // Sandbox
+  const checkout = new DirectCheckout(
+    "3A17C3AB5700A8BCE54167690CF4605A061444C2D5484F975C719ED71D0D476B",
+    false
+  );
+
+  // Production
+  // const checkout = new DirectCheckout(
+  //   "EAE13EE6623EEC3F1C9381124D6EBE79D2B3579398D7BF0B47CF187137FACCBC217982970CA6740E"
+  // );
+
+  const cardData = {
+    cardNumber: cardNumber.replace(/\D/g, ""),
+    holderName,
+    securityCode,
+    expirationMonth: expiry.substring(0, 2),
+    expirationYear: "20" + expiry.substring(3, 5),
+  };
+
+  const cardPromise = new Promise((resolve, reject) =>
+    checkout.getCardHash(cardData, resolve, reject)
+  );
+
+  return cardPromise;
 }
