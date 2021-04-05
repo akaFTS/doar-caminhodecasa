@@ -18,7 +18,7 @@ const mjml = `<mjml>
         <mj-text color="#444444" padding-bottom="30px" font-size="16px" line-height="20px" font-family="helvetica">
           <span style="font-weight:bold">Código:</span> #{{code}}<br />
           <span style="font-weight:bold">Nome:</span> {{name}}<br />
-          <span style="font-weight:bold">Valor:</span> R${{ amount }},00<br />
+          <span style="font-weight:bold">Valor:</span> R\${{ amount }},00<br />
           <span style="font-weight:bold">Forma de Pagamento:</span> {{payment}}<br />
         </mj-text>
 
