@@ -37,11 +37,9 @@ class Fauna {
 
   async fetchCharge(chargeCode) {
     try {
-      const charge = await this.client.query(
+      return this.client.query(
         query.Get(query.Match(query.Index("chargeCode"), chargeCode))
       );
-
-      console.log("success", charge);
     } catch (error) {
       console.log("An error occurred while fetching: ", error);
       return null;

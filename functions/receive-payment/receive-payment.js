@@ -4,14 +4,12 @@ const queryString = require("query-string");
 
 const handler = async (event) => {
   const { chargeCode } = queryString.parse(event.body);
-  console.log(chargeCode);
-
-  return;
 
   // Update in DB
   const fauna = new Fauna();
   await fauna.updateCharge(chargeCode, "PAID");
   const charge = await fauna.fetchCharge(chargeCode);
+  console.log(charge);
 
   // Send success mail
   // await sendMail({
