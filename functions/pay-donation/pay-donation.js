@@ -1,5 +1,5 @@
 const validator = require("validator");
-const { Juno } = require("../utils/juno_utils");
+const { Juno } = require("../shared/juno_utils");
 
 function checkCPF(cpf) {
   cpf = cpf.replace(/[^\d]+/g, "");
