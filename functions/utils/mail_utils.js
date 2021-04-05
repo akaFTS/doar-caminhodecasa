@@ -32,7 +32,7 @@ async function sendMail(info) {
 }
 
 function importMJML({ code, name, amount, paymentType }) {
-  const filePath = path.join(__dirname, "./mail.mjml");
+  const filePath = "./mail.mjml";
   const source = fs.readFileSync(filePath, "utf-8").toString();
   const template = handlebars.compile(source);
 
