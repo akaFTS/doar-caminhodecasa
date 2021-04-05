@@ -59,4 +59,4 @@ const mjml = `<mjml>
   </mj-body>
 </mjml>`;
 
-export default mjml;
+module.exports = mjml;
