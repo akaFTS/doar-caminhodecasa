@@ -11,6 +11,7 @@
   padding: var(--p3) var(--p3);
   text-decoration: none;
   margin-bottom: var(--p3);
+  margin-top: var(--p4);
 
   &:hover {
     background-color: var(--red-900);

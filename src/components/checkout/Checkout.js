@@ -1,35 +1,22 @@
 import React, { useState, useContext } from "react";
-import axios from "axios";
 import queryString from "query-string";
 import { useNavigate } from "react-router-dom";
 import * as styles from "./Checkout.module.css";
-import CardPayment from "./CardPayment";
 import PersonalData from "./PersonalData";
-import ErrorBanner from "./ErrorBanner";
-import { tokenizeCard } from "../../paymentUtils";
-import PayButton from "./PayButton";
 import BasketContext from "../../BasketContext";
+import CardCheckout from "./CardCheckout";
 
 export default function Checkout() {
   const { basket, setBasket } = useContext(BasketContext);
   const navigate = useNavigate();
 
+  const [flagBlankFields, setFlagBlankFields] = useState(false);
   const [personalData, setPersonalData] = useState({
     name: "",
     phone: "",
     email: "",
     cpf: "",
   });
-
-  const [cardData, setCardData] = useState({
-    number: "",
-    cardname: "",
-    cvc: "",
-    expiry: "",
-  });
-
-  const [isProcessing, setProcessing] = useState(false);
-  const [error, setError] = useState("");
 
   const total = Object.values(basket).reduce(
     (total, current) => total + current.amount * current.product.price,
@@ -45,73 +32,38 @@ export default function Checkout() {
     )
     .join(" - ");
 
-  const anyBlank = (obj) => {
-    return Object.values(obj).some((str) => !str || /^\s*$/.test(str));
-  };
+  const handleSuccessfulCheckout = (orderNumber, paymentCode) => {
+    // Empty basket
+    setBasket({});
 
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-
-    // Check inputs
-    if (anyBlank(cardData) || anyBlank(personalData)) {
-      setError("blank");
-      return;
-    }
-
-    // Send charge request
-    try {
-      setProcessing(true);
-      const cardHash = await tokenizeCard(cardData);
-      const response = await axios.post("/.netlify/functions/pay-donation", {
-        name: personalData.name,
-        phone: personalData.phone,
-        cpf: personalData.cpf,
-        email: personalData.email,
-        cardHash,
-        total,
-        description,
-      });
-
-      // Empty basket
-      setBasket({});
-
-      // Navigate to Thanks page
-      const params = queryString.stringify({
-        orderNumber: response.data.orderNumber,
-        name: personalData.name,
-        total,
-        paymentCode: "card",
-      });
-      navigate("/obrigado?" + params);
-    } catch (e) {
-      setError(
-        !e.response || e.response.status == 400
-          ? "server_validation"
-          : e.response.status == 422
-          ? "server_card"
-          : "server_internal"
-      );
-      setProcessing(false);
-    }
+    // Navigate to Thanks page
+    const params = queryString.stringify({
+      name: personalData.name,
+      orderNumber,
+      total,
+      paymentCode,
+    });
+    navigate("/obrigado?" + params);
   };
 
   return (
-    <form className={styles.checkoutForm} onSubmit={handleFormSubmit}>
+    <div className={styles.checkoutForm}>
       <PersonalData
         data={personalData}
         setData={setPersonalData}
-        shouldFlagBlankFields={error == "blank"}
+        shouldFlagBlankFields={flagBlankFields}
       />
-      <CardPayment
-        data={cardData}
-        setData={setCardData}
-        shouldFlagBlankFields={error == "blank"}
-      />
-      <div>
-        <PayButton isProcessing={isProcessing} total={total} />
-        {error != "" && <ErrorBanner error={error} />}
-      </div>
-    </form>
+      <section>
+        <h1 className={styles.title}>Dados de Pagamento</h1>
+        <div className={styles.underline}></div>
+        <CardCheckout
+          personalData={personalData}
+          total={total}
+          description={description}
+          onSuccessfulCheckout={handleSuccessfulCheckout}
+          onValidationFailed={() => setFlagBlankFields(true)}
+        />
+      </section>
+    </div>
   );
 }

@@ -20,9 +20,7 @@ export default function Payments({ data, setData, shouldFlagBlankFields }) {
   };
 
   return (
-    <section>
-      <h1 className={styles.title}>Dados de Pagamento</h1>
-      <div className={styles.underline}></div>
+    <div>
       <div className={styles.cardWrap}>
         <Card
           number={data.number}
@@ -101,6 +99,6 @@ export default function Payments({ data, setData, shouldFlagBlankFields }) {
         Não lemos ou armazenamos os dados do seu cartão. Eles são encriptados e
         transmitidos por uma conexão segura até a operadora de pagamento.
       </p>
-    </section>
+    </div>
   );
 }

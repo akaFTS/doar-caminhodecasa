@@ -10,3 +10,16 @@
     margin: 0 auto;
   }
 }
+
+.title {
+  font-size: var(--f3);
+  font-weight: 600;
+  color: var(--grey-800);
+}
+
+.underline {
+  border-bottom: 3px solid var(--red-800);
+  width: 150px;
+  margin: var(--p3) 0;
+  margin-bottom: var(--p4);
+}
