@@ -1,0 +1,44 @@
+.picker {
+  background-color: var(--grey-200);
+  border-radius: var(--br4);
+  display: flex;
+  margin-bottom: var(--p5);
+  overflow: hidden;
+}
+
+.option {
+  flex: 1;
+  padding: var(--p3) var(--p3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--grey-600);
+  fill: var(--grey-600);
+  font-weight: 600;
+  border: none;
+
+  & .icon {
+    margin-bottom: var(--p2);
+    font-size: var(--f3);
+  }
+
+  & .iconSvg {
+    margin-bottom: var(--p2);
+    height: var(--f3);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: var(--grey-300);
+  }
+
+  &.selected {
+    background-color: var(--grey-400);
+    color: var(--red-800);
+    fill: var(--red-800);
+  }
+}

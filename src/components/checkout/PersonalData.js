@@ -1,6 +1,7 @@
 import React from "react";
 import * as styles from "./PersonalData.module.css";
 import InputMask from "react-input-mask";
+import cx from "classnames";
 
 export default function PersonalData({ data, setData, shouldFlagBlankFields }) {
   const isBlank = (str) => {
@@ -30,9 +31,10 @@ export default function PersonalData({ data, setData, shouldFlagBlankFields }) {
       <div className={styles.formWrap}>
         <input
           name="name"
-          className={`${styles.input} ${
-            shouldFlagBlankFields && isBlank(data.name) ? styles.blankInput : ""
-          }`}
+          className={cx({
+            [styles.input]: true,
+            [styles.blankInput]: shouldFlagBlankFields && isBlank(data.name),
+          })}
           placeholder="Nome"
           value={data.name}
           onChange={handleChange}
@@ -40,9 +42,10 @@ export default function PersonalData({ data, setData, shouldFlagBlankFields }) {
         <InputMask
           name="cpf"
           placeholder="CPF"
-          className={`${styles.input} ${
-            shouldFlagBlankFields && isBlank(data.cpf) ? styles.blankInput : ""
-          }`}
+          className={cx({
+            [styles.input]: true,
+            [styles.blankInput]: shouldFlagBlankFields && isBlank(data.cpf),
+          })}
           value={data.cpf}
           onChange={handleChange}
           mask={"999.999.999-99"}
@@ -51,11 +54,10 @@ export default function PersonalData({ data, setData, shouldFlagBlankFields }) {
         <input
           type="email"
           name="email"
-          className={`${styles.input} ${
-            shouldFlagBlankFields && isBlank(data.email)
-              ? styles.blankInput
-              : ""
-          }`}
+          className={cx({
+            [styles.input]: true,
+            [styles.blankInput]: shouldFlagBlankFields && isBlank(data.email),
+          })}
           placeholder="E-mail"
           value={data.email}
           onChange={handleChange}
@@ -63,11 +65,10 @@ export default function PersonalData({ data, setData, shouldFlagBlankFields }) {
         <InputMask
           name="phone"
           placeholder="Telefone"
-          className={`${styles.input} ${
-            shouldFlagBlankFields && isBlank(data.phone)
-              ? styles.blankInput
-              : ""
-          }`}
+          className={cx({
+            [styles.input]: true,
+            [styles.blankInput]: shouldFlagBlankFields && isBlank(data.phone),
+          })}
           value={data.phone}
           mask="(99) 99999-9999"
           maskPlaceholder={null}

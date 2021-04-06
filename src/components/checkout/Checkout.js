@@ -5,12 +5,15 @@ import * as styles from "./Checkout.module.css";
 import PersonalData from "./PersonalData";
 import BasketContext from "../../BasketContext";
 import CardCheckout from "./CardCheckout";
+import PaymentChooser from "./PaymentChooser";
+import PixCheckout from "./PixCheckout";
 
 export default function Checkout() {
   const { basket, setBasket } = useContext(BasketContext);
   const navigate = useNavigate();
 
   const [flagBlankFields, setFlagBlankFields] = useState(false);
+  const [payment, setPayment] = useState("card");
   const [personalData, setPersonalData] = useState({
     name: "",
     phone: "",
@@ -56,13 +59,18 @@ export default function Checkout() {
       <section>
         <h1 className={styles.title}>Dados de Pagamento</h1>
         <div className={styles.underline}></div>
-        <CardCheckout
-          personalData={personalData}
-          total={total}
-          description={description}
-          onSuccessfulCheckout={handleSuccessfulCheckout}
-          onValidationFailed={() => setFlagBlankFields(true)}
-        />
+        <PaymentChooser payment={payment} setPayment={(p) => setPayment(p)} />
+        {payment == "card" ? (
+          <CardCheckout
+            personalData={personalData}
+            total={total}
+            description={description}
+            onSuccessfulCheckout={handleSuccessfulCheckout}
+            onValidationFailed={() => setFlagBlankFields(true)}
+          />
+        ) : (
+          <PixCheckout />
+        )}
       </section>
     </div>
   );

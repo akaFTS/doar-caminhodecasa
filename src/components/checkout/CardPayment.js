@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import * as styles from "./CardPayment.module.css";
 import Card from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
+import cx from "classnames";
 import {
   formatCreditCardNumber,
   formatCVC,
@@ -35,11 +36,11 @@ export default function Payments({ data, setData, shouldFlagBlankFields }) {
           <input
             type="tel"
             name="number"
-            className={`${styles.input} ${
-              shouldFlagBlankFields && isBlank(data.number)
-                ? styles.blankInput
-                : ""
-            }`}
+            className={cx({
+              [styles.input]: true,
+              [styles.blankInput]:
+                shouldFlagBlankFields && isBlank(data.number),
+            })}
             placeholder="Número do cartão"
             value={data.number}
             onChange={(e) =>
@@ -54,11 +55,11 @@ export default function Payments({ data, setData, shouldFlagBlankFields }) {
             type="text"
             name="cardname"
             placeholder="Nome (como consta no cartão)"
-            className={`${styles.input} ${
-              shouldFlagBlankFields && isBlank(data.cardname)
-                ? styles.blankInput
-                : ""
-            }`}
+            className={cx({
+              [styles.input]: true,
+              [styles.blankInput]:
+                shouldFlagBlankFields && isBlank(data.cardname),
+            })}
             value={data.cardname}
             onChange={(e) => setData({ ...data, cardname: e.target.value })}
             onFocus={handleInputFocus}
@@ -67,11 +68,12 @@ export default function Payments({ data, setData, shouldFlagBlankFields }) {
             type="tel"
             name="expiry"
             placeholder="Validade"
-            className={`${styles.input} ${styles.halfInput} ${
-              shouldFlagBlankFields && isBlank(data.expiry)
-                ? styles.blankInput
-                : ""
-            }`}
+            className={cx({
+              [styles.input]: true,
+              [styles.halfInput]: true,
+              [styles.blankInput]:
+                shouldFlagBlankFields && isBlank(data.expiry),
+            })}
             value={data.expiry}
             onChange={(e) =>
               setData({ ...data, expiry: formatExpirationDate(e.target.value) })
@@ -82,11 +84,11 @@ export default function Payments({ data, setData, shouldFlagBlankFields }) {
             type="tel"
             name="cvc"
             placeholder="CVC"
-            className={`${styles.input} ${styles.halfInput} ${
-              shouldFlagBlankFields && isBlank(data.cvc)
-                ? styles.blankInput
-                : ""
-            }`}
+            className={cx({
+              [styles.input]: true,
+              [styles.halfInput]: true,
+              [styles.blankInput]: shouldFlagBlankFields && isBlank(data.cvc),
+            })}
             value={data.cvc}
             onChange={(e) =>
               setData({ ...data, cvc: formatCVC(e.target.value) })

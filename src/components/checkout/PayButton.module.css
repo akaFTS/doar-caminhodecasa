@@ -13,6 +13,10 @@
   margin-bottom: var(--p3);
   margin-top: var(--p4);
 
+  &:focus {
+    outline: none;
+  }
+
   &:hover {
     background-color: var(--red-900);
     cursor: pointer;
