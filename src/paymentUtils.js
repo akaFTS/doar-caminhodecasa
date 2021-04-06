@@ -59,7 +59,7 @@ export function formatExpirationDate(value) {
   return clearValue;
 }
 
-export function tokenizeCard(cardNumber, holderName, securityCode, expiry) {
+export function tokenizeCard({ number, cardname, cvc, expiry }) {
   // Sandbox
   const checkout = new DirectCheckout(
     "3A17C3AB5700A8BCE54167690CF4605A061444C2D5484F975C719ED71D0D476B",
@@ -72,9 +72,9 @@ export function tokenizeCard(cardNumber, holderName, securityCode, expiry) {
   // );
 
   const cardData = {
-    cardNumber: cardNumber.replace(/\D/g, ""),
-    holderName,
-    securityCode,
+    cardNumber: number.replace(/\D/g, ""),
+    holderName: cardname,
+    securityCode: cvc,
     expirationMonth: expiry.substring(0, 2),
     expirationYear: "20" + expiry.substring(3, 5),
   };

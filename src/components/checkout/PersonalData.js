@@ -1,18 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import * as styles from "./PersonalData.module.css";
 import InputMask from "react-input-mask";
 
-export default function PersonalData({
-  name,
-  cpf,
-  email,
-  phone,
-  setName,
-  setCpf,
-  setEmail,
-  setPhone,
-  shouldFlagBlankFields,
-}) {
+export default function PersonalData({ data, setData, shouldFlagBlankFields }) {
   const isBlank = (str) => {
     return !str || /^\s*$/.test(str);
   };
@@ -29,6 +19,10 @@ export default function PersonalData({
     return nextState;
   };
 
+  const handleChange = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
+
   return (
     <section>
       <h1 className={styles.title}>Dados Pessoais</h1>
@@ -37,20 +31,20 @@ export default function PersonalData({
         <input
           name="name"
           className={`${styles.input} ${
-            shouldFlagBlankFields && isBlank(name) ? styles.blankInput : ""
+            shouldFlagBlankFields && isBlank(data.name) ? styles.blankInput : ""
           }`}
           placeholder="Nome"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={data.name}
+          onChange={handleChange}
         />
         <InputMask
           name="cpf"
           placeholder="CPF"
           className={`${styles.input} ${
-            shouldFlagBlankFields && isBlank(cpf) ? styles.blankInput : ""
+            shouldFlagBlankFields && isBlank(data.cpf) ? styles.blankInput : ""
           }`}
-          value={cpf}
-          onChange={(e) => setCpf(e.target.value)}
+          value={data.cpf}
+          onChange={handleChange}
           mask={"999.999.999-99"}
           maskPlaceholder={null}
         />
@@ -58,23 +52,27 @@ export default function PersonalData({
           type="email"
           name="email"
           className={`${styles.input} ${
-            shouldFlagBlankFields && isBlank(email) ? styles.blankInput : ""
+            shouldFlagBlankFields && isBlank(data.email)
+              ? styles.blankInput
+              : ""
           }`}
           placeholder="E-mail"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={data.email}
+          onChange={handleChange}
         />
         <InputMask
           name="phone"
           placeholder="Telefone"
           className={`${styles.input} ${
-            shouldFlagBlankFields && isBlank(phone) ? styles.blankInput : ""
+            shouldFlagBlankFields && isBlank(data.phone)
+              ? styles.blankInput
+              : ""
           }`}
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
+          value={data.phone}
           mask="(99) 99999-9999"
           maskPlaceholder={null}
           beforeMaskedStateChange={beforeMaskedValueChange}
+          onChange={handleChange}
         />
       </div>
     </section>

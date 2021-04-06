@@ -1,18 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import BasketItem from "./BasketItem";
 import * as styles from "./Basket.module.css";
 import BasketTotal from "./BasketTotal";
+import BasketContext from "../../BasketContext";
 
-export default function Basket({ items, onItemsChanged }) {
+export default function Basket() {
+  const { basket, setBasket } = useContext(BasketContext);
+
   const handleAmountChanged = (slug, delta) => {
-    const { [slug]: target, ...restOfBasket } = items;
+    const { [slug]: target, ...restOfBasket } = basket;
 
     if (target.amount + delta == 0) {
-      onItemsChanged(restOfBasket);
+      setBasket(restOfBasket);
       return;
     }
 
-    onItemsChanged({
+    setBasket({
       ...restOfBasket,
       [slug]: {
         product: target.product,
@@ -21,7 +24,7 @@ export default function Basket({ items, onItemsChanged }) {
     });
   };
 
-  const orderedBasket = Object.entries(items).sort(([a_slug], [b_slug]) =>
+  const orderedBasket = Object.entries(basket).sort(([a_slug], [b_slug]) =>
     a_slug.localeCompare(b_slug)
   );
 
@@ -36,7 +39,7 @@ export default function Basket({ items, onItemsChanged }) {
           onAmountChanged={(delta) => handleAmountChanged(slug, delta)}
         />
       ))}
-      <BasketTotal items={items} />
+      <BasketTotal items={basket} />
     </main>
   );
 }

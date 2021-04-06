@@ -8,19 +8,7 @@ import {
   formatExpirationDate,
 } from "../../paymentUtils";
 
-export default function Payments({
-  cardname,
-  number,
-  expiry,
-  cvc,
-  issuer,
-  setCardname,
-  setNumber,
-  setExpiry,
-  setCvc,
-  setIssuer,
-  shouldFlagBlankFields,
-}) {
+export default function Payments({ data, setData, shouldFlagBlankFields }) {
   const [focused, setFocused] = useState("");
 
   const isBlank = (str) => {
@@ -31,49 +19,37 @@ export default function Payments({
     setFocused(e.target.name);
   };
 
-  const handleInputChange = (e) => {
-    if (e.target.name == "number") {
-      setNumber(formatCreditCardNumber(e.target.value));
-    } else if (e.target.name == "expiry") {
-      setExpiry(formatExpirationDate(e.target.value));
-    } else if (e.target.name == "cvc") {
-      setCvc(formatCVC(e.target.value));
-    } else {
-      setCardname(e.target.value);
-    }
-  };
-
-  const handleCardCallback = ({ issuer }, isValid) => {
-    if (isValid) {
-      setIssuer(issuer);
-    }
-  };
-
   return (
     <section>
       <h1 className={styles.title}>Dados de Pagamento</h1>
       <div className={styles.underline}></div>
       <div className={styles.cardWrap}>
         <Card
-          number={number}
-          name={cardname}
-          expiry={expiry}
-          cvc={cvc}
+          number={data.number}
+          name={data.cardname}
+          expiry={data.expiry}
+          cvc={data.cvc}
           focused={focused}
           locale={{ valid: "Validade" }}
           placeholders={{ name: "" }}
-          callback={handleCardCallback}
         />
         <div className={styles.formWrap}>
           <input
             type="tel"
             name="number"
             className={`${styles.input} ${
-              shouldFlagBlankFields && isBlank(number) ? styles.blankInput : ""
+              shouldFlagBlankFields && isBlank(data.number)
+                ? styles.blankInput
+                : ""
             }`}
             placeholder="Número do cartão"
-            value={number}
-            onChange={handleInputChange}
+            value={data.number}
+            onChange={(e) =>
+              setData({
+                ...data,
+                number: formatCreditCardNumber(e.target.value),
+              })
+            }
             onFocus={handleInputFocus}
           />
           <input
@@ -81,12 +57,12 @@ export default function Payments({
             name="cardname"
             placeholder="Nome (como consta no cartão)"
             className={`${styles.input} ${
-              shouldFlagBlankFields && isBlank(cardname)
+              shouldFlagBlankFields && isBlank(data.cardname)
                 ? styles.blankInput
                 : ""
             }`}
-            value={cardname}
-            onChange={handleInputChange}
+            value={data.cardname}
+            onChange={(e) => setData({ ...data, cardname: e.target.value })}
             onFocus={handleInputFocus}
           />
           <input
@@ -94,10 +70,14 @@ export default function Payments({
             name="expiry"
             placeholder="Validade"
             className={`${styles.input} ${styles.halfInput} ${
-              shouldFlagBlankFields && isBlank(expiry) ? styles.blankInput : ""
+              shouldFlagBlankFields && isBlank(data.expiry)
+                ? styles.blankInput
+                : ""
             }`}
-            value={expiry}
-            onChange={handleInputChange}
+            value={data.expiry}
+            onChange={(e) =>
+              setData({ ...data, expiry: formatExpirationDate(e.target.value) })
+            }
             onFocus={handleInputFocus}
           />
           <input
@@ -105,13 +85,16 @@ export default function Payments({
             name="cvc"
             placeholder="CVC"
             className={`${styles.input} ${styles.halfInput} ${
-              shouldFlagBlankFields && isBlank(cvc) ? styles.blankInput : ""
+              shouldFlagBlankFields && isBlank(data.cvc)
+                ? styles.blankInput
+                : ""
             }`}
-            value={cvc}
-            onChange={handleInputChange}
+            value={data.cvc}
+            onChange={(e) =>
+              setData({ ...data, cvc: formatCVC(e.target.value) })
+            }
             onFocus={handleInputFocus}
           />
-          <input type="hidden" name="issuer" value={issuer} />
         </div>
       </div>
       <p className={styles.info}>

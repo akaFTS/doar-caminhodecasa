@@ -21,7 +21,7 @@ export default function CampaignDetails({ campaign, featured }) {
       <div className={styles.underline}></div>
       <div className={styles.description}>
         {campaign.long_description.split("#").map((paragraph) => (
-          <p>{paragraph}</p>
+          <p key={paragraph}>{paragraph}</p>
         ))}
       </div>
       <main className={styles.content}>

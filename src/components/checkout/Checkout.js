@@ -1,22 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
+import queryString from "query-string";
+import { useNavigate } from "react-router-dom";
 import * as styles from "./Checkout.module.css";
 import CardPayment from "./CardPayment";
 import PersonalData from "./PersonalData";
 import ErrorBanner from "./ErrorBanner";
 import { tokenizeCard } from "../../paymentUtils";
 import PayButton from "./PayButton";
+import BasketContext from "../../BasketContext";
 
-export default function Checkout({ basket, onCheckoutFinished }) {
-  const [cvc, setCvc] = useState("");
-  const [expiry, setExpiry] = useState("");
-  const [cardname, setCardname] = useState("");
-  const [number, setNumber] = useState("");
-  const [issuer, setIssuer] = useState("");
-  const [cpf, setCpf] = useState("");
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
+export default function Checkout() {
+  const { basket, setBasket } = useContext(BasketContext);
+  const navigate = useNavigate();
+
+  const [personalData, setPersonalData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    cpf: "",
+  });
+
+  const [cardData, setCardData] = useState({
+    number: "",
+    cardname: "",
+    cvc: "",
+    expiry: "",
+  });
 
   const [isProcessing, setProcessing] = useState(false);
   const [error, setError] = useState("");
@@ -26,25 +36,25 @@ export default function Checkout({ basket, onCheckoutFinished }) {
     0
   );
 
-  const isBlank = (str) => {
-    return !str || /^\s*$/.test(str);
+  const description = Object.values(basket)
+    .map(
+      (obj) =>
+        `${obj.product.name} x${obj.amount} : R$${
+          obj.amount * obj.product.price
+        },00`
+    )
+    .join(" - ");
+
+  const anyBlank = (obj) => {
+    return Object.values(obj).some((str) => !str || /^\s*$/.test(str));
   };
 
   const handleFormSubmit = async (e) => {
-    setError("");
     e.preventDefault();
+    setError("");
 
     // Check inputs
-    if (
-      isBlank(number) ||
-      isBlank(cardname) ||
-      isBlank(expiry) ||
-      isBlank(cvc) ||
-      isBlank(name) ||
-      isBlank(phone) ||
-      isBlank(cpf) ||
-      isBlank(email)
-    ) {
+    if (anyBlank(cardData) || anyBlank(personalData)) {
       setError("blank");
       return;
     }
@@ -52,43 +62,36 @@ export default function Checkout({ basket, onCheckoutFinished }) {
     // Send charge request
     try {
       setProcessing(true);
-      const cardHash = await tokenizeCard(number, cardname, cvc, expiry);
-
-      const description = Object.values(basket)
-        .map(
-          (obj) =>
-            `${obj.product.name} x${obj.amount} : R$${
-              obj.amount * obj.product.price
-            },00`
-        )
-        .join(" - ");
-
+      const cardHash = await tokenizeCard(cardData);
       const response = await axios.post("/.netlify/functions/pay-donation", {
-        name,
-        phone,
-        cpf,
-        email,
+        name: personalData.name,
+        phone: personalData.phone,
+        cpf: personalData.cpf,
+        email: personalData.email,
         cardHash,
         total,
         description,
       });
 
-      onCheckoutFinished({
+      // Empty basket
+      setBasket({});
+
+      // Navigate to Thanks page
+      const params = queryString.stringify({
         orderNumber: response.data.orderNumber,
-        name,
+        name: personalData.name,
         total,
         paymentCode: "card",
       });
+      navigate("/obrigado?" + params);
     } catch (e) {
-      if (!e.response) {
-        setError("server_validation");
-      } else if (e.response.status == 400) {
-        setError("server_validation");
-      } else if (e.response.status == 422) {
-        setError("server_card");
-      } else {
-        setError("server_internal");
-      }
+      setError(
+        !e.response || e.response.status == 400
+          ? "server_validation"
+          : e.response.status == 422
+          ? "server_card"
+          : "server_internal"
+      );
       setProcessing(false);
     }
   };
@@ -96,27 +99,13 @@ export default function Checkout({ basket, onCheckoutFinished }) {
   return (
     <form className={styles.checkoutForm} onSubmit={handleFormSubmit}>
       <PersonalData
-        name={name}
-        cpf={cpf}
-        email={email}
-        phone={phone}
-        setName={setName}
-        setCpf={setCpf}
-        setEmail={setEmail}
-        setPhone={setPhone}
+        data={personalData}
+        setData={setPersonalData}
         shouldFlagBlankFields={error == "blank"}
       />
       <CardPayment
-        cardname={cardname}
-        number={number}
-        cvc={cvc}
-        expiry={expiry}
-        issuer={issuer}
-        setCardname={setCardname}
-        setNumber={setNumber}
-        setCvc={setCvc}
-        setExpiry={setExpiry}
-        setIssuer={setIssuer}
+        data={cardData}
+        setData={setCardData}
         shouldFlagBlankFields={error == "blank"}
       />
       <div>
