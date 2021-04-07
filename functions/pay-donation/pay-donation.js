@@ -8,8 +8,9 @@ const handler = async (event) => {
     return { statusCode: 400 };
   }
 
-  const body = sanitizeFields(JSON.parse(event.body));
-  body.cardHash = event.body.cardHash;
+  const parsedBody = JSON.parse(event.body);
+  const body = sanitizeFields(parsedBody);
+  body.cardHash = parsedBody.cardHash;
 
   const bodyIsValid = fieldsAreValid(body);
   if (!bodyIsValid || !validator.matches(body.cardHash, /[a-zA-Z0-9-]+/)) {
