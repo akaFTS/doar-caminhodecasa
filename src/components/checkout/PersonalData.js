@@ -41,6 +41,7 @@ export default function PersonalData({ data, setData, shouldFlagBlankFields }) {
         />
         <InputMask
           name="cpf"
+          type="tel"
           placeholder="CPF"
           className={cx({
             [styles.input]: true,
@@ -52,8 +53,8 @@ export default function PersonalData({ data, setData, shouldFlagBlankFields }) {
           maskPlaceholder={null}
         />
         <input
-          type="email"
           name="email"
+          type="email"
           className={cx({
             [styles.input]: true,
             [styles.blankInput]: shouldFlagBlankFields && isBlank(data.email),
@@ -64,6 +65,7 @@ export default function PersonalData({ data, setData, shouldFlagBlankFields }) {
         />
         <InputMask
           name="phone"
+          type="tel"
           placeholder="Telefone"
           className={cx({
             [styles.input]: true,

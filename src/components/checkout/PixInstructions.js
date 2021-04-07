@@ -4,7 +4,7 @@ import React from "react";
 import cx from "classnames";
 import * as styles from "./PixInstructions.module.css";
 
-export default function PixInstructions({ copyPaste }) {
+export default function PixInstructions({ copypaste }) {
   return (
     <div className={styles.container}>
       <div className={styles.instruction}>
@@ -52,7 +52,7 @@ export default function PixInstructions({ copyPaste }) {
         </span>
       </div>
       <div>
-        <div className={styles.copyPaste}>{copyPaste}</div>
+        <div className={styles.copyPaste}>{copypaste}</div>
       </div>
     </div>
   );

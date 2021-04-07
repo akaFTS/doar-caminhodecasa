@@ -31,12 +31,18 @@ const handler = async (event) => {
   };
 
   // Create charge
-  const qrcode = await juno.createPixCharge(charge, billing);
-  if (qrcode == null) {
+  const data = await juno.createPixCharge(charge, billing);
+  if (data == null) {
     return { statusCode: 500 };
   }
 
-  return { statusCode: 200, body: JSON.stringify({ qrcode }) };
+  return {
+    statusCode: 200,
+    body: JSON.stringify({
+      qrcode: data.imagemBase64,
+      copypaste: data.qrcodeBase64,
+    }),
+  };
 };
 
 module.exports = { handler };

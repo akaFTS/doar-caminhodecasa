@@ -20,6 +20,7 @@ export default function PixCheckout({
   const [isProcessing, setProcessing] = useState(false);
   const [error, setError] = useState("");
   const [qrcode, setQrcode] = useState("");
+  const [copypaste, setCopypaste] = useState("");
 
   const handleButtonPressed = async () => {
     if (isProcessing) return;
@@ -43,6 +44,7 @@ export default function PixCheckout({
       });
 
       setQrcode(response.data.qrcode);
+      setCopypaste(response.data.copypaste);
     } catch (e) {
       setError(
         !e.response || e.response.status == 400
@@ -65,7 +67,7 @@ export default function PixCheckout({
             <PixCode code={qrcode} />
           )}
         </div>
-        {qrcode != "" && <PixInstructions copyPaste={qrcode} />}
+        {qrcode != "" && <PixInstructions copypaste={copypaste} />}
       </div>
       {error != "" && <ErrorBanner error={error} />}
     </div>

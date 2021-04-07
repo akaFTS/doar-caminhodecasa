@@ -139,9 +139,12 @@ class Juno {
 
       // Fetch qrcode
       const txid = response.data.txid;
-      const qrResponse = await this.api.get("/pix-api/qrcode/v2/" + txid, {
-        headers: this.headers,
-      });
+      const qrResponse = await this.api.get(
+        "/pix-api/qrcode/v2/" + txid + "/imagem",
+        {
+          headers: this.headers,
+        }
+      );
 
       // Save charge to FaunaDB
       // this.fauna.recordCharge({
@@ -153,7 +156,7 @@ class Juno {
       //   status: "PENDING",
       // });
 
-      return qrResponse.data.qrcodeBase64;
+      return qrResponse.data;
     } catch (e) {
       console.log("Failed to create charge!");
       console.log(e.response.data);
