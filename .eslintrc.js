@@ -18,5 +18,7 @@ module.exports = {
   globals: {
     module: true,
     DirectCheckout: true,
+    require: true,
+    process: true,
   },
 };

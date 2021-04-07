@@ -30,6 +30,7 @@
     "payment": "^2.4.0",
     "pug": "^3.0.2",
     "pure-react-carousel": "^1.27.6",
+    "qrcode.react": "^1.0.1",
     "query-string": "^7.0.0",
     "react": "^16.13.1",
     "react-credit-cards": "^0.8.3",

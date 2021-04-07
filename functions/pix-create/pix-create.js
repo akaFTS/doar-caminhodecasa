@@ -1,4 +1,3 @@
-const validator = require("validator");
 const { Juno } = require("../shared/juno_utils");
 const { sanitizeFields, fieldsAreValid } = require("../shared/misc_utils");
 
@@ -9,10 +8,7 @@ const handler = async (event) => {
   }
 
   const body = sanitizeFields(JSON.parse(event.body));
-  const bodyIsValid = fieldsAreValid(body);
-
-  // Card hash needs validation as well
-  if (!bodyIsValid || !validator.matches(body.cardHash, /[a-zA-Z0-9-]+/)) {
+  if (!fieldsAreValid(body)) {
     return { statusCode: 400 };
   }
 
@@ -31,31 +27,16 @@ const handler = async (event) => {
     installments: 1,
     amount: body.total,
     description: body.description,
-    paymentTypes: ["CREDIT_CARD"],
+    paymentTypes: ["PIX"],
   };
 
-  // Create charge and payment
-  const recordedCharge = await juno.createCardCharge(charge, billing);
-  const error = await juno.processCharge(
-    recordedCharge.id,
-    recordedCharge.code,
-    body.cardHash,
-    body.email
-  );
-
-  // Check for errors
-  if (error == null) {
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ orderNumber: recordedCharge.code }),
-    };
+  // Create charge
+  const qrcode = await juno.createPixCharge(charge, billing);
+  if (qrcode == null) {
+    return { statusCode: 500 };
   }
 
-  if (error == 289999) {
-    return { statusCode: 422 };
-  }
-
-  return { statusCode: 500 };
+  return { statusCode: 200, body: JSON.stringify({ qrcode }) };
 };
 
 module.exports = { handler };

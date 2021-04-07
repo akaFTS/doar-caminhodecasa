@@ -60,17 +60,21 @@ export default function Checkout() {
         <h1 className={styles.title}>Dados de Pagamento</h1>
         <div className={styles.underline}></div>
         <PaymentChooser payment={payment} setPayment={(p) => setPayment(p)} />
-        {payment == "card" ? (
-          <CardCheckout
-            personalData={personalData}
-            total={total}
-            description={description}
-            onSuccessfulCheckout={handleSuccessfulCheckout}
-            onValidationFailed={() => setFlagBlankFields(true)}
-          />
-        ) : (
-          <PixCheckout />
-        )}
+        <CardCheckout
+          hidden={payment != "card"}
+          personalData={personalData}
+          total={total}
+          description={description}
+          onSuccessfulCheckout={handleSuccessfulCheckout}
+          onValidationFailed={() => setFlagBlankFields(true)}
+        />
+        <PixCheckout
+          hidden={payment != "pix"}
+          personalData={personalData}
+          total={total}
+          description={description}
+          onValidationFailed={() => setFlagBlankFields(true)}
+        />
       </section>
     </div>
   );

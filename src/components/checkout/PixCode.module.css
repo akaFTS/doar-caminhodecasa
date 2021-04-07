@@ -1,0 +1,9 @@
+.wrapper {
+  padding: var(--p2);
+  width: 100%;
+
+  & svg {
+    height: 100%;
+    width: 100%;
+  }
+}

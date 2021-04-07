@@ -15,6 +15,7 @@ export default function CardCheckout({
   description,
   onSuccessfulCheckout,
   onValidationFailed,
+  hidden,
 }) {
   const [cardData, setCardData] = useState({
     number: "",
@@ -63,7 +64,10 @@ export default function CardCheckout({
   };
 
   return (
-    <form onSubmit={handleFormSubmit}>
+    <form
+      onSubmit={handleFormSubmit}
+      style={{ display: hidden ? "none" : "block" }}
+    >
       <CardPayment
         data={cardData}
         setData={setCardData}

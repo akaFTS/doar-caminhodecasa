@@ -56,7 +56,7 @@ class Juno {
     };
   }
 
-  async createCharge(charge, billing) {
+  async createCardCharge(charge, billing) {
     try {
       const { data } = await this.api.post(
         "/charges",
@@ -118,24 +118,46 @@ class Juno {
     }
   }
 
-  async fetchCharge(chargeCode) {
-    // Grab date to filter charges
-    const date = new Date();
-    date.setDate(date.getDate() - 1);
-    const yesterday = date.toISOString().split("T")[0];
+  async createPixCharge(charge, billing) {
+    const body = {
+      devedor: {
+        cpf: billing.document,
+        nome: billing.name,
+      },
+      valor: {
+        original: charge.amount + ".00",
+      },
+      chave: getFromEnv("PIX_KEY", IS_SANDBOX),
+      solicitacaoPagador: charge.description,
+    };
 
     try {
-      const { data } = await this.api.get(
-        "/charges?createdOnStart=" + yesterday,
-        {},
-        {
-          headers: this.headers,
-        }
-      );
-      console.log(data);
+      // Create charge
+      const response = await this.api.post("/pix-api/v2/cob", body, {
+        headers: this.headers,
+      });
+
+      // Fetch qrcode
+      const txid = response.data.txid;
+      const qrResponse = await this.api.get("/pix-api/qrcode/v2/" + txid, {
+        headers: this.headers,
+      });
+
+      // Save charge to FaunaDB
+      // this.fauna.recordCharge({
+      //   chargeCode: recordedCharge.code,
+      //   email: billing.email,
+      //   name: billing.name,
+      //   amount: charge.amount,
+      //   paymentType: charge.paymentTypes[0],
+      //   status: "PENDING",
+      // });
+
+      return qrResponse.data.qrcodeBase64;
     } catch (e) {
-      console.log("oops!");
-      console.log(e.response.details);
+      console.log("Failed to create charge!");
+      console.log(e.response.data);
+      return null;
     }
   }
 }

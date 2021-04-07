@@ -1,5 +1,3 @@
-const fs = require("fs");
-const path = require("path");
 const handlebars = require("handlebars");
 const mjml2html = require("mjml");
 const nodemailer = require("nodemailer");
@@ -38,7 +36,7 @@ function importMJML({ code, name, amount, paymentType }) {
     code,
     name,
     amount,
-    payment: paymentType == "CREDIT_CARD" ? "Cartão de Crédito" : "PIX",
+    payment: paymentType == "CREDIT_CARD" ? "Cartão de Crédito" : "Pix",
   };
 
   const { html } = mjml2html(template(vars));

@@ -10,6 +10,8 @@ export default function ErrorBanner({ error }) {
       <p>
         {error == "blank"
           ? "Todos os campos são obrigatórios."
+          : error == "pix_blank"
+          ? "Primeiro, preencha seus dados pessoais."
           : error == "server_validation"
           ? "Não foi possível completar sua doação. Verifique seus dados e tente novamente."
           : error == "server_card"

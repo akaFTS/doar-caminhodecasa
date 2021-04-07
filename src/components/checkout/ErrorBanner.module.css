@@ -7,6 +7,7 @@
   align-items: center;
   color: var(--red-900);
   line-height: 1.2;
+  margin-top: var(--p3);
 
   & .icon {
     font-size: var(--f2);
