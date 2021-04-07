@@ -1,6 +1,6 @@
 const axios = require("axios");
 const { Fauna } = require("./fauna_utils");
-const IS_SANDBOX = true;
+const IS_SANDBOX = false;
 
 function getFromEnv(variable, useSandbox) {
   if (useSandbox) {
