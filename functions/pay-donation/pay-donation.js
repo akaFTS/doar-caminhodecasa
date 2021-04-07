@@ -9,9 +9,9 @@ const handler = async (event) => {
   }
 
   const body = sanitizeFields(JSON.parse(event.body));
-  const bodyIsValid = fieldsAreValid(body);
+  body.cardHash = event.body.cardHash;
 
-  // Card hash needs validation as well
+  const bodyIsValid = fieldsAreValid(body);
   if (!bodyIsValid || !validator.matches(body.cardHash, /[a-zA-Z0-9-]+/)) {
     return { statusCode: 400 };
   }
