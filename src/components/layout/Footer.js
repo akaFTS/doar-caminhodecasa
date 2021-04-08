@@ -14,7 +14,7 @@ export default function Footer() {
           <p>atendimento@caminhodecasa.org.br</p>
         </div>
       </div>
-      <div className={[styles.badges]}></div>
+      <div></div>
     </footer>
   );
 }

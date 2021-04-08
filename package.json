@@ -5,7 +5,6 @@
     "start": "parcel serve ./src/index.html",
     "build": "parcel build ./src/index.html",
     "lint": "eslint src functions --ext .js",
-    "preinstall": "npx npm-force-resolutions",
     "prepare": "husky install",
     "postbuild": "echo '/* /index.html 200' | cat >dist/_redirects"
   },
@@ -39,19 +38,19 @@
     "validator": "^13.5.2"
   },
   "devDependencies": {
-    "@parcel/babel-plugin-transform-runtime": "^2.0.0-nightly.1823",
+    "@babel/preset-env": "^7.13.12",
+    "@parcel/babel-preset-env": "^2.0.0-alpha.3",
+    "@parcel/transformer-image": "^2.0.0-nightly.2259",
     "eslint": "^7.23.0",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.23.1",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "netlify-cli": "^3.13.10",
-    "parcel": "2.0.0-beta.1",
-    "postcss-custom-media": "^7.0.0",
-    "postcss-modules": "^3.0.0",
-    "postcss-nested": "^4.2.3",
+    "netlify-cli": "^3.16.0",
+    "parcel": "^2.0.0-nightly.635",
+    "postcss": "^8.2.9",
+    "postcss-custom-media": "^8.0.0",
+    "postcss-modules": "^4.0.0",
+    "postcss-nested": "^5.0.5",
     "postcss-preset-env": "^6.7.0"
-  },
-  "resolutions": {
-    "@babel/preset-env": "7.13.8"
   }
 }
