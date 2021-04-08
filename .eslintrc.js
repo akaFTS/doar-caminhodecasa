@@ -3,7 +3,12 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ["eslint:recommended", "plugin:react/recommended"],
+  extends: [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:jsx-a11y/recommended",
+  ],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -19,6 +24,5 @@ module.exports = {
     module: true,
     DirectCheckout: true,
     require: true,
-    process: true,
   },
 };

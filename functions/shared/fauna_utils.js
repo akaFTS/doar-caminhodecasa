@@ -1,3 +1,4 @@
+const process = require("process");
 const { query, Client } = require("faunadb");
 
 class Fauna {

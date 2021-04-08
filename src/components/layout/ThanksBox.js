@@ -12,7 +12,7 @@ export default function ThanksBox({ orderNumber, name, total, paymentCode }) {
     <main className={styles.main}>
       <div className={styles.box}>
         <header className={styles.header}>
-          <img src={thanks} />
+          <img src={thanks} alt="" />
         </header>
         <main className={styles.content}>
           <h2>Obrigado!</h2>
@@ -44,6 +44,7 @@ export default function ThanksBox({ orderNumber, name, total, paymentCode }) {
             <a
               href="https://www.instagram.com/associacao_caminhodecasa"
               target="_blank"
+              rel="noreferrer"
             >
               <FontAwesomeIcon
                 icon={faInstagram}
@@ -54,6 +55,7 @@ export default function ThanksBox({ orderNumber, name, total, paymentCode }) {
             <a
               href="https://www.facebook.com/associacaocaminhodecasa/"
               target="_blank"
+              rel="noreferrer"
             >
               <FontAwesomeIcon
                 icon={faFacebookSquare}

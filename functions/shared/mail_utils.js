@@ -1,4 +1,5 @@
 const handlebars = require("handlebars");
+const process = require("process");
 const mjml2html = require("mjml");
 const nodemailer = require("nodemailer");
 const { htmlToText } = require("html-to-text");

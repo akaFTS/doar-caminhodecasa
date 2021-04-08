@@ -15,7 +15,7 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <Link to="/" className={styles.logoWrap}>
-        <img src={logo} className={styles.logo} />
+        <img src={logo} className={styles.logo} alt="Logotipo da Associação" />
       </Link>
       <div className={styles.buttonBar}>
         <Link to="/cesta" className={styles.barItem}>
@@ -28,6 +28,7 @@ export default function Header() {
         <a
           href="https://www.instagram.com/associacao_caminhodecasa"
           target="_blank"
+          rel="noreferrer"
         >
           <FontAwesomeIcon
             icon={faInstagram}
@@ -38,6 +39,7 @@ export default function Header() {
         <a
           href="https://www.facebook.com/associacaocaminhodecasa/"
           target="_blank"
+          rel="noreferrer"
         >
           <FontAwesomeIcon
             icon={faFacebookSquare}

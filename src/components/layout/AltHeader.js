@@ -18,7 +18,11 @@ export default function AltHeader() {
         <div className={styles.bar}>
           <div className={styles.leftBar}>
             <Link to="/" className={styles.logoWrap}>
-              <img src={logo} className={styles.logo} />
+              <img
+                src={logo}
+                className={styles.logo}
+                alt="Logotipo da Associação"
+              />
             </Link>
             <div className={styles.call}>
               <h2>
@@ -37,14 +41,22 @@ export default function AltHeader() {
               Minha Cesta
             </Link>
             <div className={styles.separator} />
-            <a href="https://www.instagram.com/associacao_caminhodecasa">
+            <a
+              href="https://www.instagram.com/associacao_caminhodecasa"
+              target="_blank"
+              rel="noreferrer"
+            >
               <FontAwesomeIcon
                 icon={faInstagram}
                 className={`${styles.socialIcon} ${styles.instagram}`}
               />
             </a>
             <div className={styles.separator} />
-            <a href="https://www.facebook.com/associacaocaminhodecasa/">
+            <a
+              href="https://www.facebook.com/associacaocaminhodecasa/"
+              target="_blank"
+              rel="noreferrer"
+            >
               <FontAwesomeIcon
                 icon={faFacebookSquare}
                 className={`${styles.socialIcon} ${styles.facebook}`}

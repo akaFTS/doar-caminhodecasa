@@ -12,7 +12,11 @@ export default function Campaign({ campaign }) {
   return (
     <article className={styles.campaign}>
       <header className={styles.header}>
-        <img className={styles.cover} src={images[campaign.cover_picture]} />
+        <img
+          className={styles.cover}
+          src={images[campaign.cover_picture]}
+          alt=""
+        />
       </header>
       <main className={styles.main}>
         <h3>{campaign.name}</h3>

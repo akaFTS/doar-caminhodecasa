@@ -21,7 +21,7 @@ export default function Donation({ donation }) {
   return (
     <div className={styles.container}>
       <div className={styles.imageSlot}>
-        <img src={images[donation.picture]} />
+        <img src={images[donation.picture]} alt="" />
       </div>
       <div className={styles.info}>
         <div className={styles.details}>

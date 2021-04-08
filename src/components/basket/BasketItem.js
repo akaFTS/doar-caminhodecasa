@@ -8,7 +8,7 @@ export default function BasketItem({ item, onAmountChanged }) {
   return (
     <div className={styles.container}>
       <div className={styles.imageSlot}>
-        <img src={cesta} />
+        <img src={cesta} alt="" />
       </div>
       <div className={styles.info}>
         <div className={styles.details}>
