@@ -8,6 +8,8 @@ const handler = async (event) => {
     return { statusCode: 400 };
   }
 
+  console.log("yahoooo!");
+
   const parsedBody = JSON.parse(event.body);
   const body = sanitizeFields(parsedBody);
   body.cardHash = parsedBody.cardHash;
@@ -21,42 +23,44 @@ const handler = async (event) => {
   const juno = new Juno();
   await juno.initHeaders();
 
-  // Prepare charge
-  const billing = {
-    name: body.name,
-    document: body.cpf,
-    email: body.email,
-    phone: body.phone,
-  };
-  const charge = {
-    installments: 1,
-    amount: body.total,
-    description: body.description,
-    paymentTypes: ["CREDIT_CARD"],
-  };
+  return { statusCode: 200 };
 
-  // Create charge and payment
-  const recordedCharge = await juno.createCardCharge(charge, billing);
-  const error = await juno.processCharge(
-    recordedCharge.id,
-    recordedCharge.code,
-    body.cardHash,
-    body.email
-  );
+  // // Prepare charge
+  // const billing = {
+  //   name: body.name,
+  //   document: body.cpf,
+  //   email: body.email,
+  //   phone: body.phone,
+  // };
+  // const charge = {
+  //   installments: 1,
+  //   amount: body.total,
+  //   description: body.description,
+  //   paymentTypes: ["CREDIT_CARD"],
+  // };
 
-  // Check for errors
-  if (error == null) {
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ orderNumber: recordedCharge.code }),
-    };
-  }
+  // // Create charge and payment
+  // const recordedCharge = await juno.createCardCharge(charge, billing);
+  // const error = await juno.processCharge(
+  //   recordedCharge.id,
+  //   recordedCharge.code,
+  //   body.cardHash,
+  //   body.email
+  // );
 
-  if (error == 289999) {
-    return { statusCode: 422 };
-  }
+  // // Check for errors
+  // if (error == null) {
+  //   return {
+  //     statusCode: 200,
+  //     body: JSON.stringify({ orderNumber: recordedCharge.code }),
+  //   };
+  // }
 
-  return { statusCode: 500 };
+  // if (error == 289999) {
+  //   return { statusCode: 422 };
+  // }
+
+  // return { statusCode: 500 };
 };
 
 module.exports = { handler };
