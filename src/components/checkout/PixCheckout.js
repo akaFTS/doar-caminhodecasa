@@ -66,7 +66,7 @@ export default function PixCheckout({
               isProcessing={isProcessing}
             />
           ) : (
-            <div>
+            <div className={styles.innerWrapper}>
               <PixCode code={qrcode} />
               <PixCopyPaste copypaste={copypaste} />
             </div>
