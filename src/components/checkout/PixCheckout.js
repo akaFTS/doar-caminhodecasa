@@ -5,6 +5,7 @@ import PixCode from "./PixCode";
 import axios from "axios";
 import * as styles from "./PixCheckout.module.css";
 import PixInstructions from "./PixInstructions";
+import PixCopyPaste from "./PixCopyPaste";
 
 function anyBlank(obj) {
   return Object.values(obj).some((str) => !str || /^\s*$/.test(str));
@@ -24,6 +25,7 @@ export default function PixCheckout({
 
   const handleButtonPressed = async () => {
     if (isProcessing) return;
+    setError("");
 
     // Validate fields
     if (anyBlank(personalData)) {
@@ -64,7 +66,10 @@ export default function PixCheckout({
               isProcessing={isProcessing}
             />
           ) : (
-            <PixCode code={qrcode} />
+            <div>
+              <PixCode code={qrcode} />
+              <PixCopyPaste copypaste={copypaste} />
+            </div>
           )}
         </div>
         {qrcode != "" && <PixInstructions copypaste={copypaste} />}

@@ -1,6 +1,8 @@
 .wrapper {
   padding: var(--p2);
   width: 100%;
+  background-color: var(--red-400);
+  box-sizing: border-box;
 
   & img {
     height: 100%;

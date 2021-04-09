@@ -4,7 +4,7 @@ import React from "react";
 import cx from "classnames";
 import * as styles from "./PixInstructions.module.css";
 
-export default function PixInstructions({ copypaste }) {
+export default function PixInstructions() {
   return (
     <div className={styles.container}>
       <div className={styles.instruction}>
@@ -33,7 +33,7 @@ export default function PixInstructions({ copypaste }) {
           </div>
         </div>
         <span>
-          Aponte a câmera do seu celular para o código ao lado e siga as
+          Aponte a câmera do seu celular para o QR Code ao lado e siga as
           instruções.
         </span>
       </div>
@@ -47,12 +47,10 @@ export default function PixInstructions({ copypaste }) {
           </div>
         </div>
         <span>
-          Se não for possível ler o código, cole o seguinte texto no campo{" "}
-          <span className={styles.highlight}>Pix Copia-e-Cola</span>:
+          Se não for possível ler o QR Code, clique em{" "}
+          <span className={styles.highlight}>Copia-e-Cola</span> para copiar um
+          código que deve ser colado no app do seu banco.
         </span>
-      </div>
-      <div>
-        <div className={styles.copyPaste}>{copypaste}</div>
       </div>
     </div>
   );

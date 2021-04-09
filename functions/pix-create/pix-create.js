@@ -1,5 +1,6 @@
 const { Juno } = require("../shared/juno_utils");
 const { sanitizeFields, fieldsAreValid } = require("../shared/misc_utils");
+const { Buffer } = require("buffer");
 
 const handler = async (event) => {
   // Ignore non-POST calls
@@ -40,7 +41,7 @@ const handler = async (event) => {
     statusCode: 200,
     body: JSON.stringify({
       qrcode: data.imagemBase64,
-      copypaste: data.qrcodeBase64,
+      copypaste: Buffer.from(data.qrcodeBase64, "base64").toString(),
     }),
   };
 };

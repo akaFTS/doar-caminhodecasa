@@ -1,0 +1,26 @@
+.copyButton {
+  width: 100%;
+  border: none;
+  background-color: var(--red-400);
+  color: white;
+  font-weight: 600;
+  font-size: var(--f4);
+  padding: var(--p3) var(--p3);
+  margin-top: var(--p1);
+
+  & span {
+    margin-left: var(--p2);
+  }
+
+  &:hover {
+    background-color: var(--red-800);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:disabled {
+    background-color: var(--red-300);
+  }
+}
