@@ -4,6 +4,7 @@
   "scripts": {
     "start": "parcel serve ./src/index.html",
     "build": "parcel build ./src/index.html",
+    "build:report": "PARCEL_BUNDLE_ANALYZER=1 parcel build ./src/index.html",
     "lint": "eslint src functions --ext .js",
     "preinstall": "npx npm-force-resolutions",
     "prepare": "husky install",
