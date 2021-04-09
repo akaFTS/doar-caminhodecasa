@@ -49,7 +49,7 @@ export default function PixInstructions() {
         <span>
           Se não for possível ler o QR Code, clique em{" "}
           <span className={styles.highlight}>Copia-e-Cola</span> para copiar um
-          código que deve ser colado no app do seu banco.
+          código que deve ser colado no app do banco.
         </span>
       </div>
     </div>
