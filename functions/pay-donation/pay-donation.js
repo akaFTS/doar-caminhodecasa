@@ -17,8 +17,6 @@ const handler = async (event) => {
     return { statusCode: 400 };
   }
 
-  console.log("oi");
-
   // Initialize Juno access
   const juno = new Juno();
   await juno.initHeaders();
@@ -37,19 +35,21 @@ const handler = async (event) => {
     paymentTypes: ["CREDIT_CARD"],
   };
 
-  console.log("yahoooo!");
-
   // Create charge and payment
-  const recordedCharge = await juno.createCardCharge(charge, billing);
-
-  console.log("blah");
-
-  const error = await juno.processCharge(
-    recordedCharge.id,
-    recordedCharge.code,
-    body.cardHash,
-    body.email
-  );
+  let recordedCharge;
+  let error;
+  try {
+    recordedCharge = await juno.createCardCharge(charge, billing);
+    error = await juno.processCharge(
+      recordedCharge.id,
+      recordedCharge.code,
+      body.cardHash,
+      body.email
+    );
+  } catch (e) {
+    console.log("Error while processing payment: ", e);
+    error = "error";
+  }
 
   // Check for errors
   if (error == null) {
