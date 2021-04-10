@@ -8,8 +8,6 @@ const handler = async (event) => {
     return { statusCode: 400 };
   }
 
-  console.log("yahoooo!");
-
   const parsedBody = JSON.parse(event.body);
   const body = sanitizeFields(parsedBody);
   body.cardHash = parsedBody.cardHash;
@@ -19,48 +17,53 @@ const handler = async (event) => {
     return { statusCode: 400 };
   }
 
+  console.log("oi");
+
   // Initialize Juno access
   const juno = new Juno();
   await juno.initHeaders();
 
-  return { statusCode: 200 };
+  // Prepare charge
+  const billing = {
+    name: body.name,
+    document: body.cpf,
+    email: body.email,
+    phone: body.phone,
+  };
+  const charge = {
+    installments: 1,
+    amount: body.total,
+    description: body.description,
+    paymentTypes: ["CREDIT_CARD"],
+  };
 
-  // // Prepare charge
-  // const billing = {
-  //   name: body.name,
-  //   document: body.cpf,
-  //   email: body.email,
-  //   phone: body.phone,
-  // };
-  // const charge = {
-  //   installments: 1,
-  //   amount: body.total,
-  //   description: body.description,
-  //   paymentTypes: ["CREDIT_CARD"],
-  // };
+  console.log("yahoooo!");
 
-  // // Create charge and payment
-  // const recordedCharge = await juno.createCardCharge(charge, billing);
-  // const error = await juno.processCharge(
-  //   recordedCharge.id,
-  //   recordedCharge.code,
-  //   body.cardHash,
-  //   body.email
-  // );
+  // Create charge and payment
+  const recordedCharge = await juno.createCardCharge(charge, billing);
 
-  // // Check for errors
-  // if (error == null) {
-  //   return {
-  //     statusCode: 200,
-  //     body: JSON.stringify({ orderNumber: recordedCharge.code }),
-  //   };
-  // }
+  console.log("blah");
 
-  // if (error == 289999) {
-  //   return { statusCode: 422 };
-  // }
+  const error = await juno.processCharge(
+    recordedCharge.id,
+    recordedCharge.code,
+    body.cardHash,
+    body.email
+  );
 
-  // return { statusCode: 500 };
+  // Check for errors
+  if (error == null) {
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ orderNumber: recordedCharge.code }),
+    };
+  }
+
+  if (error == 289999) {
+    return { statusCode: 422 };
+  }
+
+  return { statusCode: 500 };
 };
 
 module.exports = { handler };
