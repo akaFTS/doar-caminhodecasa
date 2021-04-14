@@ -47,6 +47,24 @@ class Fauna {
       return null;
     }
   }
+
+  async swapTxidByChargeCode(txid, chargeCode) {
+    try {
+      return this.client.query(
+        query.Update(
+          query.Select(
+            ["ref"],
+            query.Get(query.Match(query.Index("pixCode"), txid))
+          ),
+          {
+            data: { chargeCode },
+          }
+        )
+      );
+    } catch (error) {
+      console.log("An error occurred while updating: ", error);
+    }
+  }
 }
 
 module.exports = { Fauna };

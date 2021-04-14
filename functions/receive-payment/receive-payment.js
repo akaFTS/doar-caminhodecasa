@@ -6,8 +6,6 @@ const handler = async (event) => {
   const query = queryString.parse(event.body);
   const chargeCode = parseInt(query.chargeCode);
 
-  console.log("Payment received! ", query);
-
   // Update in DB
   const fauna = new Fauna();
   await fauna.updateCharge(chargeCode, "PAID");

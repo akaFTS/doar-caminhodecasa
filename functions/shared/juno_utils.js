@@ -148,15 +148,15 @@ class Juno {
         }
       );
 
-      // Save charge to FaunaDB
-      // this.fauna.recordCharge({
-      //   chargeCode: recordedCharge.code,
-      //   email: billing.email,
-      //   name: billing.name,
-      //   amount: charge.amount,
-      //   paymentType: charge.paymentTypes[0],
-      //   status: "PENDING",
-      // });
+      // Save charge to FaunaDB with temporary pix code
+      this.fauna.recordCharge({
+        pixCode: txid,
+        email: billing.email,
+        name: billing.name,
+        amount: charge.amount,
+        paymentType: "PIX",
+        status: "PENDING",
+      });
 
       return qrResponse.data;
     } catch (e) {

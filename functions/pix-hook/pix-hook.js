@@ -1,3 +1,5 @@
+const { Fauna } = require("../shared/fauna_utils");
+
 const handler = async (event) => {
   // Ignore non-POST calls
   if (event.httpMethod != "POST") {
@@ -8,13 +10,12 @@ const handler = async (event) => {
   const { attributes } = body.data[0];
 
   if (!attributes.pix) {
-    console.log("Not a Pix charge. Returning.");
     return { statusCode: 200 };
   }
 
-  console.log("This is a pix charge!");
-  console.log(attributes.code);
-  console.log(attributes.pix.txid);
+  // Update charge in DB with correct charge code
+  const fauna = new Fauna();
+  await fauna.swapTxidByChargeCode(attributes.pix.txid, attributes.code);
 
   return { statusCode: 200 };
 };
