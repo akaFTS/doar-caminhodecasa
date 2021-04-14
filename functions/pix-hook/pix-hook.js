@@ -1,11 +1,22 @@
 const handler = async (event) => {
-  console.log(event.httpMethod);
-  console.log(event.body);
-  console.log(event.headers);
+  // Ignore non-POST calls
+  if (event.httpMethod != "POST") {
+    return { statusCode: 400 };
+  }
 
-  return {
-    statusCode: 200,
-  };
+  const body = JSON.parse(event.body);
+  const { attributes } = body.data;
+
+  if (!attributes.pix) {
+    console.log("Not a Pix charge. Returning.");
+    return { statusCode: 200 };
+  }
+
+  console.log("This is a pix charge!");
+  console.log(attributes.code);
+  console.log(attributes.pix.txid);
+
+  return { statusCode: 200 };
 };
 
 module.exports = { handler };
