@@ -7,9 +7,6 @@ const handler = async (event) => {
   }
 
   const body = JSON.parse(event.body);
-
-  console.log(event.body);
-
   const { attributes } = body.data[0];
 
   if (!attributes.pix) {
