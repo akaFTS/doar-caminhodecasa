@@ -71,7 +71,7 @@ class Juno {
       const recordedCharge = data._embedded.charges[0];
 
       // Save charge to FaunaDB
-      this.fauna.recordCharge({
+      await this.fauna.recordCharge({
         chargeCode: recordedCharge.code,
         email: billing.email,
         name: billing.name,
@@ -149,7 +149,7 @@ class Juno {
       );
 
       // Save charge to FaunaDB with temporary pix code
-      this.fauna.recordCharge({
+      await this.fauna.recordCharge({
         pixCode: txid,
         email: billing.email,
         name: billing.name,
