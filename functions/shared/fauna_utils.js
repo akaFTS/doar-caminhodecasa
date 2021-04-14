@@ -20,7 +20,7 @@ class Fauna {
 
   async updateCharge(chargeCode, status) {
     try {
-      return this.client.query(
+      await this.client.query(
         query.Update(
           query.Select(
             ["ref"],
@@ -32,6 +32,9 @@ class Fauna {
         )
       );
     } catch (error) {
+      if (error.errorType == "NotFound") {
+        console.log("Can't find entry.");
+      }
       console.log("An error occurred while updating: ", error);
     }
   }
