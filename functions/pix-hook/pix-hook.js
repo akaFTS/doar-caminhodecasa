@@ -5,7 +5,7 @@ const handler = async (event) => {
   }
 
   const body = JSON.parse(event.body);
-  const { attributes } = body.data;
+  const { attributes } = body.data[0];
 
   if (!attributes.pix) {
     console.log("Not a Pix charge. Returning.");
