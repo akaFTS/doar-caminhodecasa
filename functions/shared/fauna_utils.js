@@ -53,7 +53,7 @@ class Fauna {
 
   async swapTxidByChargeCode(txid, chargeCode) {
     try {
-      return this.client.query(
+      await this.client.query(
         query.Update(
           query.Select(
             ["ref"],
@@ -64,7 +64,11 @@ class Fauna {
           }
         )
       );
+      console.log("Succesfully updated charge codes.");
     } catch (error) {
+      if (error.errorType == "NotFound") {
+        console.log("Can't find entry.");
+      }
       console.log("An error occurred while updating: ", error);
     }
   }
