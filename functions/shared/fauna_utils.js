@@ -18,7 +18,25 @@ class Fauna {
     }
   }
 
-  async updateCharge(chargeCode, status) {
+  async recordOrUpdatePixCharge(charge) {
+    // Update charge. If it does not exist, create it
+    try {
+      await this.client.query(
+        query.Update(
+          query.Select(
+            ["ref"],
+            query.Get(query.Match(query.Index("pixCode"), charge.pixCode))
+          ),
+          { data: charge }
+        )
+      );
+    } catch (error) {
+      console.log("Document not found. Creating one.");
+      this.recordCharge(charge);
+    }
+  }
+
+  async updateChargeStatus(chargeCode, status) {
     try {
       await this.client.query(
         query.Update(
@@ -66,13 +84,13 @@ class Fauna {
     }
   }
 
-  async swapTxidByChargeCode(txid, chargeCode) {
+  async swapTxidByChargeCode(pixCode, chargeCode) {
     try {
       await this.client.query(
         query.Update(
           query.Select(
             ["ref"],
-            query.Get(query.Match(query.Index("pixCode"), txid))
+            query.Get(query.Match(query.Index("pixCode"), pixCode))
           ),
           {
             data: { chargeCode },
@@ -81,10 +99,12 @@ class Fauna {
       );
       console.log("Succesfully updated charge codes.");
     } catch (error) {
-      if (error.errorType == "NotFound") {
-        console.log("Can't find entry.");
-      }
-      console.log("An error occurred while updating: ", error);
+      console.log("Document not found. Creating one.");
+      await this.client.query(
+        query.Create(query.Collection("doar-payments"), {
+          data: { pixCode, chargeCode },
+        })
+      );
     }
   }
 }

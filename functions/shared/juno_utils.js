@@ -145,7 +145,7 @@ class Juno {
       );
 
       // Save charge to FaunaDB with temporary pix code
-      await this.fauna.recordCharge({
+      await this.fauna.recordOrUpdatePixCharge({
         pixCode: txid,
         email: billing.email,
         name: billing.name,

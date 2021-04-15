@@ -8,7 +8,7 @@ const handler = async (event) => {
 
   // Update in DB
   const fauna = new Fauna();
-  await fauna.updateCharge(chargeCode, "PAID");
+  await fauna.updateChargeStatus(chargeCode, "PAID");
   const charge = await fauna.fetchCharge(chargeCode);
 
   // Send success mail
