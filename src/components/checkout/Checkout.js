@@ -73,6 +73,7 @@ export default function Checkout() {
           personalData={personalData}
           total={total}
           description={description}
+          onSuccessfulCheckout={handleSuccessfulCheckout}
           onValidationFailed={() => setFlagBlankFields(true)}
         />
       </section>

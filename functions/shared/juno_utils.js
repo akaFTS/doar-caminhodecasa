@@ -158,7 +158,7 @@ class Juno {
         status: "PENDING",
       });
 
-      return qrResponse.data;
+      return { ...qrResponse.data, txid };
     } catch (e) {
       console.log("Failed to create charge!");
       console.log(e.response.data);

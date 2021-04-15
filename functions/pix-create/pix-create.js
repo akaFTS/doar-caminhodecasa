@@ -42,6 +42,7 @@ const handler = async (event) => {
     body: JSON.stringify({
       qrcode: data.imagemBase64,
       copypaste: Buffer.from(data.qrcodeBase64, "base64").toString(),
+      txid: data.txid,
     }),
   };
 };

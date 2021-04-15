@@ -6,6 +6,7 @@ import axios from "axios";
 import * as styles from "./PixCheckout.module.css";
 import PixInstructions from "./PixInstructions";
 import PixCopyPaste from "./PixCopyPaste";
+import PixPoller from "./PixPoller";
 
 function anyBlank(obj) {
   return Object.values(obj).some((str) => !str || /^\s*$/.test(str));
@@ -17,11 +18,13 @@ export default function PixCheckout({
   description,
   onValidationFailed,
   hidden,
+  onSuccessfulCheckout,
 }) {
   const [isProcessing, setProcessing] = useState(false);
   const [error, setError] = useState("");
   const [qrcode, setQrcode] = useState("");
   const [copypaste, setCopypaste] = useState("");
+  const [txid, setTxid] = useState("");
 
   const handleButtonPressed = async () => {
     if (isProcessing) return;
@@ -47,6 +50,7 @@ export default function PixCheckout({
 
       setQrcode(response.data.qrcode);
       setCopypaste(response.data.copypaste);
+      setTxid(response.data.txid);
     } catch (e) {
       setError(
         !e.response || e.response.status == 400
@@ -56,6 +60,7 @@ export default function PixCheckout({
     }
     setProcessing(false);
   };
+
   return (
     <div style={{ display: hidden ? "none" : "block" }}>
       <div className={styles.container}>
@@ -74,6 +79,12 @@ export default function PixCheckout({
         </div>
         {qrcode != "" && <PixInstructions copypaste={copypaste} />}
       </div>
+      {txid != "" && (
+        <PixPoller
+          txid={txid}
+          onPaid={(chargeCode) => onSuccessfulCheckout(chargeCode, "pix")}
+        />
+      )}
       {error != "" && <ErrorBanner error={error} />}
     </div>
   );

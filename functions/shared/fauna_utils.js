@@ -51,6 +51,21 @@ class Fauna {
     }
   }
 
+  async isPaid(txid) {
+    try {
+      const response = await this.client.query(
+        query.Get(query.Match(query.Index("pixCode"), txid))
+      );
+      return {
+        isPaid: response.data.status == "PAID",
+        chargeCode: response.data.chargeCode,
+      };
+    } catch (error) {
+      console.log("An error occurred while fetching: ", error);
+      return false;
+    }
+  }
+
   async swapTxidByChargeCode(txid, chargeCode) {
     try {
       await this.client.query(
