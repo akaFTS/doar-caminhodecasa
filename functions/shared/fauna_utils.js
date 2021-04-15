@@ -32,7 +32,7 @@ class Fauna {
       );
     } catch (error) {
       console.log("Document not found. Creating one.");
-      this.recordCharge(charge);
+      await this.recordCharge(charge);
     }
   }
 
