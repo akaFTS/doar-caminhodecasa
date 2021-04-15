@@ -49,7 +49,6 @@ export default function SocialWall() {
 
       return Array.from(mutation.removedNodes).some((node) => {
         if (node.className == "j-loading-wrapper") {
-          console.log("yahoo!");
           setLoaded(true);
           return true;
         }
