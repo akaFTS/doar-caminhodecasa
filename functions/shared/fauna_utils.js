@@ -10,7 +10,7 @@ class Fauna {
 
   async recordCharge(charge) {
     try {
-      return this.client.query(
+      await this.client.query(
         query.Create(query.Collection("doar-payments"), { data: charge })
       );
     } catch (error) {
