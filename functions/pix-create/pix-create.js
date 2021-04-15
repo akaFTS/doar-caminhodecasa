@@ -22,7 +22,6 @@ const handler = async (event) => {
     name: body.name,
     document: body.cpf,
     email: body.email,
-    phone: body.phone,
   };
   const charge = {
     installments: 1,

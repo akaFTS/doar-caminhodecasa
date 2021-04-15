@@ -62,10 +62,8 @@ class Juno {
     try {
       const { data } = await this.api.post(
         "/charges",
-        { charge, billing },
-        {
-          headers: this.headers,
-        }
+        { charge: { ...charge, paymentTypes: ["CREDIT_CARD"] }, billing },
+        { headers: this.headers }
       );
 
       const recordedCharge = data._embedded.charges[0];
@@ -76,7 +74,7 @@ class Juno {
         email: billing.email,
         name: billing.name,
         amount: charge.amount,
-        paymentType: charge.paymentTypes[0],
+        paymentType: "CREDIT_CARD",
         status: "PENDING",
       });
 
@@ -143,9 +141,7 @@ class Juno {
       const txid = response.data.txid;
       const qrResponse = await this.api.get(
         "/pix-api/qrcode/v2/" + txid + "/imagem",
-        {
-          headers: this.headers,
-        }
+        { headers: this.headers }
       );
 
       // Save charge to FaunaDB with temporary pix code

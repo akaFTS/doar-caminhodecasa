@@ -26,13 +26,11 @@ const handler = async (event) => {
     name: body.name,
     document: body.cpf,
     email: body.email,
-    phone: body.phone,
   };
   const charge = {
     installments: 1,
     amount: body.total,
     description: body.description,
-    paymentTypes: ["CREDIT_CARD"],
   };
 
   // Create charge and payment

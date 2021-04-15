@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import * as styles from "./PixPoller.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 export default function PixPoller({ txid, onPaid }) {
   const poll = async () => {
@@ -27,13 +29,16 @@ export default function PixPoller({ txid, onPaid }) {
     };
   }, [txid]);
   return (
-    <p className={styles.paragraph}>
-      A página atualizará automaticamente ao detectar o pagamento. Caso isso não
-      aconteça,{" "}
-      <button className={styles.action} onClick={poll}>
-        clique aqui
-      </button>
-      .
-    </p>
+    <div className={styles.poller}>
+      <FontAwesomeIcon icon={faSpinner} spin={true} size="lg" />
+      <span className={styles.text}>
+        Aguardando confirmação de pagamento... Se a página não atualizar
+        automaticamente,{" "}
+        <button className={styles.action} onClick={poll}>
+          clique aqui
+        </button>
+        .
+      </span>
+    </div>
   );
 }

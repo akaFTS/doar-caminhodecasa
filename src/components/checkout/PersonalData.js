@@ -8,18 +8,6 @@ export default function PersonalData({ data, setData, shouldFlagBlankFields }) {
     return !str || /^\s*$/.test(str);
   };
 
-  const beforeMaskedValueChange = ({ nextState }) => {
-    const newValue = nextState.value.replace(/\D/g, "");
-    if (newValue.length === 10) {
-      return {
-        ...nextState,
-        value: newValue.replace(/^(\d{2})(\d{4})(\d{4})$/, "($1) $2-$3"),
-      };
-    }
-
-    return nextState;
-  };
-
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
@@ -61,20 +49,6 @@ export default function PersonalData({ data, setData, shouldFlagBlankFields }) {
           })}
           placeholder="E-mail"
           value={data.email}
-          onChange={handleChange}
-        />
-        <InputMask
-          name="phone"
-          type="tel"
-          placeholder="Telefone"
-          className={cx({
-            [styles.input]: true,
-            [styles.blankInput]: shouldFlagBlankFields && isBlank(data.phone),
-          })}
-          value={data.phone}
-          mask="(99) 99999-9999"
-          maskPlaceholder={null}
-          beforeMaskedStateChange={beforeMaskedValueChange}
           onChange={handleChange}
         />
       </div>

@@ -19,13 +19,15 @@ export default function Campaign({ campaign }) {
         />
       </header>
       <main className={styles.main}>
-        <h3>{campaign.name}</h3>
+        <Link to={`/projetos/${campaign.slug}`}>
+          <h3>{campaign.name}</h3>
+        </Link>
         <div className={styles.underline} />
         <p>{campaign.short_description}</p>
       </main>
       <footer className={styles.footer}>
         <div className={styles.from}>
-          <p>a partir de</p>
+          <p>a partir dea</p>
           <h4>R${lowest_donation},00</h4>
         </div>
         <Link to={`/projetos/${campaign.slug}`} className={styles.donateButton}>

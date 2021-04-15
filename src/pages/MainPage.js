@@ -6,6 +6,7 @@ import Footer from "../components/layout/Footer";
 import Header from "../components/layout/Header";
 import Hero from "../components/layout/Hero";
 import campaigns from "../campaigns.json";
+import SocialWall from "../components/layout/SocialWall";
 
 export default function App() {
   const featured_campaign = campaigns.find((c) => c.featured == true);
@@ -35,6 +36,7 @@ export default function App() {
       <Hero />
       <CampaignDetails campaign={featured_campaign} featured={true} />
       <CampaignList campaigns={campaigns} />
+      <SocialWall />
       <Footer />
     </>
   );

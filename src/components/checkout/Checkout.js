@@ -16,7 +16,6 @@ export default function Checkout() {
   const [payment, setPayment] = useState("card");
   const [personalData, setPersonalData] = useState({
     name: "",
-    phone: "",
     email: "",
     cpf: "",
   });

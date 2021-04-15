@@ -45,7 +45,6 @@ function sanitizeFields(body) {
   return {
     name: validator.escape(body.name),
     email: validator.escape(body.email),
-    phone: validator.escape(body.phone),
     cpf: validator.escape(body.cpf.replace(/[.-]/g, "")),
     total: validator.escape(body.total + ""),
     description: validator.escape(body.description),
@@ -62,10 +61,6 @@ function fieldsAreValid(body) {
   }
 
   if (!checkCPF(body.cpf)) {
-    return false;
-  }
-
-  if (!validator.isMobilePhone(body.phone, "pt-BR")) {
     return false;
   }
 
