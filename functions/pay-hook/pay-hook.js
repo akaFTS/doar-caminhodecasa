@@ -8,30 +8,30 @@ const handler = async (event) => {
   }
 
   const body = JSON.parse(event.body);
-  const data = body.data[0];
+  const { attributes } = body.data[0];
 
   console.log(JSON.stringify(body, null, 4));
 
-  if (data.status != "PAID") {
+  if (attributes.status != "PAID") {
     return { statusCode: 200 };
   }
 
   const fauna = new Fauna();
-  if (data.attributes.pix) {
+  if (attributes.pix) {
     console.log("hi");
-    await fauna.updateCharge(data.attributes.pix.txid, "pixCode", {
+    await fauna.updateCharge(attributes.pix.txid, "pixCode", {
       status: "PAID",
-      chargeCode: data.attributes.code,
+      chargeCode: attributes.code,
     });
   } else {
     console.log("hello");
-    await fauna.updateCharge(data.attributes.code, "chargeCode", {
+    await fauna.updateCharge(attributes.code, "chargeCode", {
       status: "PAID",
     });
   }
 
   // Send success mail
-  const charge = await fauna.fetchCharge(data.attributes.code);
+  const charge = await fauna.fetchCharge(attributes.code);
   console.log(JSON.stringify(charge, null, 4));
   await sendMail({
     code: charge.chargeCode,
