@@ -10,17 +10,21 @@ const handler = async (event) => {
   const body = JSON.parse(event.body);
   const data = body.data[0];
 
+  console.log(JSON.stringify(body, null, 4));
+
   if (data.status != "PAID") {
     return { statusCode: 200 };
   }
 
   const fauna = new Fauna();
   if (data.attributes.pix) {
+    console.log("hi");
     await fauna.updateCharge(data.attributes.pix.txid, "pixCode", {
       status: "PAID",
       chargeCode: data.attributes.code,
     });
   } else {
+    console.log("hello");
     await fauna.updateCharge(data.attributes.code, "chargeCode", {
       status: "PAID",
     });
@@ -28,6 +32,7 @@ const handler = async (event) => {
 
   // Send success mail
   const charge = await fauna.fetchCharge(data.attributes.code);
+  console.log(JSON.stringify(charge, null, 4));
   await sendMail({
     code: charge.chargeCode,
     name: charge.name,
