@@ -27,7 +27,7 @@ export default function Campaign({ campaign }) {
       </main>
       <footer className={styles.footer}>
         <div className={styles.from}>
-          <p>a partir dea</p>
+          <p>a partir de</p>
           <h4>R${lowest_donation},00</h4>
         </div>
         <Link to={`/projetos/${campaign.slug}`} className={styles.donateButton}>

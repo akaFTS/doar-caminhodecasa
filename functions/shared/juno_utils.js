@@ -102,17 +102,11 @@ class Juno {
       },
     };
 
-    console.log(body);
-
     try {
       await this.api.post("/payments", body, {
         headers: this.headers,
       });
-
-      console.log("ok");
     } catch (e) {
-      console.log(e.response.data.details);
-
       const error = e.response.data.details[0].errorCode;
 
       // Record charge as rejected
