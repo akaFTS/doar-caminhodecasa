@@ -61,6 +61,7 @@ const handler = async (event) => {
     return { statusCode: 422 };
   }
 
+  console.log("An unexpected error occurred: ", error);
   return { statusCode: 500 };
 };
 
