@@ -9,6 +9,8 @@ const handler = async (event) => {
   const body = JSON.parse(event.body);
   const { attributes } = body.data[0];
 
+  console.log(event.body);
+
   if (!attributes.pix) {
     return { statusCode: 200 };
   }
