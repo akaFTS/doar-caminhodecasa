@@ -10,11 +10,11 @@ const handler = async (event) => {
   const body = JSON.parse(event.body);
   const data = body.data[0];
 
+  console.log(event.body);
+
   if (data.status != "PAID") {
     return { statusCode: 200 };
   }
-
-  console.log(event.body);
 
   if (!data.attributes.pix) {
     return { statusCode: 200 };
