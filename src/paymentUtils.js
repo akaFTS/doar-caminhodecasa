@@ -61,15 +61,15 @@ export function formatExpirationDate(value) {
 
 export function tokenizeCard({ number, cardname, cvc, expiry }) {
   // Sandbox
-  const checkout = new DirectCheckout(
-    "3A17C3AB5700A8BCE54167690CF4605A061444C2D5484F975C719ED71D0D476B",
-    false
-  );
+  // const checkout = new DirectCheckout(
+  //   "3A17C3AB5700A8BCE54167690CF4605A061444C2D5484F975C719ED71D0D476B",
+  //   false
+  // );
 
   // Production
-  // const checkout = new DirectCheckout(
-  //   "EAE13EE6623EEC3F1C9381124D6EBE79D2B3579398D7BF0B47CF187137FACCBC217982970CA6740E"
-  // );
+  const checkout = new DirectCheckout(
+    "EAE13EE6623EEC3F1C9381124D6EBE79D2B3579398D7BF0B47CF187137FACCBC217982970CA6740E"
+  );
 
   const cardData = {
     cardNumber: number.replace(/\D/g, ""),
