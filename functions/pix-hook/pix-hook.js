@@ -1,4 +1,5 @@
 const { Fauna } = require("../shared/fauna_utils");
+const { sendMail } = require("../shared/mail_utils");
 
 const handler = async (event) => {
   // Ignore non-POST calls
@@ -7,17 +8,34 @@ const handler = async (event) => {
   }
 
   const body = JSON.parse(event.body);
-  const { attributes } = body.data[0];
+  const data = body.data[0];
 
-  console.log(event.body);
-
-  if (!attributes.pix) {
+  if (data.status != "PAID") {
     return { statusCode: 200 };
   }
 
-  // Update charge in DB with correct charge code
+  console.log(event.body);
+
+  if (!data.attributes.pix) {
+    return { statusCode: 200 };
+  }
+
+  // Update in DB and add correct code
   const fauna = new Fauna();
-  await fauna.swapTxidByChargeCode(attributes.pix.txid, attributes.code);
+  await fauna.updateCharge(data.attributes.pix.txid, "pixCode", {
+    status: "PAID",
+    chargeCode: data.attributes.code,
+  });
+  const charge = await fauna.fetchCharge(data.attributes.code);
+
+  // Send success mail
+  await sendMail({
+    code: charge.chargeCode,
+    name: charge.name,
+    amount: charge.amount,
+    paymentType: charge.paymentType,
+    email: charge.email,
+  });
 
   return { statusCode: 200 };
 };

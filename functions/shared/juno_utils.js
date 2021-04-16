@@ -111,7 +111,9 @@ class Juno {
 
       // Record charge as rejected
       if (error == 289999) {
-        await this.fauna.updateCharge(chargeCode, "DENIED");
+        await this.fauna.updateCharge(chargeCode, "chargeCode", {
+          status: "DENIED",
+        });
       }
 
       return error;
@@ -145,7 +147,7 @@ class Juno {
       );
 
       // Save charge to FaunaDB with temporary pix code
-      await this.fauna.recordOrUpdatePixCharge({
+      await this.fauna.recordCharge({
         pixCode: txid,
         email: billing.email,
         name: billing.name,

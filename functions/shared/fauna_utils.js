@@ -18,34 +18,16 @@ class Fauna {
     }
   }
 
-  async recordOrUpdatePixCharge(charge) {
-    // Update charge. If it does not exist, create it
+  async updateCharge(code, indexName, newCharge) {
     try {
       await this.client.query(
         query.Update(
           query.Select(
             ["ref"],
-            query.Get(query.Match(query.Index("pixCode"), charge.pixCode))
-          ),
-          { data: charge }
-        )
-      );
-    } catch (error) {
-      console.log("Document not found. Creating one.");
-      await this.recordCharge(charge);
-    }
-  }
-
-  async updateChargeStatus(chargeCode, status) {
-    try {
-      await this.client.query(
-        query.Update(
-          query.Select(
-            ["ref"],
-            query.Get(query.Match(query.Index("chargeCode"), chargeCode))
+            query.Get(query.Match(query.Index(indexName), code))
           ),
           {
-            data: { status },
+            data: { ...newCharge },
           }
         )
       );
