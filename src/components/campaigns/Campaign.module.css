@@ -2,6 +2,8 @@
   width: 100%;
   margin: var(--p3) 0;
   max-width: 400px;
+  display: flex;
+  flex-direction: column;
 
   background-color: white;
   overflow: hidden;
@@ -35,6 +37,7 @@
 .main {
   padding: var(--p3);
   padding-bottom: var(--p4);
+  flex-grow: 1;
 
   & a {
     text-decoration: none;

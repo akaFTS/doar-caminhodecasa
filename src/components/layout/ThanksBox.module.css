@@ -40,7 +40,16 @@
     margin-bottom: var(--p3);
   }
 
-  & .orderDetails {
+  & .orderSubtitle {
+    text-align: center;
+    font-size: var(--f5);
+    color: var(--grey-800);
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: var(--p2);
+  }
+
+  & .orderThanks {
     text-align: center;
     font-size: var(--f5);
     color: var(--grey-600);

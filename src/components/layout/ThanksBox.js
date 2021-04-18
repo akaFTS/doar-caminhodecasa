@@ -16,9 +16,12 @@ export default function ThanksBox({ orderNumber, name, total, paymentCode }) {
         </header>
         <main className={styles.content}>
           <h2>Obrigado!</h2>
-          <p className={styles.orderDetails}>
-            Sua doação foi realizada com sucesso. Graças a ela, poderemos
-            continuar levando esperança a quem mais precisa.
+          <p className={styles.orderSubtitle}>
+            Sua doação foi realizada com sucesso.
+          </p>
+          <p className={styles.orderThanks}>
+            Graças a ela, poderemos continuar levando esperança a quem mais
+            precisa.
           </p>
           <div className={styles.info}>
             <p>
