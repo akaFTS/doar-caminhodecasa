@@ -2,13 +2,13 @@ import React from "react";
 import * as styles from "./BasketItem.module.css";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import cesta from "url:../../assets/cesta.png";
+import images from "../../images.js";
 
 export default function BasketItem({ item, onAmountChanged }) {
   return (
     <div className={styles.container}>
       <div className={styles.imageSlot}>
-        <img src={cesta} alt="" />
+        <img src={images[item.product.picture]} alt="" />
       </div>
       <div className={styles.info}>
         <div className={styles.details}>

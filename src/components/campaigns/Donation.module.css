@@ -6,14 +6,16 @@
   margin-bottom: var(--p3);
 
   & .imageSlot {
-    background-color: var(--grey-100);
     height: 130px;
     width: 130px;
     overflow: hidden;
+    padding: var(--p1);
+    flex-shrink: 0;
   }
 
   & img {
     height: 100%;
+    border-radius: var(--br4);
   }
 }
 
