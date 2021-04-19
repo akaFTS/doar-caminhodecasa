@@ -7,6 +7,7 @@ import * as styles from "./PixCheckout.module.css";
 import PixInstructions from "./PixInstructions";
 import PixCopyPaste from "./PixCopyPaste";
 import PixPoller from "./PixPoller";
+import TipBanner from "./TipBanner";
 
 function anyBlank(obj) {
   return Object.values(obj).some((str) => !str || /^\s*$/.test(str));
@@ -64,6 +65,13 @@ export default function PixCheckout({
   return (
     <div style={{ display: hidden ? "none" : "block" }}>
       <div className={styles.container}>
+        <div className={styles.tip}>
+          {qrcode != "" && (
+            <TipBanner
+              tip={`Está no celular? Ao invés do QR Code, utilize o botão "Copia-e-Cola" para gerar um código e colar no app do banco.`}
+            />
+          )}
+        </div>
         <div className={styles.pixWrapper}>
           {qrcode == "" ? (
             <PixButton

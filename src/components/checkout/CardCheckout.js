@@ -69,7 +69,7 @@ export default function CardCheckout({
       onSubmit={handleFormSubmit}
       style={{ display: hidden ? "none" : "block" }}
     >
-      <TipBanner />
+      <TipBanner tip="Pagar com Pix é mais fácil e rápido." />
       <CardPayment
         data={cardData}
         setData={setCardData}
