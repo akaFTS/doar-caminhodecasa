@@ -20,8 +20,7 @@ export default function ThanksBox({ orderNumber, name, total, paymentCode }) {
             Sua doação foi realizada com sucesso.
           </p>
           <p className={styles.orderThanks}>
-            Graças a ela, poderemos continuar levando esperança a quem mais
-            precisa.
+            Graças a ela, continuaremos levando esperança a quem mais precisa.
           </p>
           <div className={styles.info}>
             <p>
