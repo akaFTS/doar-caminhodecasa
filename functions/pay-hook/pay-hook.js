@@ -1,5 +1,5 @@
 const { Fauna } = require("../shared/fauna_utils");
-const { sendMail } = require("../shared/mail_utils");
+const { sendMail, sendCiclumPixMail } = require("../shared/mail_utils");
 
 const handler = async (event) => {
   // Ignore non-POST calls
@@ -35,6 +35,15 @@ const handler = async (event) => {
     paymentType: charge.paymentType,
     email: charge.email,
   });
+
+  // Send an email to Ciclum in case of Pix as the default email from Juno contains no information
+  if (attributes.pix) {
+    await sendCiclumPixMail({
+      name: charge.name,
+      amount: charge.amount,
+      email: charge.email,
+    });
+  }
 
   return { statusCode: 200 };
 };

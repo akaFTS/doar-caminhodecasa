@@ -11,7 +11,28 @@ async function sendMail(info) {
     tags: { img: { format: "skip" } },
   });
 
-  const transporter = nodemailer.createTransport({
+  await getTransport().sendMail({
+    from: '"Associação Caminho de Casa" <atendimento@caminhodecasa.org.br>',
+    to: info.email,
+    subject: "Obrigado por sua doação!",
+    text: textVersion,
+    html: htmlVersion,
+  });
+}
+
+async function sendCiclumPixMail(info) {
+  const htmlVersion = `Você recebeu uma transação Pix.<br />Nome: ${info.name}<br />Email: ${info.email}<br />Valor: R$${info.amount},00`;
+
+  await getTransport().sendMail({
+    from: '"Associação Caminho de Casa" <atendimento@caminhodecasa.org.br>',
+    to: "consultoria@ciclum.net",
+    subject: "Novo Pix recebido",
+    html: htmlVersion,
+  });
+}
+
+function getTransport() {
+  return nodemailer.createTransport({
     host: "mail.caminhodecasa.org.br",
     port: 587,
     secure: false,
@@ -20,14 +41,6 @@ async function sendMail(info) {
       pass: process.env.MAIL_PASSWORD,
     },
     ignoreTLS: true,
-  });
-
-  await transporter.sendMail({
-    from: '"Associação Caminho de Casa" <atendimento@caminhodecasa.org.br>',
-    to: info.email,
-    subject: "Obrigado por sua doação!",
-    text: textVersion,
-    html: htmlVersion,
   });
 }
 
@@ -44,4 +57,4 @@ function importMJML({ code, name, amount, paymentType }) {
   return html;
 }
 
-module.exports = { sendMail };
+module.exports = { sendMail, sendCiclumPixMail };
