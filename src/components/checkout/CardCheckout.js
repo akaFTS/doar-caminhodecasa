@@ -4,6 +4,8 @@ import CardPayment from "./CardPayment";
 import ErrorBanner from "./ErrorBanner";
 import { tokenizeCard } from "../../paymentUtils";
 import PayButton from "./PayButton";
+import TipBanner from "./TipBanner";
+import CardDisclaimer from "./CardDisclamer";
 
 function anyBlank(obj) {
   return Object.values(obj).some((str) => !str || /^\s*$/.test(str));
@@ -67,11 +69,13 @@ export default function CardCheckout({
       onSubmit={handleFormSubmit}
       style={{ display: hidden ? "none" : "block" }}
     >
+      <TipBanner />
       <CardPayment
         data={cardData}
         setData={setCardData}
         shouldFlagBlankFields={error == "blank"}
       />
+      <CardDisclaimer />
       <div>
         <PayButton isProcessing={isProcessing} total={total} />
         {error != "" && <ErrorBanner error={error} />}

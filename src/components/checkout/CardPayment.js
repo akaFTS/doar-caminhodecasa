@@ -97,10 +97,6 @@ export default function Payments({ data, setData, shouldFlagBlankFields }) {
           />
         </div>
       </div>
-      <p className={styles.info}>
-        Não lemos ou armazenamos os dados do seu cartão. Eles são encriptados e
-        transmitidos por uma conexão segura até a operadora de pagamento.
-      </p>
     </div>
   );
 }
