@@ -46,8 +46,7 @@ const mjml = `<mjml>
         <br />
         <span style="font-weight:bold">Valor:</span> R\${{ amount }},00
         <br />
-        <span style="font-weight:bold">Forma de Pagamento:</span>{" "}
-        {{ payment }}
+        <span style="font-weight:bold">Forma de Pagamento:</span> {{ payment }}
         <br />
       </mj-text>
 
