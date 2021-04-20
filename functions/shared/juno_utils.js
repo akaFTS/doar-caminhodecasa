@@ -86,20 +86,11 @@ class Juno {
     }
   }
 
-  async processCharge(chargeId, chargeCode, creditCardHash, email) {
+  async processCharge(chargeId, chargeCode, creditCardHash, email, address) {
     const body = {
       chargeId,
       creditCardDetails: { creditCardHash },
-      billing: {
-        email,
-        address: {
-          street: "Rua Padre Benedito de Camargo",
-          number: "356",
-          city: "São Paulo",
-          state: "SP",
-          postCode: "03604010",
-        },
-      },
+      billing: { email, address },
     };
 
     try {

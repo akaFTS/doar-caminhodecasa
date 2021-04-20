@@ -32,6 +32,14 @@ const handler = async (event) => {
     amount: body.total,
     description: body.description,
   };
+  const address = {
+    street: body.street,
+    number: body.streetNumber,
+    complement: body.complement,
+    city: body.city,
+    state: body.state,
+    postCode: body.cep,
+  };
 
   // Create charge and payment
   let recordedCharge;
@@ -42,7 +50,8 @@ const handler = async (event) => {
       recordedCharge.id,
       recordedCharge.code,
       body.cardHash,
-      body.email
+      body.email,
+      address
     );
   } catch (e) {
     console.log("Error while processing payment: ", e);

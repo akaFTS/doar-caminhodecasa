@@ -48,6 +48,12 @@ function sanitizeFields(body) {
     cpf: validator.escape(body.cpf.replace(/[.-]/g, "")),
     total: validator.escape(body.total + ""),
     description: validator.escape(body.description),
+    street: validator.escape(body.street),
+    streetNumber: validator.escape(body.streetNumber),
+    complement: validator.escape(body.complement),
+    city: validator.escape(body.city),
+    state: validator.escape(body.state),
+    cep: validator.escape(body.cep),
   };
 }
 

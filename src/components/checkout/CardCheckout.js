@@ -6,9 +6,14 @@ import { tokenizeCard } from "../../paymentUtils";
 import PayButton from "./PayButton";
 import TipBanner from "./TipBanner";
 import CardDisclaimer from "./CardDisclamer";
+import CardAddress from "./CardAddress";
 
-function anyBlank(obj) {
-  return Object.values(obj).some((str) => !str || /^\s*$/.test(str));
+function anyBlank(obj, except = []) {
+  return Object.entries(obj).some(([key, val]) => {
+    if (except.includes(key)) return false;
+
+    return !val || /^\s*$/.test(val);
+  });
 }
 
 export default function CardCheckout({
@@ -25,6 +30,16 @@ export default function CardCheckout({
     cvc: "",
     expiry: "",
   });
+
+  const [addressData, setAddressData] = useState({
+    cep: "",
+    street: "",
+    streetNumber: "",
+    complement: "",
+    city: "",
+    state: "",
+  });
+
   const [isProcessing, setProcessing] = useState(false);
   const [error, setError] = useState("");
 
@@ -33,7 +48,11 @@ export default function CardCheckout({
     setError("");
 
     // Check inputs
-    if (anyBlank(cardData) || anyBlank(personalData)) {
+    if (
+      anyBlank(cardData) ||
+      anyBlank(personalData) ||
+      anyBlank(addressData, ["complement"])
+    ) {
       setError("blank");
       onValidationFailed();
       return;
@@ -50,6 +69,12 @@ export default function CardCheckout({
         cardHash,
         total,
         description,
+        street: addressData.street,
+        streetNumber: addressData.streetNumber,
+        complement: addressData.complement,
+        city: addressData.city,
+        state: addressData.state,
+        cep: addressData.cep,
       });
       onSuccessfulCheckout(response.data.orderNumber, "card");
     } catch (e) {
@@ -73,6 +98,11 @@ export default function CardCheckout({
       <CardPayment
         data={cardData}
         setData={setCardData}
+        shouldFlagBlankFields={error == "blank"}
+      />
+      <CardAddress
+        data={addressData}
+        setData={setAddressData}
         shouldFlagBlankFields={error == "blank"}
       />
       <CardDisclaimer />
