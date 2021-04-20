@@ -1,5 +1,5 @@
 const { Juno } = require("../shared/juno_utils");
-const { sanitizeFields, fieldsAreValid } = require("../shared/misc_utils");
+const { sanitizePixFields, fieldsAreValid } = require("../shared/misc_utils");
 const { Buffer } = require("buffer");
 
 const handler = async (event) => {
@@ -8,7 +8,7 @@ const handler = async (event) => {
     return { statusCode: 400 };
   }
 
-  const body = sanitizeFields(JSON.parse(event.body));
+  const body = sanitizePixFields(JSON.parse(event.body));
   if (!fieldsAreValid(body)) {
     return { statusCode: 400 };
   }

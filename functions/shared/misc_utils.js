@@ -43,17 +43,23 @@ function checkCPF(cpf) {
 
 function sanitizeFields(body) {
   return {
-    name: validator.escape(body.name),
-    email: validator.escape(body.email),
-    cpf: validator.escape(body.cpf.replace(/[.-]/g, "")),
-    total: validator.escape(body.total + ""),
-    description: validator.escape(body.description),
+    ...sanitizePixFields(body),
     street: validator.escape(body.street),
     streetNumber: validator.escape(body.streetNumber),
     complement: validator.escape(body.complement),
     city: validator.escape(body.city),
     state: validator.escape(body.state),
     cep: validator.escape(body.cep),
+  };
+}
+
+function sanitizePixFields(body) {
+  return {
+    name: validator.escape(body.name),
+    email: validator.escape(body.email),
+    cpf: validator.escape(body.cpf.replace(/[.-]/g, "")),
+    total: validator.escape(body.total + ""),
+    description: validator.escape(body.description),
   };
 }
 
@@ -77,4 +83,4 @@ function fieldsAreValid(body) {
   return true;
 }
 
-module.exports = { sanitizeFields, fieldsAreValid };
+module.exports = { sanitizeFields, sanitizePixFields, fieldsAreValid };
