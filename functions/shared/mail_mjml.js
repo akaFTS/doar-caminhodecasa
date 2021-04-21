@@ -112,7 +112,7 @@ const mjml = `<mjml>
       >
         CNPJ 21.227.397/0001-29
         <br />
-        R. Pe. Benedito de Camargo, 356, São Paulo/SP
+        R. Pe. Benedito de Camargo, 356 - São Paulo/SP
         <br />
         atendimento@caminhodecasa.org.br
         <br />
