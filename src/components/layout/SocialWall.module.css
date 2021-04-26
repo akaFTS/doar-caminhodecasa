@@ -33,13 +33,20 @@
     border: 0 !important;
     border-radius: var(--br4);
     overflow: hidden;
+    background-color: var(--grey-200) !important;
 
     &.juicer {
       display: none !important;
     }
 
-    &:nth-child(n + 3) {
+    &:nth-child(n + 5) {
       display: none !important;
+    }
+
+    @media (min-width: 40em) {
+      &:nth-child(n + 3) {
+        display: none !important;
+      }
     }
   }
 
