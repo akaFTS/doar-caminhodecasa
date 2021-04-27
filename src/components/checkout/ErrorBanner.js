@@ -16,6 +16,8 @@ export default function ErrorBanner({ error }) {
           ? "Não foi possível completar sua doação. Verifique seus dados e tente novamente."
           : error == "server_card"
           ? "Não foi possível completar sua doação com este cartão. Por favor, tente novamente com outro."
+          : error == "server_antifraud"
+          ? "Não foi possível autorizar o pagamento neste cartão. Tente novamente com outro ou utilize o Pix."
           : "Ocorreu um erro interno. Por favor, tente novamente mais tarde."}
       </p>
     </div>

@@ -83,6 +83,8 @@ export default function CardCheckout({
           ? "server_validation"
           : e.response.status == 422
           ? "server_card"
+          : e.response.status == 403
+          ? "server_antifraud"
           : "server_internal"
       );
       setProcessing(false);

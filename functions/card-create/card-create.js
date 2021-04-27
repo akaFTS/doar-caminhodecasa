@@ -70,6 +70,10 @@ const handler = async (event) => {
     return { statusCode: 422 };
   }
 
+  if (error == 503012) {
+    return { statusCode: 403 };
+  }
+
   console.log("An unexpected error occurred: ", error);
   return { statusCode: 500 };
 };
