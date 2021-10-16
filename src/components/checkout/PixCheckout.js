@@ -53,7 +53,6 @@ export default function PixCheckout({
       setCopypaste(response.data.copypaste);
       setTxid(response.data.txid);
     } catch (e) {
-      console.log(e);
       setError(
         !e.response || e.response.status == 400
           ? "server_validation"

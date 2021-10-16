@@ -37,18 +37,12 @@ const handler = async (event) => {
   });
 
   // Send an email to Ciclum in case of Pix as the default email from Juno contains no information
-  console.log("Attempting to send email.");
-  console.log(attributes);
-  console.log(charge);
   if (attributes.pix) {
     await sendCiclumPixMail({
       name: charge.name,
       amount: charge.amount,
       email: charge.email,
     });
-    console.log("Email sent.")
-  } else {
-    console.log("Not pix.");
   }
 
   return { statusCode: 200 };
