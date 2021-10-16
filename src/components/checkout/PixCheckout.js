@@ -40,7 +40,7 @@ export default function PixCheckout({
 
     try {
       setProcessing(true);
-      const response = await axios.get("/.netlify/functions/pix-create", {
+      const response = await axios.post("/.netlify/functions/pix-create", {
         name: personalData.name,
         phone: personalData.phone,
         cpf: personalData.cpf,
