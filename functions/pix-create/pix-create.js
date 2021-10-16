@@ -3,6 +3,9 @@ const { sanitizePixFields, fieldsAreValid } = require("../shared/misc_utils");
 const { Buffer } = require("buffer");
 
 const handler = async (event) => {
+
+  console.log("pass it on");
+
   // Ignore non-POST calls
   if (event.httpMethod != "POST") {
     return { statusCode: 400 };
@@ -31,8 +34,10 @@ const handler = async (event) => {
   };
 
   // Create charge
+  console.log("coming through");
   const data = await juno.createPixCharge(charge, billing);
   if (data == null) {
+    console.log("hello");
     return { statusCode: 500 };
   }
 
