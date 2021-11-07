@@ -12,6 +12,8 @@ import images from "../../images.js";
 import Donation from "./Donation";
 
 export default function CampaignDetails({ campaign, featured }) {
+  const paragraphs = campaign.long_description.split("#");
+
   return (
     <section className={styles.details}>
       {featured ? (
@@ -20,8 +22,18 @@ export default function CampaignDetails({ campaign, featured }) {
       <h2 className={styles.title}>{campaign.name}</h2>
       <div className={styles.underline}></div>
       <div className={styles.description}>
-        {campaign.long_description.split("#").map((paragraph) => (
-          <p key={paragraph}>{paragraph}</p>
+        {paragraphs.map((paragraph, index) => (
+          <p
+            className={
+              index == paragraphs.length - 1 &&
+              campaign.highlight_last_paragraph
+                ? styles.bold
+                : ""
+            }
+            key={paragraph}
+          >
+            {paragraph}
+          </p>
         ))}
       </div>
       <main className={styles.content}>
@@ -29,7 +41,7 @@ export default function CampaignDetails({ campaign, featured }) {
           <CarouselProvider
             naturalSlideWidth={100}
             naturalSlideHeight={100}
-            totalSlides={3}
+            totalSlides={campaign.slide_pictures.length}
             isPlaying={true}
             infinite={true}
             interval={3000}

@@ -51,6 +51,11 @@
     margin-bottom: var(--p2);
   }
 
+  & h3.smallerFont {
+    font-size: calc(var(--f3) * 0.9);
+    margin-bottom: calc(var(--p2) + var(--p1));
+  }
+
   & p {
     color: var(--grey-800);
     font-size: var(--f5);

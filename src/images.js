@@ -18,6 +18,12 @@ import enxoval from "url:./assets/enxoval.png";
 import leite from "url:./assets/leite.png";
 import limpeza from "url:./assets/limpeza.png";
 import fraldas from "url:./assets/fraldas.png";
+import sacolinhas1 from "url:./assets/sacolinhas-1.jpg";
+import sacolinhas2 from "url:./assets/sacolinhas-2.jpg";
+import sacolinhas3 from "url:./assets/sacolinhas-3.jpg";
+import sacolinhas4 from "url:./assets/sacolinhas-4.jpg";
+import sacolinhas5 from "url:./assets/sacolinhas-5.jpg";
+import sacolinhaItem from "url:./assets/sacolinha-item.jpg";
 
 // TODO: fix this once PR lands
 export default {
@@ -41,4 +47,11 @@ export default {
   "leite.png": leite,
   "limpeza.png": limpeza,
   "fraldas.png": fraldas,
+  "sacolinhas-1.jpg": sacolinhas1,
+  "sacolinhas-2.jpg": sacolinhas2,
+  "sacolinhas-3.jpg": sacolinhas3,
+  "sacolinhas-4.jpg": sacolinhas4,
+  "sacolinhas-5.jpg": sacolinhas5,
+  "sacolinha-item.jpg": sacolinhaItem,
+
 };

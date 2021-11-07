@@ -20,7 +20,9 @@ export default function Campaign({ campaign }) {
       </header>
       <main className={styles.main}>
         <Link to={`/projetos/${campaign.slug}`}>
-          <h3>{campaign.name}</h3>
+          <h3 className={campaign.name.length > 17 ? styles.smallerFont : ""}>
+            {campaign.name}
+          </h3>
         </Link>
         <div className={styles.underline} />
         <p>{campaign.short_description}</p>

@@ -1,10 +1,12 @@
+// Old thanks image: https://i.imgur.com/BtoApSg.png
+
 const mjml = `<mjml>
 <mj-body>
   <mj-section padding="0px 0px">
     <mj-column>
       <mj-image
         padding="0px 0px"
-        src="https://i.imgur.com/BtoApSg.png"
+        src="https://i.imgur.com/3yKxwyS.png"
       ></mj-image>
     </mj-column>
   </mj-section>
