@@ -6,7 +6,7 @@ const mjml = `<mjml>
     <mj-column>
       <mj-image
         padding="0px 0px"
-        src="https://i.imgur.com/3yKxwyS.png"
+        src="https://i.imgur.com/46OCn6e.png"
       ></mj-image>
     </mj-column>
   </mj-section>
