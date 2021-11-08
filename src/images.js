@@ -1,6 +1,7 @@
 import mantoCover from "url:./assets/manto-cover.png";
 import acolherCover from "url:./assets/acolher-cover.png";
 import comidaCover from "url:./assets/comida-cover.png";
+import sacolinhasCover from "url:./assets/sacolinhas-cover.jpg";
 import manto1 from "url:./assets/manto1.png";
 import manto2 from "url:./assets/manto2.png";
 import manto3 from "url:./assets/manto3.png";
@@ -30,6 +31,7 @@ export default {
   "manto-cover.png": mantoCover,
   "acolher-cover.png": acolherCover,
   "comida-cover.png": comidaCover,
+  "sacolinhas-cover.jpg": sacolinhasCover,
   "manto1.png": manto1,
   "manto2.png": manto2,
   "manto3.png": manto3,
