@@ -15,7 +15,7 @@
 
   & img {
     height: 100%;
-    border-radius: var(--br4);
+    border-radius: calc((var(--br3) + var(--br4)) / 2);
   }
 }
 
