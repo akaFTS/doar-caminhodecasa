@@ -4,7 +4,7 @@ import CardPayment from "./CardPayment";
 import ErrorBanner from "../checkout/ErrorBanner";
 import { tokenizeCard, anyBlank } from "../../paymentUtils";
 import BlockButton from "../layout/BlockButton";
-import CardDisclaimer from "./CardDisclamer";
+import CardDisclaimer from "./CardDisclaimer";
 import CardAddress from "./CardAddress";
 import BackButton from "../checkout/BackButton";
 import * as styles from "./CardCheckout.module.css";
