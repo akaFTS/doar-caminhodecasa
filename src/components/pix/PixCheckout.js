@@ -21,8 +21,6 @@ export default function PixCheckout({
   const [copypaste, setCopypaste] = useState("");
   const [txid, setTxid] = useState("");
 
-  useEffect(grabPixCode, []);
-
   const grabPixCode = async () => {
     if (isProcessing) return;
     setError("");
@@ -50,6 +48,10 @@ export default function PixCheckout({
     }
     setProcessing(false);
   };
+
+  useEffect(() => {
+    grabPixCode();
+  }, []);
 
   return (
     <main className={styles.main}>
