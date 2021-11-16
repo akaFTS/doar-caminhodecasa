@@ -9,35 +9,10 @@
   padding: var(--p3);
   box-sizing: border-box;
   width: 100%;
+  margin-bottom: var(--p3);
 
   @media (min-width: 40em) {
     width: 50%;
-  }
-
-  & p {
-    font-size: var(--f6);
-    text-align: center;
-    line-height: 1.3;
-    color: var(--grey-600);
-    margin-bottom: var(--p3);
-  }
-
-  & .seeOthers {
-    display: block;
-    background-color: var(--red-800);
-    font-size: var(--f4);
-    color: white;
-    text-decoration: none;
-    text-align: center;
-    font-weight: 600;
-    margin: 0 auto;
-    max-width: 100px;
-    padding: var(--p2) var(--p3);
-
-    &:hover {
-      cursor: pointer;
-      background-color: var(--red-900);
-    }
   }
 
   & h4 {

@@ -2,19 +2,15 @@ import React, { useState } from "react";
 import * as styles from "./CardPayment.module.css";
 import Card from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
-import cx from "classnames";
 import {
   formatCreditCardNumber,
   formatCVC,
   formatExpirationDate,
 } from "../../paymentUtils";
+import CheckoutInput from "../checkout/CheckoutInput";
 
 export default function Payments({ data, setData, shouldFlagBlankFields }) {
   const [focused, setFocused] = useState("");
-
-  const isBlank = (str) => {
-    return !str || /^\s*$/.test(str);
-  };
 
   const handleInputFocus = (e) => {
     setFocused(e.target.name);
@@ -33,15 +29,11 @@ export default function Payments({ data, setData, shouldFlagBlankFields }) {
           placeholders={{ name: "" }}
         />
         <div className={styles.formWrap}>
-          <input
+          <CheckoutInput
             type="tel"
             name="number"
-            className={cx({
-              [styles.input]: true,
-              [styles.blankInput]:
-                shouldFlagBlankFields && isBlank(data.number),
-            })}
             placeholder="Número do cartão"
+            shouldShowError={shouldFlagBlankFields}
             value={data.number}
             onChange={(e) =>
               setData({
@@ -50,50 +42,43 @@ export default function Payments({ data, setData, shouldFlagBlankFields }) {
               })
             }
             onFocus={handleInputFocus}
+            wrapperClass={styles.input}
           />
-          <input
+          <CheckoutInput
             type="text"
             name="cardname"
             placeholder="Nome (como consta no cartão)"
-            className={cx({
-              [styles.input]: true,
-              [styles.blankInput]:
-                shouldFlagBlankFields && isBlank(data.cardname),
-            })}
+            shouldShowError={shouldFlagBlankFields}
             value={data.cardname}
             onChange={(e) => setData({ ...data, cardname: e.target.value })}
             onFocus={handleInputFocus}
+            wrapperClass={styles.input}
           />
-          <input
+          <CheckoutInput
             type="tel"
             name="expiry"
             placeholder="Validade"
-            className={cx({
-              [styles.input]: true,
-              [styles.halfInput]: true,
-              [styles.blankInput]:
-                shouldFlagBlankFields && isBlank(data.expiry),
-            })}
+            shouldShowError={shouldFlagBlankFields}
+            halfInput={true}
             value={data.expiry}
             onChange={(e) =>
               setData({ ...data, expiry: formatExpirationDate(e.target.value) })
             }
             onFocus={handleInputFocus}
+            wrapperClass={styles.halfInput}
           />
-          <input
+          <CheckoutInput
             type="tel"
             name="cvc"
             placeholder="CVC"
-            className={cx({
-              [styles.input]: true,
-              [styles.halfInput]: true,
-              [styles.blankInput]: shouldFlagBlankFields && isBlank(data.cvc),
-            })}
+            shouldShowError={shouldFlagBlankFields}
+            halfInput={true}
             value={data.cvc}
             onChange={(e) =>
               setData({ ...data, cvc: formatCVC(e.target.value) })
             }
             onFocus={handleInputFocus}
+            wrapperClass={styles.halfInput}
           />
         </div>
       </div>

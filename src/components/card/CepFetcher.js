@@ -1,14 +1,9 @@
 import React, { useState } from "react";
 import * as styles from "./CepFetcher.module.css";
-import InputMask from "react-input-mask";
-import cx from "classnames";
+import CheckoutInputMask from "../checkout/CheckoutInputMask";
 import axios from "axios";
 
 export default function CepFetcher({ onCepFetched, shouldFlagIfBlank }) {
-  const isBlank = (str) => {
-    return !str || /^\s*$/.test(str);
-  };
-
   const fetchCep = async (newCep) => {
     if (fetchState == "LOADING") return;
 
@@ -50,19 +45,14 @@ export default function CepFetcher({ onCepFetched, shouldFlagIfBlank }) {
 
   return (
     <div className={styles.cepWrap}>
-      <InputMask
+      <CheckoutInputMask
         name="cep"
         type="tel"
         placeholder="CEP"
-        className={cx({
-          [styles.input]: true,
-          [styles.invalid]:
-            fetchState == "INVALID" || (isBlank(cep) && shouldFlagIfBlank),
-        })}
+        shouldShowError={fetchState == "INVALID" || shouldFlagIfBlank}
         value={cep}
         onChange={handleChange}
         mask={"99999-999"}
-        maskPlaceholder={null}
         onBlur={() => fetchCep(cep)}
         disabled={fetchState == "LOADING"}
       />

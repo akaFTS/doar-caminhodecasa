@@ -9,7 +9,7 @@ export default function ErrorBanner({ error }) {
       <FontAwesomeIcon className={styles.icon} icon={faExclamationCircle} />
       <p>
         {error == "blank"
-          ? "Todos os campos são obrigatórios."
+          ? "Preencha todos os campos!"
           : error == "pix_blank"
           ? "Primeiro, preencha seus dados pessoais."
           : error == "server_validation"

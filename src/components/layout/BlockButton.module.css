@@ -4,13 +4,13 @@
   background-color: var(--red-800);
   color: white;
   font-size: var(--f4);
-  text-transform: uppercase;
   text-align: center;
   font-weight: 600;
   border: none;
   padding: var(--p3) var(--p3);
   text-decoration: none;
-  margin-top: var(--p4);
+  box-sizing: border-box;
+  margin-top: var(--p3);
 
   &:focus {
     outline: none;
@@ -27,6 +27,18 @@
   }
 }
 
-.spinner {
+.icon {
   margin-right: var(--p3);
+}
+
+.iconSvg {
+  margin-right: var(--p3);
+  height: var(--f3);
+  fill: white;
+}
+
+.buttonInner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

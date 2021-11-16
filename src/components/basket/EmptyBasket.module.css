@@ -1,6 +1,5 @@
 .main {
   box-sizing: border-box;
-  min-height: calc(100vh - 8em);
   padding: var(--p4) var(--p3);
 
   @media (min-width: 40em) {

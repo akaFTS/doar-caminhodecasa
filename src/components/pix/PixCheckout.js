@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import ErrorBanner from "./ErrorBanner";
+import React, { useEffect, useState } from "react";
+import ErrorBanner from "../checkout/ErrorBanner";
 import PixButton from "./PixButton";
 import PixCode from "./PixCode";
 import axios from "axios";
@@ -7,18 +7,12 @@ import * as styles from "./PixCheckout.module.css";
 import PixInstructions from "./PixInstructions";
 import PixCopyPaste from "./PixCopyPaste";
 import PixPoller from "./PixPoller";
-// import TipBanner from "./TipBanner";
-
-function anyBlank(obj) {
-  return Object.values(obj).some((str) => !str || /^\s*$/.test(str));
-}
+import BackButton from "../checkout/BackButton";
 
 export default function PixCheckout({
   personalData,
   total,
   description,
-  onValidationFailed,
-  hidden,
   onSuccessfulCheckout,
 }) {
   const [isProcessing, setProcessing] = useState(false);
@@ -27,16 +21,11 @@ export default function PixCheckout({
   const [copypaste, setCopypaste] = useState("");
   const [txid, setTxid] = useState("");
 
-  const handleButtonPressed = async () => {
+  useEffect(grabPixCode, []);
+
+  const grabPixCode = async () => {
     if (isProcessing) return;
     setError("");
-
-    // Validate fields
-    if (anyBlank(personalData)) {
-      setError("pix_blank");
-      onValidationFailed();
-      return;
-    }
 
     try {
       setProcessing(true);
@@ -63,19 +52,16 @@ export default function PixCheckout({
   };
 
   return (
-    <div style={{ display: hidden ? "none" : "block" }}>
+    <main className={styles.main}>
+      <BackButton text="Voltar para Meus Dados" path="/dados_pessoais" />
+      <h1 className={styles.title}>Dados de Pagamento</h1>
+      <div className={styles.underline}></div>
       <div className={styles.container}>
-        <div className={styles.tip}>
-          {/* {qrcode != "" && (
-            <TipBanner
-              tip={`Está no celular? Ao invés do QR Code, utilize o botão "Copia-e-Cola" para gerar um código e colar no app do banco.`}
-            />
-          )} */}
-        </div>
+        <div className={styles.tip}></div>
         <div className={styles.pixWrapper}>
           {qrcode == "" ? (
             <PixButton
-              onButtonPressed={handleButtonPressed}
+              onButtonPressed={grabPixCode}
               isProcessing={isProcessing}
             />
           ) : (
@@ -94,6 +80,6 @@ export default function PixCheckout({
         />
       )}
       {error != "" && <ErrorBanner error={error} />}
-    </div>
+    </main>
   );
 }

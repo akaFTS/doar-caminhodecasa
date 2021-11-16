@@ -85,3 +85,11 @@ export function tokenizeCard({ number, cardname, cvc, expiry }) {
 
   return cardPromise;
 }
+
+export function anyBlank(obj, except = []) {
+  return Object.entries(obj).some(([key, val]) => {
+    if (except.includes(key)) return false;
+
+    return !val || /^\s*$/.test(val);
+  });
+}

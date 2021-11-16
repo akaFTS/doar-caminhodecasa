@@ -19,27 +19,6 @@
 
 .input {
   grid-column-end: span 3;
-  width: 100%;
-  display: block;
-  box-sizing: border-box;
-  height: 2.5em;
-  padding: var(--p2) var(--p2);
-  font-size: var(--f5);
-  font-weight: 400;
-  line-height: 1.5;
-  color: var(--grey-900);
-  border: 2px solid var(--grey-300);
-  border-radius: var(--br3);
-
-  &:focus {
-    border-radius: var(--br3);
-    outline: none;
-    border: 2px solid var(--grey-800);
-  }
-
-  &.invalid {
-    border-color: var(--red-800);
-  }
 
   @media (min-width: 40em) {
     grid-column-end: span 2;

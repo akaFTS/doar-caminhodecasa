@@ -3,6 +3,7 @@ import BasketItem from "./BasketItem";
 import * as styles from "./Basket.module.css";
 import BasketTotal from "./BasketTotal";
 import BasketContext from "../../BasketContext";
+import BlockLink from "../layout/BlockLink";
 
 export default function Basket() {
   const { basket, setBasket } = useContext(BasketContext);
@@ -40,6 +41,8 @@ export default function Basket() {
         />
       ))}
       <BasketTotal items={basket} />
+      <BlockLink text="Conhecer mais projetos" secondary to="/#projetos" />
+      <BlockLink text="Continuar para o pagamento" to="/dados_pessoais" />
     </main>
   );
 }
