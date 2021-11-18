@@ -13,7 +13,7 @@ export default function ErrorBanner({ error }) {
           : error == "pix_blank"
           ? "Primeiro, preencha seus dados pessoais."
           : error == "server_validation"
-          ? "Não foi possível completar sua doação. Verifique seus dados e tente novamente."
+          ? "Não foi possível completar sua doação. Verifique seus dados e tente novamente, ou utilize o Pix."
           : error == "server_card"
           ? "Não foi possível completar sua doação com este cartão. Por favor, tente novamente com outro."
           : error == "server_antifraud"
