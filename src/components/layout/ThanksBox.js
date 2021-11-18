@@ -26,7 +26,7 @@ export default function ThanksBox({ orderNumber, name, total, paymentCode }) {
             <p>
               <span className={styles.bold}>Código: </span>#{orderNumber}
             </p>
-            <p>
+            <p data-hj-supress>
               <span className={styles.bold}>Nome: </span>
               {name}
             </p>

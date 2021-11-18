@@ -19,15 +19,17 @@ export default function Payments({ data, setData, shouldFlagBlankFields }) {
   return (
     <div>
       <div className={styles.cardWrap}>
-        <Card
-          number={data.number}
-          name={data.cardname}
-          expiry={data.expiry}
-          cvc={data.cvc}
-          focused={focused}
-          locale={{ valid: "Validade" }}
-          placeholders={{ name: "" }}
-        />
+        <div data-hj-suppress>
+          <Card
+            number={data.number}
+            name={data.cardname}
+            expiry={data.expiry}
+            cvc={data.cvc}
+            focused={focused}
+            locale={{ valid: "Validade" }}
+            placeholders={{ name: "" }}
+          />
+        </div>
         <div className={styles.formWrap}>
           <CheckoutInput
             type="tel"
