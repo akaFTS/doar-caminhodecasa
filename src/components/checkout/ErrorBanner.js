@@ -10,6 +10,12 @@ export default function ErrorBanner({ error }) {
       <p>
         {error == "blank"
           ? "Preencha todos os campos!"
+          : error == "cpf"
+          ? "O CPF é inválido!"
+          : error == "email"
+          ? "O e-mail digitado é inválido!"
+          : error == "name"
+          ? "Nome inválido! Utilize apenas letras e números."
           : error == "pix_blank"
           ? "Primeiro, preencha seus dados pessoais."
           : error == "server_validation"

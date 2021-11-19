@@ -5,22 +5,38 @@ import BlockButton from "../layout/BlockButton";
 import BackButton from "./BackButton";
 import { faCreditCard } from "@fortawesome/free-solid-svg-icons";
 import PixIcon from "../pix/PixIcon";
-import { anyBlank } from "../../paymentUtils";
+import { anyBlank, checkCPF } from "../../paymentUtils";
 import CheckoutInput from "./CheckoutInput";
 import CheckoutInputMask from "./CheckoutInputMask";
+import validator from "validator";
 
 export default function PersonalData({ data, setData, onProceedToPayment }) {
-  const [error, setError] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
   const proceedToPayment = (type) => {
-    setError(false);
+    setError("");
 
     if (anyBlank(data)) {
-      setError(true);
+      setError("blank");
+      return;
+    }
+
+    if (!checkCPF(data.cpf)) {
+      setError("cpf");
+      return;
+    }
+
+    if (!validator.isEmail(data.email)) {
+      setError("email");
+      return;
+    }
+
+    if (!validator.isAlphanumeric(data.name.replaceAll(" ", ""), "pt-BR")) {
+      setError("name");
       return;
     }
 
@@ -39,7 +55,7 @@ export default function PersonalData({ data, setData, onProceedToPayment }) {
             placeholder="Nome"
             value={data.name}
             onChange={handleChange}
-            shouldShowError={error}
+            shouldShowError={error == "blank"}
             wrapperClass={styles.input}
           />
           <CheckoutInputMask
@@ -48,7 +64,7 @@ export default function PersonalData({ data, setData, onProceedToPayment }) {
             placeholder="CPF"
             value={data.cpf}
             onChange={handleChange}
-            shouldShowError={error}
+            shouldShowError={error == "blank"}
             mask={"999.999.999-99"}
             wrapperClass={styles.input}
           />
@@ -58,11 +74,11 @@ export default function PersonalData({ data, setData, onProceedToPayment }) {
             placeholder="E-mail"
             value={data.email}
             onChange={handleChange}
-            shouldShowError={error}
+            shouldShowError={error == "blank"}
             wrapperClass={styles.input}
           />
         </div>
-        {error && <ErrorBanner error="blank" />}
+        {error != "" && <ErrorBanner error={error} />}
         <div className={styles.buttons}>
           <BlockButton
             icon={faCreditCard}
