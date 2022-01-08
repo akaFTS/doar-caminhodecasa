@@ -58,6 +58,7 @@
   {
     "name": "Comida é Vida",
     "slug": "comida-vida",
+    "featured": true,
     "short_description": "A campanha contra a fome da Associação Caminho de Casa.",
     "long_description": "Comida é Vida, a vacina contra a fome da Associação Caminho de Casa, tem por objetivo a arrecadação mensal de 1.000 cestas básicas + “kit mistura” (frango congelado e ovos) para as famílias que vivem em situação de vulnerabilidade social nas comunidades carentes atendidas pela Associação e que estão sendo duplamente prejudicadas pelo vírus e pela atual situação econômica do nosso país.#As famílias são atendidas nas seguintes comunidades: Buraco do Tatu, Chácara Três Meninas, Jardim Maia / São Martinho, Jardim Pantanal, Jundiapeba, Pontilhão da Penha, Rua Bilac, Vila Aimoré e Vila do Sapo.",
     "cover_picture": "comida-cover.png",
@@ -84,7 +85,6 @@
     ]
   },
   {
-    "featured": true,
     "name": "Sacolinhas de Natal",
     "slug": "sacolinhas",
     "short_description": "Ajude a trazer a alegria do Natal para mais de 1500 crianças.",
