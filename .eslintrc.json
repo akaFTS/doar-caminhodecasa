@@ -1,0 +1,21 @@
+{
+  "extends": ["airbnb", "next/core-web-vitals"],
+  "rules": {
+    "object-curly-newline": "off",
+    "implicit-arrow-linebreak": "off",
+    "operator-linebreak": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/jsx-filename-extension": "off",
+    "import/prefer-default-export": "off",
+    "import/no-anonymous-default-export": "off",
+    "react/jsx-curly-newline": "off",
+    "function-paren-newline": "off",
+    "react/jsx-wrap-multilines": "off",
+    "react/no-unstable-nested-components": "off",
+    "no-confusing-arrow": "off",
+    "import/no-unresolved": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "import/order": "off"
+  }
+}
