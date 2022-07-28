@@ -1,0 +1,77 @@
+.header {
+  position: absolute;
+  width: 100vw;
+  z-index: 5;
+  box-sizing: border-box;
+
+  background: rgb(20, 20, 20);
+  background: linear-gradient(
+    180deg,
+    rgba(20, 20, 20, 1) 0%,
+    rgba(20, 20, 20, 0) 100%
+  );
+
+  padding: var(--p3);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.logoWrap {
+  background-color: white;
+  padding: var(--p2);
+  border-radius: var(--br4);
+  height: var(--h3);
+
+  @media (min-width: 40em) {
+    height: calc(var(--h3) + var(--h2));
+  }
+}
+
+.logo {
+  position: relative;
+  z-index: 8;
+  height: 100%;
+}
+
+.badge {
+  background-color: var(--red-800);
+  color: white;
+  font-weight: bold;
+  padding: 0 var(--p2);
+  border-radius: var(--br-pill);
+}
+
+.buttonBar {
+  display: flex;
+  align-items: center;
+}
+
+.separator {
+  border-right: 1px solid var(--grey-300);
+  margin: 0 var(--p3);
+  height: var(--h2);
+}
+
+.socialIcon {
+  font-size: var(--f3);
+  color: white;
+
+  &:hover {
+    color: var(--grey-400);
+  }
+}
+
+.barItem {
+  color: white;
+  font-size: var(--f6);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--grey-400);
+  }
+
+  @media (min-width: 40em) {
+    font-size: var(--f5);
+  }
+}

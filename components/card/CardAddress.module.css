@@ -1,0 +1,43 @@
+.container {
+  margin-top: var(--p4);
+  margin-bottom: var(--p4);
+
+  h4 {
+    font-size: var(--f4);
+    font-weight: 600;
+    color: var(--grey-800);
+    margin-bottom: var(--p3);
+  }
+}
+
+.form {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  column-gap: var(--p3);
+  row-gap: var(--p3);
+}
+
+.input {
+  grid-column-end: span 3;
+
+  @media (min-width: 40em) {
+    grid-column-end: span 2;
+  }
+}
+
+.cepWrap {
+  grid-column-end: span 6;
+  width: 100%;
+
+  @media (min-width: 40em) {
+    grid-column-end: span 3;
+  }
+}
+
+.street {
+  grid-column-end: span 6;
+
+  @media (min-width: 40em) {
+    grid-column-end: span 4;
+  }
+}

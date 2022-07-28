@@ -1,0 +1,33 @@
+.button {
+    display: block;
+    width: 100%;
+    background-color: var(--red-800);
+    color: white;
+    font-size: var(--f4);
+    text-align: center;
+    font-weight: 600;
+    border: none;
+    padding: var(--p3) var(--p3);
+    text-decoration: none;
+    box-sizing: border-box;
+    margin-top: var(--p3);
+  
+    &.secondary {
+      background-color: var(--grey-500);
+    }
+  
+    &:focus {
+      outline: none;
+    }
+  
+    &:hover {
+      background-color: var(--red-900);
+      cursor: pointer;
+    }
+  
+    &.secondary:hover {
+      background-color: var(--grey-600);
+      cursor: pointer;
+    }
+  }
+  

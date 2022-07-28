@@ -1,0 +1,7 @@
+.info {
+  text-align: center;
+  font-size: var(--f6);
+  color: var(--grey-700);
+  margin-top: var(--p3);
+  line-height: 1.2;
+}

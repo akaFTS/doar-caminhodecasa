@@ -1,0 +1,73 @@
+body {
+  font-family: 'Open Sans', Helvetica, sans-serif;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
+
+html {
+  height: -webkit-fill-available;
+}
+
+#root {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  min-height: --webkit-fill-available;
+}
+
+@media (max-width: 350px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+li.feed-item {
+  border: 0 !important;
+  border-radius: var(--br4);
+  overflow: hidden;
+  background-color: var(--grey-200) !important;
+
+  &.juicer {
+    display: none !important;
+  }
+
+  &:nth-child(n + 5) {
+    display: none !important;
+  }
+
+  @media (min-width: 40em) {
+    &:nth-child(n + 3) {
+      display: none !important;
+    }
+  }
+}
+
+.j-poster {
+  background-color: var(--grey-300);
+
+  h3 {
+    color: var(--red-800) !important;
+  }
+}
+
+.j-date {
+  color: var(--grey-700) !important;
+}
+
+.j-instagram {
+  color: var(--purple-700) !important;
+}
+
+.j-logo {
+  background-color: white;
+}
+
+.j-message {
+  p {
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
