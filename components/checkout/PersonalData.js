@@ -83,7 +83,7 @@ export default function PersonalData({ data, setData, onProceedToPayment }) {
           <BlockButton
             icon={faCreditCard}
             text="Pagar com Cartão"
-            onClick={() => proceedToPayment('card')}
+            onClick={() => proceedToPayment('cartao')}
           />
           <BlockButton
             IconElement={PixIcon}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styles from './PixCheckout.module.css';
 import PixButton from './PixButton';
@@ -21,13 +21,13 @@ export default function PixCheckout({
   const [copypaste, setCopypaste] = useState('');
   const [txid, setTxid] = useState('');
 
-  const grabPixCode = useCallback(async () => {
+  const grabPixCode = async () => {
     if (isProcessing) return;
     setError('');
 
     try {
       setProcessing(true);
-      const response = await axios.post('/.netlify/functions/pix-create', {
+      const response = await axios.post('/api/pix-create', {
         name: personalData.name,
         phone: personalData.phone,
         cpf: personalData.cpf,
@@ -47,11 +47,12 @@ export default function PixCheckout({
       );
     }
     setProcessing(false);
-  }, [description, total, personalData, isProcessing]);
+  };
 
   useEffect(() => {
     grabPixCode();
-  }, [grabPixCode]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <main className={styles.main}>

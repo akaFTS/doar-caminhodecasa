@@ -1,6 +1,6 @@
 // Old thanks image: https://i.imgur.com/BtoApSg.png
 
-const mjml = `<mjml>
+export default `<mjml>
 <mj-body>
   <mj-section padding="0px 0px">
     <mj-column>
@@ -123,5 +123,3 @@ const mjml = `<mjml>
   </mj-section>
 </mj-body>
 </mjml>`;
-
-module.exports = mjml;
