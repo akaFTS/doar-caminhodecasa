@@ -1,28 +1,27 @@
-const { Fauna } = require("../shared/fauna_utils");
-const { sendMail, sendCiclumPixMail } = require("../shared/mail_utils");
+import { Fauna } from './utils/fauna_utils';
+import { sendMail, sendCiclumPixMail } from './utils/mail_utils';
 
-const handler = async (event) => {
+export default async function handler(req, res) {
   // Ignore non-POST calls
-  if (event.httpMethod != "POST") {
-    return { statusCode: 400 };
+  if (req.method !== 'POST') {
+    return res.status(400).send();
   }
 
-  const body = JSON.parse(event.body);
-  const { attributes } = body.data[0];
+  const { attributes } = req.body.data[0];
 
-  if (attributes.status != "PAID") {
-    return { statusCode: 200 };
+  if (attributes.status !== 'PAID') {
+    return res.status(200).send();
   }
 
   const fauna = new Fauna();
   if (attributes.pix) {
-    await fauna.updateCharge(attributes.pix.txid, "pixCode", {
-      status: "PAID",
+    await fauna.updateCharge(attributes.pix.txid, 'pixCode', {
+      status: 'PAID',
       chargeCode: attributes.code,
     });
   } else {
-    await fauna.updateCharge(attributes.code, "chargeCode", {
-      status: "PAID",
+    await fauna.updateCharge(attributes.code, 'chargeCode', {
+      status: 'PAID',
     });
   }
 
@@ -45,7 +44,5 @@ const handler = async (event) => {
     });
   }
 
-  return { statusCode: 200 };
-};
-
-module.exports = { handler };
+  return res.status(200).send();
+}

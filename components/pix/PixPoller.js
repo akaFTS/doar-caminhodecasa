@@ -5,7 +5,7 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import styles from './PixPoller.module.css';
 
 async function poll(txid, onPaid) {
-  const response = await axios.get(`/.netlify/functions/is-paid?txid=${txid}`);
+  const response = await axios.get(`/api/is-paid?txid=${txid}`);
 
   if (response.data.isPaid) {
     onPaid(response.data.chargeCode);

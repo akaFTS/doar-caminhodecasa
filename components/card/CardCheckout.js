@@ -60,7 +60,7 @@ export default function CardCheckout({
     try {
       setProcessing(true);
       const cardHash = await tokenizeCard(cardData);
-      const response = await axios.post('/.netlify/functions/card-create', {
+      const response = await axios.post('/api/card-create', {
         name: personalData.name,
         cpf: personalData.cpf,
         email: personalData.email,
