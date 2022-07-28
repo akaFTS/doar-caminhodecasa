@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import useMutationObserver from '@rooks/use-mutation-observer';
-import logo from 'public/logo.png';
 import styles from './SocialWall.module.css';
 
 export default function SocialWall() {
@@ -33,7 +32,7 @@ export default function SocialWall() {
     const divs = Array.from(document.querySelectorAll('.j-poster a'));
     divs.forEach((el) => {
       const img = document.createElement('img');
-      img.src = logo;
+      img.src = '/logo.png';
       img.className = 'j-logo';
       el.prepend(img);
     });

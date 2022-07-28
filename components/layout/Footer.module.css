@@ -14,13 +14,13 @@
   @media (min-width: 40em) {
     display: flex;
     align-items: center;
-    justify-content: start;
+    justify-content: flex-start;
   }
 }
 
 .flexBlock {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -28,8 +28,10 @@
   margin-right: var(--p4);
 }
 
-.logo {
+.logoWrap {
+  position: relative;
   height: calc(var(--h3) + var(--h2));
+  width: calc(var(--h3) + var(--h2));
   filter: brightness(0%) invert();
   margin-right: var(--p2);
 }

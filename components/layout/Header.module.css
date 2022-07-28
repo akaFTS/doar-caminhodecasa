@@ -22,16 +22,18 @@
   padding: var(--p2);
   border-radius: var(--br4);
   height: var(--h3);
+  width: var(--h3);
 
   @media (min-width: 40em) {
     height: calc(var(--h3) + var(--h2));
+    width: calc(var(--h3) + var(--h2));
   }
 }
 
-.logo {
+.logoWrapInner {
   position: relative;
-  z-index: 8;
   height: 100%;
+  width: 100%;
 }
 
 .badge {

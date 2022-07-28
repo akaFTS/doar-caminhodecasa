@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Footer from 'components/layout/Footer';
@@ -12,9 +12,11 @@ export default function PersonalDataPage() {
   const { basket } = useBasket();
   const { personalData, setPersonalData } = usePersonalData();
 
-  if (Object.keys(basket).length === 0) {
-    return router.push('/cesta');
-  }
+  useEffect(() => {
+    if (Object.keys(basket).length === 0) {
+      router.push('/cesta');
+    }
+  }, [basket, router]);
 
   const handleProceedToPayment = (type) => {
     router.push(`/pagamento_${type}`);

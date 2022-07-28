@@ -20,11 +20,13 @@ export default function AltHeader() {
           <div className={styles.leftBar}>
             <Link href="/">
               <a className={styles.logoWrap}>
-                <Image
-                  src={logo}
-                  className={styles.logo}
-                  alt="Logotipo da Associação"
-                />
+                <div className={styles.logoWrapInner}>
+                  <Image
+                    layout="fill"
+                    src={logo}
+                    alt="Logotipo da Associação"
+                  />
+                </div>
               </a>
             </Link>
             <div className={styles.call}>

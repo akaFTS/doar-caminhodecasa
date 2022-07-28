@@ -8,11 +8,9 @@ export default function Footer() {
     <footer className={styles.footer}>
       <div className={styles.information}>
         <div className={styles.flexBlock}>
-          <Image
-            src={logo}
-            className={styles.logo}
-            alt="Logotipo da Associação"
-          />
+          <div className={styles.logoWrap}>
+            <Image layout="fill" src={logo} alt="Logotipo da Associação" />
+          </div>
           <div className={styles.text}>
             <p className={styles.main}>ASSOCIAÇÃO CAMINHO DE CASA</p>
             <p>CNPJ 21.227.397/0001-29</p>

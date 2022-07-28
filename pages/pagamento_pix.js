@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Footer from 'components/layout/Footer';
@@ -13,9 +13,11 @@ export default function CardPaymentPage() {
   const { basket, setBasket } = useBasket();
   const { personalData, setPersonalData } = usePersonalData();
 
-  if (Object.keys(basket).length === 0 || anyBlank(personalData)) {
-    return router.push('/cesta');
-  }
+  useEffect(() => {
+    if (Object.keys(basket).length === 0 || anyBlank(personalData)) {
+      router.push('/cesta');
+    }
+  }, [basket, personalData, router]);
 
   const total = Object.values(basket).reduce(
     (acc, current) => acc + current.amount * current.product.price,

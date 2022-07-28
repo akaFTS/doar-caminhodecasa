@@ -51,7 +51,7 @@ export default function CampaignDetails({ campaign, featured }) {
                 <Slide index={index} key={slide}>
                   <Image
                     hasMasterSpinner={false}
-                    src={slide}
+                    src={`/${slide}`}
                     isBgImage
                     alt=""
                   />
