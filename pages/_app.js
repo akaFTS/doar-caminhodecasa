@@ -1,10 +1,10 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect } from 'react';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import { hotjar } from 'react-hotjar';
 import Head from 'next/head';
-import { BasketContext } from 'contexts/BasketContext';
-import { PersonalDataContext } from 'contexts/PersonalDataContext';
+import { BasketProvider } from 'contexts/BasketContext';
+import { PersonalDataProvider } from 'contexts/PersonalDataContext';
 import 'style/reset.css';
 import 'style/vars.css';
 import 'style/colors.css';
@@ -14,44 +14,9 @@ import 'style/index.css';
 config.autoAddCss = false;
 
 export default function App({ Component, pageProps }) {
-  const [basket, setBasket] = useState({});
-  const [personalData, setPersonalData] = useState({});
-
   useEffect(() => {
     hotjar.initialize(2688511, 6);
-    setBasket(JSON.parse(localStorage.getItem('Basket')) || {});
-    setPersonalData(
-      JSON.parse(localStorage.getItem('PersonalData')) || {
-        name: '',
-        email: '',
-        cpf: '',
-      },
-    );
   }, []);
-
-  useEffect(() => {
-    localStorage.setItem('Basket', JSON.stringify(basket));
-  }, [basket]);
-
-  useEffect(() => {
-    localStorage.setItem('PersonalData', JSON.stringify(personalData));
-  }, [personalData]);
-
-  const basketContextPayload = useMemo(
-    () => ({
-      basket,
-      setBasket,
-    }),
-    [basket],
-  );
-
-  const personalDataContextPayload = useMemo(
-    () => ({
-      personalData,
-      setPersonalData,
-    }),
-    [personalData],
-  );
 
   return (
     <>
@@ -62,8 +27,8 @@ export default function App({ Component, pageProps }) {
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
       </Head>
-      <BasketContext.Provider value={basketContextPayload}>
-        <PersonalDataContext.Provider value={personalDataContextPayload}>
+      <BasketProvider>
+        <PersonalDataProvider>
           <main
             style={{
               display: 'grid',
@@ -73,8 +38,8 @@ export default function App({ Component, pageProps }) {
           >
             <Component {...pageProps} />
           </main>
-        </PersonalDataContext.Provider>
-      </BasketContext.Provider>
+        </PersonalDataProvider>
+      </BasketProvider>
     </>
   );
 }
