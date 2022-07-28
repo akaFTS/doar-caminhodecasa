@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import AltHeader from 'components/layout/AltHeader';
@@ -8,9 +8,17 @@ import Footer from 'components/layout/Footer';
 export default function ThanksPage() {
   const router = useRouter();
   const { query } = router;
-  if (!query.orderNumber || !query.name || !query.total || !query.paymentCode) {
-    return router.push('/');
-  }
+
+  useEffect(() => {
+    if (
+      !query.orderNumber ||
+      !query.name ||
+      !query.total ||
+      !query.paymentCode
+    ) {
+      router.push('/');
+    }
+  }, [query, router]);
 
   return (
     <>

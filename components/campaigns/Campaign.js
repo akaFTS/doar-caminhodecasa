@@ -13,11 +13,10 @@ export default function Campaign({ campaign }) {
     <article className={styles.campaign}>
       <header className={styles.header}>
         <Image
+          layout="fill"
           className={styles.cover}
           src={`/${campaign.cover_picture}`}
           alt=""
-          width={400}
-          height={300}
         />
       </header>
       <main className={styles.main}>
