@@ -8,7 +8,11 @@ import Hero from 'components/layout/Hero';
 import SocialWall from 'components/layout/SocialWall';
 import campaigns from 'data/campaigns.json';
 
-export default function App() {
+export async function getStaticProps() {
+  return { props: {} };
+}
+
+export default function IndexPage() {
   const featuredCampaign = campaigns.find((c) => c.featured === true);
 
   return (

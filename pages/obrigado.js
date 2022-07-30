@@ -1,25 +1,26 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
 import AltHeader from 'components/layout/AltHeader';
 import ThanksBox from 'components/layout/ThanksBox';
 import Footer from 'components/layout/Footer';
 
-export default function ThanksPage() {
-  const router = useRouter();
-  const { query } = router;
+export async function getServerSideProps(context) {
+  const { query } = context;
 
-  useEffect(() => {
-    if (
-      !query.orderNumber ||
-      !query.name ||
-      !query.total ||
-      !query.paymentCode
-    ) {
-      router.push('/');
-    }
-  }, [query, router]);
+  console.log(query);
 
+  if (!query.orderNumber || !query.name || !query.total || !query.paymentCode) {
+    return { redirect: { destination: '/' } };
+  }
+
+  const { orderNumber, name, total, paymentCode } = query;
+
+  return {
+    props: { orderNumber, name, total, paymentCode },
+  };
+}
+
+export default function ThanksPage({ orderNumber, name, total, paymentCode }) {
   return (
     <>
       <Head>
@@ -28,10 +29,10 @@ export default function ThanksPage() {
       </Head>
       <AltHeader />
       <ThanksBox
-        orderNumber={query.orderNumber}
-        name={query.name}
-        total={query.total}
-        paymentCode={query.paymentCode}
+        orderNumber={orderNumber}
+        name={name}
+        total={total}
+        paymentCode={paymentCode}
       />
       <Footer />
     </>

@@ -13,7 +13,7 @@ export default function ThanksBox({ orderNumber, name, total, paymentCode }) {
     <main className={styles.main}>
       <div className={styles.box}>
         <header className={styles.header}>
-          <Image src={thanks} alt="" />
+          <Image layout="fill" src={thanks} alt="" />
         </header>
         <main className={styles.content}>
           <h2>Obrigado!</h2>
