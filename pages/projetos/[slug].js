@@ -1,27 +1,27 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
 import CampaignDetails from 'components/campaigns/CampaignDetails';
 import Footer from 'components/layout/Footer';
 import CampaignList from 'components/campaigns/CampaignList';
 import AltHeader from 'components/layout/AltHeader';
 import campaigns from 'data/campaigns.json';
 
-export default function CampaignPage() {
-  const router = useRouter();
-  const { slug } = router.query;
-  const otherCampaigns = campaigns.filter((cp) => cp.slug !== slug);
+export function getStaticPaths() {
+  return {
+    paths: campaigns.map((cp) => ({ params: { slug: cp.slug } })),
+    fallback: false,
+  };
+}
+
+export async function getStaticProps(context) {
+  const { slug } = context.params;
   const campaign = campaigns.find((cp) => cp.slug === slug);
 
-  useEffect(() => {
-    if (!campaign) {
-      router.push('/');
-    }
-  }, [campaign, router]);
+  return { props: { campaign } };
+}
 
-  if (!slug) {
-    return null;
-  }
+export default function CampaignPage({ campaign }) {
+  const otherCampaigns = campaigns.filter((cp) => cp.slug !== campaign.slug);
 
   return (
     <>
