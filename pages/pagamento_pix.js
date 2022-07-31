@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import Footer from 'components/layout/Footer';
-import AltHeader from 'components/layout/AltHeader';
 import { useBasket } from 'contexts/BasketContext';
 import { usePersonalData } from 'contexts/PersonalDataContext';
 import PixCheckout from 'components/pix/PixCheckout';
@@ -14,10 +12,12 @@ export default function CardPaymentPage() {
   const { personalData, setPersonalData } = usePersonalData();
 
   useEffect(() => {
+    if (!router.isReady) return;
+
     if (Object.keys(basket).length === 0 || anyBlank(personalData)) {
       router.push('/cesta');
     }
-  }, [basket, personalData, router]);
+  }, [router.isReady]);
 
   const total = Object.values(basket).reduce(
     (acc, current) => acc + current.amount * current.product.price,
@@ -58,16 +58,12 @@ export default function CardPaymentPage() {
         <meta property="og:title" content="Pagamento - Caminho de Casa" />
         <meta property="og:site_name" content="Caminho de Casa" />
       </Head>
-      <AltHeader />
-      <main>
-        <PixCheckout
-          personalData={personalData}
-          total={total}
-          description={description}
-          onSuccessfulCheckout={handleSuccessfulCheckout}
-        />
-      </main>
-      <Footer />
+      <PixCheckout
+        personalData={personalData}
+        total={total}
+        description={description}
+        onSuccessfulCheckout={handleSuccessfulCheckout}
+      />
     </>
   );
 }

@@ -1,0 +1,7 @@
+.spinner {
+  font-size: var(--f1);
+  color: var(--grey-500);
+  display: block;
+  margin: 0 auto;
+  margin-top: var(--p5);
+}

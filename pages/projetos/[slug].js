@@ -1,9 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import CampaignDetails from 'components/campaigns/CampaignDetails';
-import Footer from 'components/layout/Footer';
 import CampaignList from 'components/campaigns/CampaignList';
-import AltHeader from 'components/layout/AltHeader';
 import campaigns from 'data/campaigns.json';
 
 export function getStaticPaths() {
@@ -35,10 +33,8 @@ export default function CampaignPage({ campaign }) {
         <meta property="og:description" content={campaign.short_description} />
         <meta name="description" content={campaign.short_description} />
       </Head>
-      <AltHeader />
       <CampaignDetails campaign={campaign} featured={false} />
       <CampaignList campaigns={otherCampaigns} others />
-      <Footer />
     </>
   );
 }

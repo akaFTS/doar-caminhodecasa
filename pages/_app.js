@@ -5,6 +5,9 @@ import { hotjar } from 'react-hotjar';
 import Head from 'next/head';
 import { BasketProvider } from 'contexts/BasketContext';
 import { PersonalDataProvider } from 'contexts/PersonalDataContext';
+import Header from 'components/layout/Header';
+import AltHeader from 'components/layout/AltHeader';
+import Footer from 'components/layout/Footer';
 import 'style/reset.css';
 import 'style/vars.css';
 import 'style/colors.css';
@@ -17,6 +20,8 @@ export default function App({ Component, pageProps }) {
   useEffect(() => {
     hotjar.initialize(2688511, 6);
   }, []);
+
+  const isIndexPage = Component.isIndex ?? false;
 
   return (
     <>
@@ -36,7 +41,11 @@ export default function App({ Component, pageProps }) {
               minHeight: '100vh',
             }}
           >
-            <Component {...pageProps} />
+            {isIndexPage ? <Header /> : <AltHeader />}
+            <main>
+              <Component {...pageProps} />
+            </main>
+            <Footer />
           </main>
         </PersonalDataProvider>
       </BasketProvider>
