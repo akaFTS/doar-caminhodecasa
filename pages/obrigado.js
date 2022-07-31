@@ -1,8 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
-import AltHeader from 'components/layout/AltHeader';
 import ThanksBox from 'components/layout/ThanksBox';
-import Footer from 'components/layout/Footer';
 
 export async function getServerSideProps(context) {
   const { query } = context;
@@ -27,14 +25,12 @@ export default function ThanksPage({ orderNumber, name, total, paymentCode }) {
         <title>Doação Efetuada - Caminho de Casa</title>
         <meta property="og:title" content="Doação Efetuada - Caminho de Casa" />
       </Head>
-      <AltHeader />
       <ThanksBox
         orderNumber={orderNumber}
         name={name}
         total={total}
         paymentCode={paymentCode}
       />
-      <Footer />
     </>
   );
 }

@@ -2,8 +2,6 @@ import React from 'react';
 import Head from 'next/head';
 import CampaignDetails from 'components/campaigns/CampaignDetails';
 import CampaignList from 'components/campaigns/CampaignList';
-import Footer from 'components/layout/Footer';
-import Header from 'components/layout/Header';
 import Hero from 'components/layout/Hero';
 import SocialWall from 'components/layout/SocialWall';
 import campaigns from 'data/campaigns.json';
@@ -36,12 +34,12 @@ export default function IndexPage() {
           solidariedade."
         />
       </Head>
-      <Header inverted={false} />
       <Hero />
       <CampaignDetails campaign={featuredCampaign} featured />
       <CampaignList campaigns={campaigns} />
       <SocialWall />
-      <Footer />
     </>
   );
 }
+
+IndexPage.isIndex = true;
