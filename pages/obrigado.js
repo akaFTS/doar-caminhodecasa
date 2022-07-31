@@ -1,24 +1,36 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
+import { useBasket } from 'contexts/BasketContext';
+import { usePersonalData } from 'contexts/PersonalDataContext';
 import ThanksBox from 'components/layout/ThanksBox';
 
 export async function getServerSideProps(context) {
   const { query } = context;
-
-  console.log(query);
-
   if (!query.orderNumber || !query.name || !query.total || !query.paymentCode) {
     return { redirect: { destination: '/' } };
   }
 
-  const { orderNumber, name, total, paymentCode } = query;
-
   return {
-    props: { orderNumber, name, total, paymentCode },
+    props: { ...query },
   };
 }
 
 export default function ThanksPage({ orderNumber, name, total, paymentCode }) {
+  const { setBasket } = useBasket();
+  const { setPersonalData } = usePersonalData();
+
+  useEffect(() => {
+    // Empty basket
+    setBasket({});
+
+    // Empty personal data
+    setPersonalData({
+      name: '',
+      email: '',
+      cpf: '',
+    });
+  }, []);
+
   return (
     <>
       <Head>

@@ -42,7 +42,7 @@ export default function Basket() {
       ))}
       <BasketTotal items={basket} />
       <BlockLink text="Conhecer mais projetos" secondary to="/#projetos" />
-      <BlockLink text="Continuar para o pagamento" to="/dados_pessoais" />
+      <BlockLink text="Continuar para o pagamento" to="/dados-pessoais" />
     </main>
   );
 }

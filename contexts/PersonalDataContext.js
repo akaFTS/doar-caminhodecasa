@@ -7,6 +7,7 @@ export const PersonalDataContext = createContext({
 
 export function PersonalDataProvider({ children }) {
   const [personalData, setPersonalData] = useState({});
+  const [personalDataReady, setPersonalDataReady] = useState(false);
 
   useEffect(() => {
     setPersonalData(
@@ -16,6 +17,7 @@ export function PersonalDataProvider({ children }) {
         cpf: '',
       },
     );
+    setPersonalDataReady(true);
   }, []);
 
   useEffect(() => {
@@ -23,8 +25,8 @@ export function PersonalDataProvider({ children }) {
   }, [personalData]);
 
   const personalDataContextPayload = useMemo(
-    () => ({ personalData, setPersonalData }),
-    [personalData],
+    () => ({ personalData, personalDataReady, setPersonalData }),
+    [personalData, personalDataReady],
   );
 
   return (

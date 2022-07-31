@@ -21,11 +21,11 @@ export default function PersonalDataPage() {
   }
 
   const handleProceedToPayment = (type) => {
-    router.push(`/pagamento_${type}`);
+    router.push(`/pagamento-${type}`);
   };
 
-  router.prefetch('/pagamento_pix');
-  router.prefetch('/pagamento_cartao');
+  router.prefetch('/pagamento-pix');
+  router.prefetch('/pagamento-cartao');
 
   return (
     <>

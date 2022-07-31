@@ -1,23 +1,29 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useBasket } from 'contexts/BasketContext';
 import { usePersonalData } from 'contexts/PersonalDataContext';
 import PixCheckout from 'components/pix/PixCheckout';
+import Loading from 'components/layout/Loading';
+import Redirect from 'components/layout/Redirect';
 import { anyBlank } from 'utils/paymentUtils';
 
 export default function CardPaymentPage() {
   const router = useRouter();
-  const { basket, setBasket } = useBasket();
-  const { personalData, setPersonalData } = usePersonalData();
+  const { basket, basketReady } = useBasket();
+  const { personalData, personalDataReady } = usePersonalData();
 
-  useEffect(() => {
-    if (!router.isReady) return;
+  if (!basketReady || !personalDataReady) {
+    return <Loading />;
+  }
 
-    if (Object.keys(basket).length === 0 || anyBlank(personalData)) {
-      router.push('/cesta');
-    }
-  }, [router.isReady]);
+  if (Object.keys(basket).length === 0) {
+    return <Redirect to="/cesta" />;
+  }
+
+  if (anyBlank(personalData)) {
+    return <Redirect to="/dados-pessoais" />;
+  }
 
   const total = Object.values(basket).reduce(
     (acc, current) => acc + current.amount * current.product.price,
@@ -34,17 +40,6 @@ export default function CardPaymentPage() {
     .join(' - ');
 
   const handleSuccessfulCheckout = (orderNumber, paymentCode) => {
-    // Empty basket
-    setBasket({});
-
-    // Empty personal data
-    setPersonalData({
-      name: '',
-      email: '',
-      cpf: '',
-    });
-
-    // Navigate to Thanks page
     router.push({
       pathname: '/obrigado',
       query: { name: personalData.name, orderNumber, total, paymentCode },
