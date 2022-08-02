@@ -1,21 +1,13 @@
 import React, { useEffect } from 'react';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { useBasket } from 'contexts/BasketContext';
 import { usePersonalData } from 'contexts/PersonalDataContext';
 import ThanksBox from 'components/layout/ThanksBox';
+import Loading from 'components/layout/Loading';
 
-export async function getServerSideProps(context) {
-  const { query } = context;
-  if (!query.orderNumber || !query.name || !query.total || !query.paymentCode) {
-    return { redirect: { destination: '/' } };
-  }
-
-  return {
-    props: { ...query },
-  };
-}
-
-export default function ThanksPage({ orderNumber, name, total, paymentCode }) {
+export default function ThanksPage() {
+  const router = useRouter();
   const { setBasket } = useBasket();
   const { setPersonalData } = usePersonalData();
 
@@ -31,6 +23,12 @@ export default function ThanksPage({ orderNumber, name, total, paymentCode }) {
     });
   }, []);
 
+  if (!router.isReady) {
+    return <Loading />;
+  }
+
+  const { query } = router;
+
   return (
     <>
       <Head>
@@ -38,10 +36,10 @@ export default function ThanksPage({ orderNumber, name, total, paymentCode }) {
         <meta property="og:title" content="Doação Efetuada - Caminho de Casa" />
       </Head>
       <ThanksBox
-        orderNumber={orderNumber}
-        name={name}
-        total={total}
-        paymentCode={paymentCode}
+        orderNumber={query.orderNumber}
+        name={query.name}
+        total={query.total}
+        paymentCode={query.paymentCode}
       />
     </>
   );
