@@ -9,7 +9,13 @@ export default function Footer() {
       <div className={styles.information}>
         <div className={styles.flexBlock}>
           <div className={styles.logoWrap}>
-            <Image layout="fill" src={logo} alt="Logotipo da Associação" />
+            <Image
+              layout="responsive"
+              src={logo}
+              alt="Logotipo da Associação"
+              sizes="6rem"
+              placeholder="blur"
+            />
           </div>
           <div className={styles.text}>
             <p className={styles.main}>ASSOCIAÇÃO CAMINHO DE CASA</p>
