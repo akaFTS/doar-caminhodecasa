@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { faCreditCard } from '@fortawesome/free-solid-svg-icons';
-import validator from 'validator';
+import isEmail from 'validator/lib/isEmail';
+import isAlphanumeric from 'validator/lib/isAlphanumeric';
 import styles from './PersonalData.module.css';
 import ErrorBanner from './ErrorBanner';
 import BlockButton from '../layout/BlockButton';
@@ -30,12 +31,12 @@ export default function PersonalData({ data, setData, onProceedToPayment }) {
       return;
     }
 
-    if (!validator.isEmail(data.email)) {
+    if (!isEmail(data.email)) {
       setError('email');
       return;
     }
 
-    if (!validator.isAlphanumeric(data.name.replaceAll(' ', ''), 'pt-BR')) {
+    if (!isAlphanumeric(data.name.replaceAll(' ', ''), 'pt-BR')) {
       setError('name');
       return;
     }

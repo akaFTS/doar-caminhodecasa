@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import CampaignDetails from 'components/campaigns/CampaignDetails';
 import CampaignList from 'components/campaigns/CampaignList';
-import campaigns from 'data/campaigns.json';
+import campaigns from 'data/campaigns.yml';
 
 export function getStaticPaths() {
   return {

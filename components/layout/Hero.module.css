@@ -1,14 +1,6 @@
 .hero {
-  background-image: url(/hero-back.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  position: relative;
   height: 500px;
-
-  @media (--large) {
-    background-size: contain;
-    background-repeat: repeat-x;
-  }
 }
 
 .heroBackdrop {

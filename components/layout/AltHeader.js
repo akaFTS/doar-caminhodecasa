@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import Image from 'next/image';
 import logo from 'public/logo.png';
+import cover from 'public/hero-back.png';
 import styles from './AltHeader.module.css';
 import { useBasket } from 'contexts/BasketContext';
 
@@ -15,18 +16,26 @@ export default function AltHeader() {
 
   return (
     <header className={styles.header}>
+      <Image
+        layout="fill"
+        src={cover}
+        alt=""
+        className={styles.cover}
+        objectFit="cover"
+        objectPosition="center"
+      />
       <div className={styles.headerInside}>
         <div className={styles.bar}>
           <div className={styles.leftBar}>
             <Link href="/">
               <a className={styles.logoWrap}>
-                <div className={styles.logoWrapInner}>
-                  <Image
-                    layout="fill"
-                    src={logo}
-                    alt="Logotipo da Associação"
-                  />
-                </div>
+                <Image
+                  layout="responsive"
+                  src={logo}
+                  alt="Logotipo da Associação"
+                  sizes="6rem"
+                  placeholder="blur"
+                />
               </a>
             </Link>
             <div className={styles.call}>

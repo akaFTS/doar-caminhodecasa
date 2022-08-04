@@ -1,14 +1,9 @@
 .header {
-  background-image: url(/hero-back.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  position: relative;
   height: 200px;
 
   @media (min-width: 40em) {
     height: 150px;
-    background-size: 40%;
-    background-repeat: repeat-x;
   }
 }
 
@@ -76,12 +71,6 @@
     height: calc(var(--h3) + var(--h2));
     width: calc(var(--h3) + var(--h2));
   }
-}
-
-.logoWrapInner {
-  position: relative;
-  height: 100%;
-  width: 100%;
 }
 
 .badge {

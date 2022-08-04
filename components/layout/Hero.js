@@ -1,9 +1,20 @@
 import React from 'react';
+import Image from 'next/image';
 import styles from './Hero.module.css';
+import cover from 'public/hero-back.png';
 
 export default function Hero() {
   return (
     <section className={styles.hero}>
+      <Image
+        layout="fill"
+        src={cover}
+        alt=""
+        objectFit="cover"
+        objectPosition="center"
+        placeholder="blur"
+        quality={50}
+      />
       <div className={styles.heroBackdrop}>
         <div className={styles.heroInside}>
           <h2 className={styles.title}>
