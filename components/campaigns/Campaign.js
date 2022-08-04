@@ -17,6 +17,7 @@ export default function Campaign({ campaign }) {
           className={styles.cover}
           src={`/${campaign.cover_picture}`}
           alt=""
+          sizes="300px"
         />
       </header>
       <main className={styles.main}>

@@ -1,0 +1,138 @@
+- name: Manto Azul
+  slug: manto-azul
+  short_description:
+    Com a sua contribuição, montamos e distribuímos enxovais completos para
+    gestantes.
+  long_description:
+    O Manto Azul é um projeto que atende gestantes a partir do terceiro mês de
+    gravidez e em situação de vulnerabilidade social, com reuniões mensais para
+    o desenvolvimento emocional e motivacional, realização de trabalhos
+    artesanais, rodas de conversa, esclarecimentos e orientações de psicólogos,
+    assistentes sociais e enfermeiros.#No nascimento da criança, além de todo o
+    carinho recebido da equipe de voluntários ao longo da gestação, a mamãe
+    também ganha um lindo enxoval para o bebê, completo, incluindo os trabalhos
+    artesanais desenvolvidos nas reuniões e peças em tricô e crochê feitas pelo
+    grupo Histórias e Retalhos.#Ainda dentro dessa rede de afetividade e
+    proteção, o bebê é acompanhado pelo projeto Manto Azul durante 6 meses após
+    o nascimento e a família recebe mensalmente auxílio de mantimentos e fraldas
+    nesse período.
+  cover_picture: manto-cover.png
+  slide_pictures:
+    - manto4.png
+    - manto2.png
+    - manto3.png
+  donations:
+    - slug: enxoval
+      name: Enxoval Completo
+      picture: enxoval.png
+      price: 170
+
+    - slug: fraldas
+      name: Pacote de Fraldas
+      picture: fraldas.png
+      price: 40
+
+    - slug: leite
+      name: Kit Leite + Mucilon
+      picture: leite.png
+      price: 25
+
+- name: Projeto Acolher
+  slug: acolher
+  short_description: Doe alimentos, itens de higiene, leite e fraldas para famílias vulneráveis.
+  long_description:
+    Acolher é um projeto que visa atender as famílias em situação de
+    vulnerabilidade social com orientações para melhorar a qualidade de vida de
+    cada uma delas e auxiliar mensalmente com cestas de mantimentos, itens de
+    higiene, leite para as crianças e fraldas para os bebês.#Uma vez ao mês as
+    famílias assistem a palestras com temáticas variadas como Ética, Saúde
+    Mental e Educação Financeira.#Nossos voluntários visitam as famílias nas
+    comunidades onde vivem, ouvindo as suas necessidades básicas, confortando-as
+    e acreditando que juntos, todos nós, podemos levar esperança e dignidade a
+    quem mais precisa.
+  cover_picture: acolher-cover.png
+  slide_pictures:
+    - acolher1.png
+    - acolher2.png
+    - acolher3.png
+  donations:
+    - slug: cesta
+      name: Cesta Básica
+      picture: cesta-basica.png
+      price: 60
+
+    - slug: kit-mistura
+      name: Kit Mistura (frango e ovos)
+      picture: kit-mistura.png
+      price: 30
+
+    - slug: kit-limpeza
+      name: Kit Higiene e Limpeza
+      picture: limpeza.png
+      price: 20
+
+- name: Comida é Vida
+  slug: comida-vida
+  featured: true
+  short_description: A campanha contra a fome da Associação Caminho de Casa.
+  long_description: >-
+    Comida é Vida, a vacina contra a fome da Associação Caminho de Casa, tem por
+    objetivo a arrecadação mensal de 1.000 cestas básicas + “kit mistura”
+    (frango congelado e ovos) para as famílias que vivem em situação de
+    vulnerabilidade social nas comunidades carentes atendidas pela Associação e
+    que estão sendo duplamente prejudicadas pelo vírus e pela atual situação
+    econômica do nosso país.#As famílias são atendidas nas seguintes
+    comunidades: Buraco do Tatu, Chácara Três Meninas, Jardim Maia / São
+    Martinho, Jardim Pantanal, Jundiapeba, Pontilhão da Penha, Rua Bilac, Vila
+    Aimoré e Vila do Sapo.
+  cover_picture: comida-cover.png
+  slide_pictures:
+    - comida3.png
+    - comida1.png
+    - comida2.png
+  donations:
+    - slug: cesta-kit
+      name: Cesta + Kit Mistura
+      picture: cesta-kit.png
+      price: 90
+
+    - slug: cesta
+      name: Cesta Básica
+      picture: cesta-basica.png
+      price: 60
+
+    - slug: kit-mistura
+      name: Kit Mistura (frango e ovos)
+      picture: kit-mistura.png
+      price: 30
+
+- name: Sacolinhas de Natal
+  slug: sacolinhas
+  short_description: Ajude a trazer a alegria do Natal para mais de 1500 crianças.
+  long_description:
+    Na medida em que se aproxima o Natal, começamos a perceber uma energia
+    positiva que vai contagiando a todos e trazendo à tona os sentimentos de
+    fraternidade e compaixão. Com o apoio desses corações generosos, o projeto
+    Sacolinhas de Natal tem garantido todos os anos um Natal mais feliz para
+    milhares de crianças.#Neste ano, em virtude da pandemia e do agravamento da
+    crise econômica, nossa meta é preparar 1.500 sacolinhas de Natal para
+    crianças de 0 a 10 anos em 9 comunidades assistidas pela Associação Caminho
+    de Casa.#Os valores arrecadados serão integralmente convertidos em
+    presentes, brinquedos, material escolar, livros, material de higiene,
+    fraldas e enxovais e enviados aos núcleos de voluntários dentro das
+    comunidades, que farão a montagem das sacolinhas de Natal e a entrega para
+    as crianças cadastradas.#Há muito o que fazer e contamos com a generosidade
+    de todos para movimentar essa engrenagem do bem!
+  highlight_last_paragraph: true
+  cover_picture: sacolinhas-cover.jpg
+  slide_pictures:
+    - sacolinhas-1.jpg
+    - sacolinhas-2.jpg
+    - sacolinhas-3.jpg
+    - sacolinhas-4.jpg
+    - sacolinhas-5.jpg
+  donations:
+    - slug: sacolinha
+      name: Sacolinha de Natal
+      picture: sacolinha-item.jpg
+      price: 110

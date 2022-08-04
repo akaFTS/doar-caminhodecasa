@@ -17,9 +17,13 @@ export default function Header() {
     <header className={styles.header}>
       <Link href="/">
         <a className={styles.logoWrap}>
-          <div className={styles.logoWrapInner}>
-            <Image layout="fill" src={logo} alt="Logotipo da Associação" />
-          </div>
+          <Image
+            layout="responsive"
+            src={logo}
+            alt="Logotipo da Associação"
+            sizes="6rem"
+            placeholder="blur"
+          />
         </a>
       </Link>
       <div className={styles.buttonBar}>

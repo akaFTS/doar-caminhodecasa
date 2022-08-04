@@ -4,7 +4,7 @@ import CampaignDetails from 'components/campaigns/CampaignDetails';
 import CampaignList from 'components/campaigns/CampaignList';
 import Hero from 'components/layout/Hero';
 import SocialWall from 'components/layout/SocialWall';
-import campaigns from 'data/campaigns.json';
+import campaigns from 'data/campaigns.yml';
 
 export async function getStaticProps() {
   return { props: {} };

@@ -30,12 +30,6 @@
   }
 }
 
-.logoWrapInner {
-  position: relative;
-  height: 100%;
-  width: 100%;
-}
-
 .badge {
   background-color: var(--red-800);
   color: white;

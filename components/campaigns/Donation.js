@@ -21,7 +21,14 @@ export default function Donation({ donation }) {
   return (
     <div className={styles.container}>
       <div className={styles.imageSlot}>
-        <Image src={`/${donation.picture}`} alt="" width={130} height={130} />
+        <Image
+          layout="responsive"
+          src={`/${donation.picture}`}
+          alt=""
+          width={120}
+          height={120}
+          sizes="6rem"
+        />
       </div>
       <div className={styles.info}>
         <div className={styles.details}>
