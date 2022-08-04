@@ -29,7 +29,6 @@
 }
 
 .logoWrap {
-  position: relative;
   height: calc(var(--h3) + var(--h2));
   width: calc(var(--h3) + var(--h2));
   filter: brightness(0%) invert();
