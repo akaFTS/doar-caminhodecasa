@@ -1,14 +1,7 @@
 import React from 'react';
-import {
-  CarouselProvider,
-  Slider,
-  Slide,
-  Image,
-  DotGroup,
-} from 'pure-react-carousel';
-import 'pure-react-carousel/dist/react-carousel.es.css';
 import styles from './CampaignDetails.module.css';
 import Donation from './Donation';
+import CampaignCarousel from './CampaignCarousel';
 
 export default function CampaignDetails({ campaign, featured }) {
   const paragraphs = campaign.long_description.split('#');
@@ -37,29 +30,7 @@ export default function CampaignDetails({ campaign, featured }) {
       </div>
       <main className={styles.content}>
         <div className={styles.carouselWrapper}>
-          <CarouselProvider
-            naturalSlideWidth={100}
-            naturalSlideHeight={100}
-            totalSlides={campaign.slide_pictures.length}
-            isPlaying
-            infinite
-            interval={3000}
-            className={styles.carousel}
-          >
-            <Slider>
-              {campaign.slide_pictures.map((slide, index) => (
-                <Slide index={index} key={slide}>
-                  <Image
-                    hasMasterSpinner={false}
-                    src={`/${slide}`}
-                    isBgImage
-                    alt=""
-                  />
-                </Slide>
-              ))}
-            </Slider>
-            <DotGroup className={styles.dotGroup} />
-          </CarouselProvider>
+          <CampaignCarousel slidePictures={campaign.slide_pictures} />
         </div>
         <div className={styles.donationsWrapper}>
           {campaign.donations.map((donation) => (
