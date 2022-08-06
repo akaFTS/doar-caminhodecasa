@@ -1,0 +1,38 @@
+.dotGroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: var(--p3) 0;
+
+  & .dot {
+    height: calc(var(--h1) / 2);
+    width: calc(var(--h1) / 2);
+    background-color: var(--grey-500);
+    border: none;
+    margin: 0 var(--p1);
+    padding: 0;
+    border-radius: var(--br-circle);
+  }
+
+  & .dot.selected {
+    background-color: var(--grey-800);
+  }
+}
+
+.carousel {
+  border-radius: var(--br4);
+  overflow: hidden;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+}
+.slideContainer {
+  display: flex;
+  height: 100%;
+}
+.slide {
+  flex: 0 0 100%;
+  height: 100%;
+}
