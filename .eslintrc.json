@@ -1,5 +1,18 @@
 {
+  "parser": "@typescript-eslint/parser",
   "extends": ["airbnb", "next/core-web-vitals"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["airbnb-typescript"],
+      "parserOptions": {
+        "project": ["./tsconfig.json"]
+      },
+      "rules": {
+        "@typescript-eslint/indent": "off"
+      }
+    }
+  ],
   "rules": {
     "object-curly-newline": "off",
     "implicit-arrow-linebreak": "off",

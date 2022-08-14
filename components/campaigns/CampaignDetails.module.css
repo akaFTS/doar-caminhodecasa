@@ -41,10 +41,6 @@
   & p {
     margin-bottom: var(--p3);
   }
-
-  & p.bold {
-    font-weight: bold;
-  }
 }
 
 .content {
