@@ -29,10 +29,6 @@
 
 .icon {
   margin-right: var(--p3);
-}
-
-.iconSvg {
-  margin-right: var(--p3);
   height: var(--f3);
   fill: white;
 }
