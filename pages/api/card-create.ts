@@ -32,7 +32,7 @@ export default async function handler(
 
     // Check for errors
     if (error == null) {
-      res.status(200).json({ orderNumber: recordedCharge.code });
+      return res.status(200).json({ orderNumber: recordedCharge.code });
     }
 
     if (error === 289999) {
