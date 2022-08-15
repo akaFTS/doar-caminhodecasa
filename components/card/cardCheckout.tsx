@@ -84,7 +84,7 @@ export default function CardCheckout({
 
   return (
     <main className={styles.main}>
-      <BackButton text="Voltar para Meus Dados" path="/dados_pessoais" />
+      <BackButton text="Voltar para Meus Dados" path="/dados-pessoais" />
       <h1 className={styles.title}>Dados de Pagamento</h1>
       <div className={styles.underline} />
       <form>
