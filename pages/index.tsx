@@ -1,9 +1,9 @@
 import React from 'react';
 import Head from 'next/head';
-import CampaignDetails from 'components/campaigns/CampaignDetails';
-import CampaignList from 'components/campaigns/CampaignList';
-import Hero from 'components/layout/Hero';
-import SocialWall from 'components/layout/SocialWall';
+import CampaignDetails from 'components/campaigns/campaignDetails';
+import CampaignList from 'components/campaigns/campaignList';
+import Hero from 'components/layout/hero';
+import SocialWall from 'components/layout/socialWall';
 import campaigns from 'data/campaigns.yml';
 
 export default function IndexPage() {

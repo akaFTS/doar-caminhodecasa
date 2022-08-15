@@ -1,11 +1,11 @@
 import React from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useBasket } from 'contexts/BasketContext';
-import { usePersonalData } from 'contexts/PersonalDataContext';
-import CardCheckout from 'components/card/CardCheckout';
-import Loading from 'components/layout/Loading';
-import Redirect from 'components/layout/Redirect';
+import { useBasket } from 'contexts/basketContext';
+import { usePersonalData } from 'contexts/personalDataContext';
+import CardCheckout from 'components/card/cardCheckout';
+import Loading from 'components/layout/loading';
+import Redirect from 'components/layout/redirect';
 import { anyBlank } from 'utils/paymentUtils';
 
 export default function CardPaymentPage() {

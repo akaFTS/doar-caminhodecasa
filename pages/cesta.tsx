@@ -1,8 +1,8 @@
 import React from 'react';
 import Head from 'next/head';
-import Basket from 'components/basket/Basket';
-import EmptyBasket from 'components/basket/EmptyBasket';
-import { useBasket } from 'contexts/BasketContext';
+import Basket from 'components/basket/basket';
+import EmptyBasket from 'components/basket/emptyBasket';
+import { useBasket } from 'contexts/basketContext';
 
 export default function BasketPage() {
   const { basket } = useBasket();

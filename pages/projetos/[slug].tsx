@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
-import CampaignDetails from 'components/campaigns/CampaignDetails';
-import CampaignList from 'components/campaigns/CampaignList';
+import CampaignDetails from 'components/campaigns/campaignDetails';
+import CampaignList from 'components/campaigns/campaignList';
 import campaigns from 'data/campaigns.yml';
 import { Campaign } from 'types/campaigns';
 import { GetStaticPaths, GetStaticProps } from 'next';
