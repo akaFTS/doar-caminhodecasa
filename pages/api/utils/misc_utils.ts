@@ -1,4 +1,4 @@
-import { escape, isAlpha, isEmail, isInt } from 'validator';
+import { escape, isAlpha, isEmail } from 'validator';
 
 export type PixFields = {
   name: string;
@@ -105,10 +105,6 @@ export function fieldsAreValid(body: PixFields): boolean {
   }
 
   if (!checkCPF(body.cpf)) {
-    return false;
-  }
-
-  if (!isInt(body.total)) {
     return false;
   }
 
