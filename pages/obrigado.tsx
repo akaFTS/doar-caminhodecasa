@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useBasket } from 'contexts/BasketContext';
-import { usePersonalData } from 'contexts/PersonalDataContext';
-import ThanksBox from 'components/layout/ThanksBox';
-import Loading from 'components/layout/Loading';
+import { useBasket } from 'contexts/basketContext';
+import { usePersonalData } from 'contexts/personalDataContext';
+import ThanksBox from 'components/layout/thanksBox';
+import Loading from 'components/layout/loading';
 
 export default function ThanksPage() {
   const router = useRouter();
