@@ -14,6 +14,7 @@ export default function Hero() {
         objectPosition="center"
         placeholder="blur"
         quality={50}
+        priority
       />
       <div className={styles.heroBackdrop}>
         <div className={styles.heroInside}>

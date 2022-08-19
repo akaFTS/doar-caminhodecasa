@@ -23,6 +23,7 @@ export default function AltHeader() {
         className={styles.cover}
         objectFit="cover"
         objectPosition="center"
+        priority
       />
       <div className={styles.headerInside}>
         <div className={styles.bar}>
