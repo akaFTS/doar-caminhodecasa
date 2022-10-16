@@ -6,7 +6,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import styles from './thanksBox.module.css';
-import thanks from 'public/new-thanks.jpg';
+import thanks from 'public/sacolinha-thanks.png';
 
 type Props = {
   orderNumber: string;

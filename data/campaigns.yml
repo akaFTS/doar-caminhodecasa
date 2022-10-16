@@ -35,7 +35,7 @@
     - slug: leite
       name: Kit Leite + Mucilon
       picture: leite.png
-      price: 25
+      price: 30
 
 - name: Projeto Acolher
   slug: acolher
@@ -59,12 +59,12 @@
     - slug: cesta
       name: Cesta Básica
       picture: cesta-basica.png
-      price: 60
+      price: 70
 
     - slug: kit-mistura
       name: Kit Mistura (frango e ovos)
       picture: kit-mistura.png
-      price: 30
+      price: 40
 
     - slug: kit-limpeza
       name: Kit Higiene e Limpeza
@@ -73,7 +73,6 @@
 
 - name: Comida é Vida
   slug: comida-vida
-  featured: true
   short_description: A campanha contra a fome da Associação Caminho de Casa.
   long_description: >-
     Comida é Vida, a vacina contra a fome da Associação Caminho de Casa, tem por
@@ -94,44 +93,46 @@
     - slug: cesta-kit
       name: Cesta + Kit Mistura
       picture: cesta-kit.png
-      price: 90
+      price: 110
 
     - slug: cesta
       name: Cesta Básica
       picture: cesta-basica.png
-      price: 60
+      price: 70
 
     - slug: kit-mistura
       name: Kit Mistura (frango e ovos)
       picture: kit-mistura.png
-      price: 30
+      price: 40
 
 - name: Sacolinhas de Natal
   slug: sacolinhas
-  short_description: Ajude a trazer a alegria do Natal para mais de 1500 crianças.
-  long_description:
+  featured: true
+  short_description: Ajude a trazer a alegria do Natal para mais de 1200 crianças.
+  long_description: >-
     Na medida em que se aproxima o Natal, começamos a perceber uma energia
     positiva que vai contagiando a todos e trazendo à tona os sentimentos de
-    fraternidade e compaixão. Com o apoio desses corações generosos, o projeto
+    fraternidade e compaixão. Com o apoio desses corações generosos, a campanha
     Sacolinhas de Natal tem garantido todos os anos um Natal mais feliz para
-    milhares de crianças.#Neste ano, em virtude da pandemia e do agravamento da
-    crise econômica, nossa meta é preparar 1.500 sacolinhas de Natal para
-    crianças de 0 a 10 anos em 9 comunidades assistidas pela Associação Caminho
-    de Casa.#Os valores arrecadados serão integralmente convertidos em
-    presentes, brinquedos, material escolar, livros, material de higiene,
-    fraldas e enxovais e enviados aos núcleos de voluntários dentro das
-    comunidades, que farão a montagem das sacolinhas de Natal e a entrega para
-    as crianças cadastradas.#Há muito o que fazer e contamos com a generosidade
-    de todos para movimentar essa engrenagem do bem!
-  cover_picture: sacolinhas-cover.jpg
+    milhares de crianças.#Neste ano de 2022 a nossa meta é preparar 1.200
+    sacolinhas de Natal para crianças de 0 a 10 anos em 6 comunidades assistidas
+    pela Associação Caminho de Casa: Bela Vista, Buraco do Tatu, Chácara dos
+    Baianos, Chácara Três Meninas, Esmaga-sapo e Kampala.#Os valores arrecadados
+    serão integralmente convertidos em presentes, brinquedos, material escolar,
+    livros, material de higiene, fraldas e enxovais e enviados aos núcleos de
+    voluntários dentro das comunidades, que farão a montagem das sacolinhas, a
+    festa de Natal e a entrega para as crianças cadastradas.#Há muito o que
+    fazer e contamos com a generosidade de todos para movimentar essa engrenagem
+    do bem!
+  cover_picture: sacolinhas-cover.png
   slide_pictures:
-    - sacolinhas-1.jpg
-    - sacolinhas-2.jpg
-    - sacolinhas-3.jpg
-    - sacolinhas-4.jpg
-    - sacolinhas-5.jpg
+    - sacolinhas-1.png
+    - sacolinhas-2.png
+    - sacolinhas-3.png
+    - sacolinhas-4.png
+    - sacolinhas-5.png
   donations:
     - slug: sacolinha
       name: Sacolinha de Natal
-      picture: sacolinha-item.jpg
-      price: 110
+      picture: sacolinha-item.png
+      price: 120
