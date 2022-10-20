@@ -27,15 +27,16 @@ function importMJML({ code, name, amount, paymentType }: MailInfo): string {
 }
 
 function getTransport(): Transporter {
+  console.log(`will use this password: ${env.MAIL_PASSWORD}`);
   return createTransport({
     host: 'mail.caminhodecasa.org.br',
     port: 587,
-    secure: true,
+    secure: false,
     auth: {
       user: 'carlos.alberto@caminhodecasa.org.br',
       pass: env.MAIL_PASSWORD,
     },
-    ignoreTLS: false,
+    ignoreTLS: true,
   });
 }
 
