@@ -27,25 +27,6 @@ function importMJML({ code, name, amount, paymentType }: MailInfo): string {
 }
 
 function getTransport(): Transporter {
-  console.log('attempting to create transport');
-  try {
-    createTransport({
-      host: 'mail.caminhodecasa.org.br',
-      port: 587,
-      secure: true,
-      auth: {
-        user: 'carlos.alberto@caminhodecasa.org.br',
-        pass: env.MAIL_PASSWORD,
-      },
-      ignoreTLS: true,
-    });
-
-    console.log('create successful');
-  } catch (e) {
-    console.log('issue');
-    console.log(e);
-  }
-
   return createTransport({
     host: 'mail.caminhodecasa.org.br',
     port: 587,
@@ -54,7 +35,7 @@ function getTransport(): Transporter {
       user: 'carlos.alberto@caminhodecasa.org.br',
       pass: env.MAIL_PASSWORD,
     },
-    ignoreTLS: true,
+    ignoreTLS: false,
   });
 }
 
