@@ -73,6 +73,7 @@
 
 - name: Comida é Vida
   slug: comida-vida
+  featured: true
   short_description: A campanha contra a fome da Associação Caminho de Casa.
   long_description: >-
     Comida é Vida, a vacina contra a fome da Associação Caminho de Casa, tem por
@@ -107,7 +108,6 @@
 
 - name: Sacolinhas de Natal
   slug: sacolinhas
-  featured: true
   short_description: Ajude a trazer a alegria do Natal para mais de 1200 crianças.
   long_description: >-
     Na medida em que se aproxima o Natal, começamos a perceber uma energia
