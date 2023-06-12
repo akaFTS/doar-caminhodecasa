@@ -9,6 +9,7 @@ import {
 } from './misc_utils';
 
 const IS_SANDBOX = true;
+const NOTIFICATION_URL = 'https://doar.caminhodecasa.org.br/api/pay-hook';
 
 type PixResponse = {
   txid: string;
@@ -81,9 +82,7 @@ export class PagBank {
         },
       },
     ];
-    const notificationUrls = [
-      'https://3000-akafts-doarcaminhodecas-abj7v2mynha.ws-us99.gitpod.io/api/pay-hook',
-    ];
+    const notificationUrls = [NOTIFICATION_URL];
 
     try {
       const { data } = await this.api.post(
@@ -144,9 +143,7 @@ export class PagBank {
         },
       },
     ];
-    const notificationUrls = [
-      'https://3000-akafts-doarcaminhodecas-abj7v2mynha.ws-us99.gitpod.io/api/pay-hook',
-    ];
+    const notificationUrls = [NOTIFICATION_URL];
 
     try {
       // Create charge
