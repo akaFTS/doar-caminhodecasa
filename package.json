@@ -2,7 +2,6 @@
   "name": "doar-caminhodecasa",
   "version": "1.0.0",
   "scripts": {
-    "crawler": "node jupiterCrawl.js",
     "dev": "next dev",
     "build": "next build",
     "build:analyze": "ANALYZE=true next build",
@@ -35,6 +34,7 @@
     "husky": "^6.0.0",
     "juno-nodejs": "^1.0.14",
     "mjml": "^4.9.0",
+    "netlify-cli": "^15.4.1",
     "next": "^12.2.2",
     "nodemailer": "^6.5.0",
     "payment": "^2.4.0",

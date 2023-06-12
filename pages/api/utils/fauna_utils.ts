@@ -21,17 +21,13 @@ export class Fauna {
     }
   }
 
-  async updateCharge(
-    indexValue: string,
-    indexName: string,
-    updatedChargeFields: Partial<Charge>,
-  ) {
+  async updateCharge(pixCode: string, updatedChargeFields: Partial<Charge>) {
     try {
       await this.client.query(
         query.Update(
           query.Select(
             ['ref'],
-            query.Get(query.Match(query.Index(indexName), indexValue)),
+            query.Get(query.Match(query.Index('pixCode'), pixCode)),
           ),
           {
             data: { ...updatedChargeFields },
@@ -58,8 +54,9 @@ export class Fauna {
     }
   }
 
-  async getPaidStatusAndChargeCode(txid: string): Promise<{
+  async getPaidStatusAndData(txid: string): Promise<{
     isPaid: boolean;
+    total: number;
     chargeCode: string;
   }> {
     try {
@@ -68,35 +65,12 @@ export class Fauna {
       );
       return {
         isPaid: response.data.status === 'PAID',
+        total: response.data.amount,
         chargeCode: response.data.chargeCode,
       };
     } catch (error) {
       console.log('An error occurred while fetching: ', error);
-      return { isPaid: false, chargeCode: null };
-    }
-  }
-
-  async swapTxidByChargeCode(pixCode: string, chargeCode: string) {
-    try {
-      await this.client.query(
-        query.Update(
-          query.Select(
-            ['ref'],
-            query.Get(query.Match(query.Index('pixCode'), pixCode)),
-          ),
-          {
-            data: { chargeCode },
-          },
-        ),
-      );
-      console.log('Succesfully updated charge codes.');
-    } catch (error) {
-      console.log('Document not found. Creating one.');
-      await this.client.query(
-        query.Create(query.Collection('doar-payments'), {
-          data: { pixCode, chargeCode },
-        }),
-      );
+      return { isPaid: false, chargeCode: null, total: 0 };
     }
   }
 }

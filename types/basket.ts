@@ -8,3 +8,9 @@ export type BasketItem = {
   amount: number;
   product: Donation;
 };
+
+export type SimpleBasketItem = {
+  name: string;
+  amount: number;
+  price: number;
+};

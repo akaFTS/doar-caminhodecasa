@@ -33,7 +33,7 @@ export default function Payments({
         <div data-hj-suppress>
           <Card
             number={data.number}
-            name={data.cardname}
+            name={data.holderName}
             expiry={data.expiry}
             cvc={data.cvc}
             focused={focused}
@@ -58,12 +58,12 @@ export default function Payments({
             wrapperClass={styles.input}
           />
           <CheckoutInput
-            name="cardname"
+            name="holderName"
             placeholder="Nome (como consta no cartão)"
             shouldShowError={shouldFlagBlankFields}
-            value={data.cardname}
+            value={data.holderName}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setData({ ...data, cardname: e.target.value })
+              setData({ ...data, holderName: e.target.value })
             }
             onFocus={handleInputFocus}
             wrapperClass={styles.input}

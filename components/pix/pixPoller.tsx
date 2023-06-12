@@ -4,17 +4,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import styles from './pixPoller.module.css';
 
-async function poll(txid: string, onPaid: (chargeCode: string) => void) {
+async function poll(
+  txid: string,
+  onPaid: (total: number, txid: string) => void,
+) {
   const response = await axios.get(`/api/is-paid?txid=${txid}`);
 
   if (response.data.isPaid) {
-    onPaid(response.data.chargeCode);
+    onPaid(response.data.total, response.data.chargeCode);
   }
 }
 
 type Props = {
   txid: string;
-  onPaid: (chargeCode: string) => void;
+  onPaid: (total: number, txid: string) => void;
 };
 
 export default function PixPoller({ txid, onPaid }: Props) {

@@ -6,7 +6,7 @@ export type PersonalData = {
 
 export type CardData = {
   number: string;
-  cardname: string;
+  holderName: string;
   cvc: string;
   expiry: string;
 };
@@ -31,5 +31,4 @@ export type CheckoutError =
   | 'pix_blank'
   | 'server_validation'
   | 'server_card'
-  | 'server_antifraud'
   | 'unknown';

@@ -21,15 +21,9 @@ class NextDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap"
             rel="stylesheet"
           />
-          {/* <script
-      type="text/javascript"
-      src="https://sandbox.boletobancario.com/boletofacil/wro/direct-checkout.min.js"
-    ></script> */}
-
           <script
             async
-            type="text/javascript"
-            src="https://www.boletobancario.com/boletofacil/wro/direct-checkout.min.js"
+            src="https://assets.pagseguro.com.br/checkout-sdk-js/rc/dist/browser/pagseguro.min.js"
           />
         </Head>
         <body>

@@ -1,6 +1,5 @@
-import { Juno } from './utils/juno_utils';
+import { PagBank } from './utils/pagbank_utils';
 import { sanitizePixFields, fieldsAreValid } from './utils/misc_utils';
-import { Buffer } from 'buffer';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(
@@ -16,19 +15,16 @@ export default async function handler(
     return res.status(400).send(null);
   }
 
-  // Initialize Juno access
-  const juno = new Juno();
-  await juno.initHeaders();
-
   // Create charge
-  const data = await juno.createPixCharge(body);
+  const pag = new PagBank();
+  const data = await pag.createPixCharge(body);
   if (data == null) {
     return res.status(500).send(null);
   }
 
   return res.status(200).json({
-    qrcode: data.imagemBase64,
-    copypaste: Buffer.from(data.qrcodeBase64, 'base64').toString(),
+    qrcodeUrl: data.imageUrl,
+    copypaste: data.copypaste,
     txid: data.txid,
   });
 }

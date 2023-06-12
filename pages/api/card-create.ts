@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { matches } from 'validator';
-import { Juno } from './utils/juno_utils';
+import { PagBank } from './utils/pagbank_utils';
 import { sanitizeFields, fieldsAreValid } from './utils/misc_utils';
 
 export default async function handler(
@@ -13,37 +12,28 @@ export default async function handler(
   }
 
   const body = sanitizeFields(req.body);
-  if (!fieldsAreValid(body) || !matches(body.cardHash, /[a-zA-Z0-9-]+/)) {
+  if (!fieldsAreValid(body)) {
     return res.status(400).send(null);
   }
 
-  // Initialize Juno access
-  const juno = new Juno();
-  await juno.initHeaders();
-
   // Create charge and payment
   try {
-    const recordedCharge = await juno.createCardCharge(body);
-    const error = await juno.processCharge(
-      recordedCharge.id,
-      recordedCharge.code,
-      body,
-    );
+    const pag = new PagBank();
+    const response = await pag.createCardCharge(body);
 
-    // Check for errors
-    if (error == null) {
-      return res.status(200).json({ orderNumber: recordedCharge.code });
+    if (response.status === 'SUCCESS') {
+      return res.status(200).json({ orderNumber: response.code });
     }
 
-    if (error === 289999) {
+    if (response.status === 'INVALID') {
+      return res.status(400).send(null);
+    }
+
+    if (response.status === 'REJECTED') {
       return res.status(422).send(null);
     }
 
-    if (error === 503012) {
-      return res.status(403).send(null);
-    }
-
-    throw Error('Unexpected error code found: ', error);
+    throw Error('Unexpected error code found');
   } catch (e) {
     console.log('Error while processing payment: ', e);
     return res.status(500).send(null);

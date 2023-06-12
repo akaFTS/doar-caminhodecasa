@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { Fauna } from './utils/fauna_utils';
-import { sendMail, sendCiclumPixMail } from './utils/mail_utils';
+import { sendMail } from './utils/mail_utils';
 
 export default async function handler(
   req: NextApiRequest,
@@ -11,25 +11,30 @@ export default async function handler(
     return res.status(400).send(null);
   }
 
-  const { attributes } = req.body.data[0];
-  if (attributes.status !== 'PAID') {
+  const { charges } = req.body;
+  if (!charges) {
+    return res.status(200).send(null);
+  }
+
+  const paymentStatus = charges[0].status;
+  const paymentMethod = charges[0].payment_method.type;
+  const chargeCode = charges[0].id.replace(/[^A-Z\d]/g, '').substring(4);
+  if (paymentStatus !== 'PAID') {
     return res.status(200).send(null);
   }
 
   const fauna = new Fauna();
-  if (attributes.pix) {
-    await fauna.updateCharge(attributes.pix.txid, 'pixCode', {
+  if (paymentMethod === 'PIX') {
+    const { qr_codes: qrCodes } = req.body;
+    const txid = qrCodes[0].id;
+    await fauna.updateCharge(txid, {
       status: 'PAID',
-      chargeCode: attributes.code,
-    });
-  } else {
-    await fauna.updateCharge(attributes.code, 'chargeCode', {
-      status: 'PAID',
+      chargeCode,
     });
   }
 
   // Send success mail
-  const charge = await fauna.fetchCharge(attributes.code);
+  const charge = await fauna.fetchCharge(chargeCode);
   await sendMail({
     code: charge.chargeCode,
     name: charge.name,
@@ -39,13 +44,11 @@ export default async function handler(
   });
 
   // Send an email to Ciclum in case of Pix as the default email from Juno contains no information
-  if (attributes.pix) {
-    await sendCiclumPixMail({
-      name: charge.name,
-      amount: charge.amount,
-      email: charge.email,
-    });
-  }
+  // await sendCiclumPixMail({
+  //   name: charge.name,
+  //   amount: charge.amount,
+  //   email: charge.email,
+  // });
 
   return res.status(200).send(null);
 }

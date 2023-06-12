@@ -8,7 +8,14 @@ import BlockButton from 'components/layout/blockButton';
 import ErrorBanner from 'components/checkout/errorBanner';
 import BackButton from 'components/checkout/backButton';
 import { tokenizeCard, anyBlank } from 'utils/paymentUtils';
-import { AddressData, CardData, CheckoutError } from 'types/checkout';
+import {
+  AddressData,
+  CardData,
+  CheckoutError,
+  PersonalData,
+} from 'types/checkout';
+import { FullBodyFields } from 'pages/api/utils/misc_utils';
+import { Basket, SimpleBasketItem } from 'types/basket';
 
 function getErrorNumberFromCode(e: AxiosError): CheckoutError {
   if (!e.response || e.response.status === 400) {
@@ -17,21 +24,27 @@ function getErrorNumberFromCode(e: AxiosError): CheckoutError {
   if (e.response.status === 422) {
     return 'server_card';
   }
-  if (e.response.status === 403) {
-    return 'server_antifraud';
-  }
   return 'unknown';
 }
 
+type Props = {
+  personalData: PersonalData;
+  basket: Basket;
+  onSuccessfulCheckout: (
+    total: number,
+    orderNumber: string,
+    paymentCode: string,
+  ) => void;
+};
+
 export default function CardCheckout({
   personalData,
-  total,
-  description,
+  basket,
   onSuccessfulCheckout,
-}) {
+}: Props) {
   const [cardData, setCardData] = useState<CardData>({
     number: '',
-    cardname: '',
+    holderName: '',
     cvc: '',
     expiry: '',
   });
@@ -48,6 +61,11 @@ export default function CardCheckout({
   const [isProcessing, setProcessing] = useState(false);
   const [error, setError] = useState<CheckoutError>(null);
 
+  const total: number = Object.values(basket).reduce(
+    (acc, current) => acc + current.amount * current.product.price,
+    0,
+  );
+
   const handleFormSubmit = async () => {
     setError(null);
 
@@ -57,25 +75,35 @@ export default function CardCheckout({
       return;
     }
 
+    const items: SimpleBasketItem[] = Object.values(basket).map(
+      (basketItem) => ({
+        name: basketItem.product.name,
+        amount: basketItem.amount,
+        price: basketItem.product.price,
+      }),
+    );
+
     // Send charge request
     try {
       setProcessing(true);
       const cardHash = await tokenizeCard(cardData);
-      const response = await axios.post('/api/card-create', {
+      const payload: FullBodyFields = {
         name: personalData.name,
         cpf: personalData.cpf,
         email: personalData.email,
-        cardHash,
-        total,
-        description,
+        items,
         street: addressData.street,
         streetNumber: addressData.streetNumber,
         complement: addressData.complement,
         city: addressData.city,
         state: addressData.state,
         cep: addressData.cep,
-      });
-      onSuccessfulCheckout(response.data.orderNumber, 'card');
+        cardHash,
+        holderName: cardData.holderName,
+        cvc: cardData.cvc,
+      };
+      const response = await axios.post('/api/card-create', payload);
+      onSuccessfulCheckout(total, response.data.orderNumber, 'card');
     } catch (e) {
       setError(getErrorNumberFromCode(e));
       setProcessing(false);

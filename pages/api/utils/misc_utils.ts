@@ -1,11 +1,11 @@
+import { SimpleBasketItem } from 'types/basket';
 import { escape, isAlpha, isEmail } from 'validator';
 
 export type PixFields = {
   name: string;
   email: string;
   cpf: string;
-  total: number;
-  description: string;
+  items: SimpleBasketItem[];
 };
 
 export type FullBodyFields = PixFields & {
@@ -16,6 +16,8 @@ export type FullBodyFields = PixFields & {
   state: string;
   cep: string;
   cardHash: string;
+  holderName: string;
+  cvc: string;
 };
 
 export type Charge = {
@@ -27,6 +29,14 @@ export type Charge = {
   paymentType: 'CREDIT_CARD' | 'PIX';
   status: 'PENDING' | 'PAID' | 'DENIED';
 };
+
+function sanitizeItems(items: SimpleBasketItem[]): SimpleBasketItem[] {
+  return items.map((item) => ({
+    name: escape(item.name),
+    price: parseInt(escape(`${item.price}`), 10),
+    amount: parseInt(escape(`${item.amount}`), 10),
+  }));
+}
 
 function checkCPF(cpf: string): boolean {
   let cleanCpf = cpf.replace(/[^\d]+/g, '');
@@ -77,8 +87,7 @@ export function sanitizePixFields(body: PixFields): PixFields {
     name: escape(body.name),
     email: escape(body.email),
     cpf: escape(body.cpf.replace(/[.-]/g, '')),
-    total: parseInt(escape(`${body.total}`), 10),
-    description: escape(body.description),
+    items: sanitizeItems(body.items),
   };
 }
 
@@ -92,6 +101,8 @@ export function sanitizeFields(body: FullBodyFields): FullBodyFields {
     state: escape(body.state),
     cep: escape(body.cep),
     cardHash: body.cardHash,
+    holderName: escape(body.holderName),
+    cvc: escape(`${body.cvc}`),
   };
 }
 
@@ -109,4 +120,20 @@ export function fieldsAreValid(body: PixFields): boolean {
   }
 
   return true;
+}
+
+export function descriptionFromItems(items: SimpleBasketItem[]): string {
+  return items
+    .map(
+      (item) =>
+        `${item.name} x${item.amount} : R$${item.amount * item.price},00`,
+    )
+    .join(' - ');
+}
+
+export function totalFromItems(items: SimpleBasketItem[]): number {
+  return items.reduce(
+    (acc, current) => acc + current.amount * current.price,
+    0,
+  );
 }

@@ -25,21 +25,8 @@ export default function CardPaymentPage() {
     return <Redirect to="/dados-pessoais" />;
   }
 
-  const total: number = Object.values(basket).reduce(
-    (acc, current) => acc + current.amount * current.product.price,
-    0,
-  );
-
-  const description: string = Object.values(basket)
-    .map(
-      (obj) =>
-        `${obj.product.name} x${obj.amount} : R$${
-          obj.amount * obj.product.price
-        },00`,
-    )
-    .join(' - ');
-
   const handleSuccessfulCheckout = (
+    total: number,
     orderNumber: string,
     paymentCode: string,
   ) => {
@@ -58,8 +45,7 @@ export default function CardPaymentPage() {
       </Head>
       <CardCheckout
         personalData={personalData}
-        total={total}
-        description={description}
+        basket={basket}
         onSuccessfulCheckout={handleSuccessfulCheckout}
       />
     </>

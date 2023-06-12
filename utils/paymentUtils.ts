@@ -54,36 +54,28 @@ export function formatExpirationDate(value: string): string {
 
 export function tokenizeCard({
   number,
-  cardname,
+  holderName,
   cvc,
   expiry,
 }): Promise<string> {
-  // Sandbox
-  // const checkout = new DirectCheckout(
-  //   "3A17C3AB5700A8BCE54167690CF4605A061444C2D5484F975C719ED71D0D476B",
-  //   false
-  // );
+  // eslint-disable-next-line
+  const prodKey =
+    'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhTrfoaDYFWq05KQ2DVOj1cUouwAdu0SfLihML6XzH5qa+xdf6LixreT8A0p29y7eePRUsj77M9qZfgFmuE4dcWJoOB8jqDgwmzXtzAQLFj3oEZ2eqAkqsPpQgotIIYntHqu9dwPwaXnLgQIECTaAdhownr8ZYJuPOxXflT2+za7PZchXNFo+wyvpqiSkPNAu7KUAGY08c+zP77vAtQKXEiL9DjieXR2pQJsnkswl2O/094+KI/d6l7+0dPS6i/m/HNc1Q4zzWFDD6IoHWnmkUwoL690B1Zy8g3y5ah97juY//zzJK257x05uskgRKFMljWE+1Bt3jynz75k3tnFpawIDAQAB';
+  // eslint-disable-next-line
+  const sandboxKey =
+    'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAr+ZqgD892U9/HXsa7XqBZUayPquAfh9xx4iwUbTSUAvTlmiXFQNTp0Bvt/5vK2FhMj39qSv1zi2OuBjvW38q1E374nzx6NNBL5JosV0+SDINTlCG0cmigHuBOyWzYmjgca+mtQu4WczCaApNaSuVqgb8u7Bd9GCOL4YJotvV5+81frlSwQXralhwRzGhj/A57CGPgGKiuPT+AOGmykIGEZsSD9RKkyoKIoc0OS8CPIzdBOtTQCIwrLn2FxI83Clcg55W8gkFSOS6rWNbG5qFZWMll6yl02HtunalHmUlRUL66YeGXdMDC2PuRcmZbGO5a/2tbVppW6mfSWG3NPRpgwIDAQAB';
 
-  // Production
-  // eslint-disable-next-line no-undef
-  // @ts-ignore
-  const checkout = new DirectCheckout(
-    'EAE13EE6623EEC3F1C9381124D6EBE79D2B3579398D7BF0B47CF187137FACCBC217982970CA6740E',
-  );
-
-  const cardData = {
-    cardNumber: number.replace(/\D/g, ''),
-    holderName: cardname,
+  // @ts-ignore: Globally included in _document.tsx
+  const card = PagSeguro.encryptCard({
+    publicKey: sandboxKey,
+    holder: holderName,
+    number: number.replace(/\D/g, ''),
+    expMonth: expiry.substring(0, 2),
+    expYear: `20${expiry.substring(3, 5)}`,
     securityCode: cvc,
-    expirationMonth: expiry.substring(0, 2),
-    expirationYear: `20${expiry.substring(3, 5)}`,
-  };
-
-  const cardPromise = new Promise<string>((resolve, reject) => {
-    checkout.getCardHash(cardData, resolve, reject);
   });
 
-  return cardPromise;
+  return card.encryptedCard;
 }
 
 export function anyBlank(obj: Object, except: string[] = []): boolean {

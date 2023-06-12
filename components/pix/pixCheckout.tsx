@@ -9,23 +9,22 @@ import PixPoller from './pixPoller';
 import BackButton from 'components/checkout/backButton';
 import ErrorBanner from 'components/checkout/errorBanner';
 import { CheckoutError, PersonalData } from 'types/checkout';
+import { Basket, SimpleBasketItem } from 'types/basket';
 
 type Props = {
   personalData: PersonalData;
-  total: number;
-  description: string;
-  onSuccessfulCheckout: (orderNumber: string) => void;
+  basket: Basket;
+  onSuccessfulCheckout: (total: number, orderNumber: string) => void;
 };
 
 export default function PixCheckout({
   personalData,
-  total,
-  description,
+  basket,
   onSuccessfulCheckout,
 }: Props) {
   const [isProcessing, setProcessing] = useState(false);
   const [error, setError] = useState<CheckoutError>(null);
-  const [qrcode, setQrcode] = useState('');
+  const [qrcodeUrl, setQrcodeUrl] = useState('');
   const [copypaste, setCopypaste] = useState('');
   const [txid, setTxid] = useState('');
 
@@ -33,17 +32,24 @@ export default function PixCheckout({
     if (isProcessing) return;
     setError(null);
 
+    const items: SimpleBasketItem[] = Object.values(basket).map(
+      (basketItem) => ({
+        name: basketItem.product.name,
+        amount: basketItem.amount,
+        price: basketItem.product.price,
+      }),
+    );
+
     try {
       setProcessing(true);
       const response = await axios.post('/api/pix-create', {
         name: personalData.name,
         cpf: personalData.cpf,
         email: personalData.email,
-        total,
-        description,
+        items,
       });
 
-      setQrcode(response.data.qrcode);
+      setQrcodeUrl(response.data.qrcodeUrl);
       setCopypaste(response.data.copypaste);
       setTxid(response.data.txid);
     } catch (e) {
@@ -68,19 +74,19 @@ export default function PixCheckout({
       <div className={styles.container}>
         <div className={styles.tip} />
         <div className={styles.pixWrapper}>
-          {qrcode === '' ? (
+          {qrcodeUrl === '' ? (
             <PixButton
               onButtonPressed={grabPixCode}
               isProcessing={isProcessing}
             />
           ) : (
             <div className={styles.innerWrapper}>
-              <PixCode code={qrcode} />
+              <PixCode codeUrl={qrcodeUrl} />
               <PixCopyPaste copyPasteCode={copypaste} />
             </div>
           )}
         </div>
-        {qrcode !== '' && <PixInstructions />}
+        {qrcodeUrl !== '' && <PixInstructions />}
       </div>
       {txid !== '' && <PixPoller txid={txid} onPaid={onSuccessfulCheckout} />}
       {error !== null && <ErrorBanner error={error} />}

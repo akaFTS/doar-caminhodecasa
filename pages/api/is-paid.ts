@@ -12,6 +12,6 @@ export default async function handler(
 
   const txid = req.query.txid as string;
   const fauna = new Fauna();
-  const { isPaid, chargeCode } = await fauna.getPaidStatusAndChargeCode(txid);
-  return res.status(200).json({ isPaid, chargeCode });
+  const data = await fauna.getPaidStatusAndData(txid);
+  return res.status(200).json(data);
 }

@@ -24,9 +24,7 @@ function getErrorMessageFromCode(code: CheckoutError) {
     case 'server_validation':
       return 'Não foi possível completar sua doação. Verifique seus dados e tente novamente, ou utilize o Pix.';
     case 'server_card':
-      return 'Não foi possível completar sua doação com este cartão. Por favor, tente novamente com outro.';
-    case 'server_antifraud':
-      return 'Não foi possível autorizar o pagamento neste cartão. Tente novamente com outro ou utilize o Pix.';
+      return 'Não foi possível autorizar o pagamento neste cartão. Por favor, tente novamente com outro ou utilize o Pix.';
     case 'unknown':
       return 'Ocorreu um erro interno. Por favor, tente novamente mais tarde.';
     default:

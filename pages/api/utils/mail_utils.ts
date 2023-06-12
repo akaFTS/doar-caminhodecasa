@@ -45,9 +45,12 @@ export async function sendMail(info: MailInfo) {
     tags: { img: { format: 'skip' } },
   });
 
+  console.log('will be sending mail');
+
   await getTransport().sendMail({
     from: '"Associação Caminho de Casa" <atendimento@caminhodecasa.org.br>',
     to: info.email,
+    bcc: 'carlos.alberto@caminhodecasa.org.br',
     subject: 'Obrigado por sua doação!',
     text: textVersion,
     html: htmlVersion,
