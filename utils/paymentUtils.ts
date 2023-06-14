@@ -67,7 +67,7 @@ export function tokenizeCard({
 
   // @ts-ignore: Globally included in _document.tsx
   const card = PagSeguro.encryptCard({
-    publicKey: sandboxKey,
+    publicKey: prodKey,
     holder: holderName,
     number: number.replace(/\D/g, ''),
     expMonth: expiry.substring(0, 2),
