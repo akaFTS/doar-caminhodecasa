@@ -35,7 +35,7 @@
     - slug: leite
       name: Kit Leite + Mucilon
       picture: leite.png
-      price: 30
+      price: 5
 
 - name: Projeto Acolher
   slug: acolher

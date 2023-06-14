@@ -8,7 +8,7 @@ import {
   totalFromItems,
 } from './misc_utils';
 
-const IS_SANDBOX = true;
+const IS_SANDBOX = false;
 const NOTIFICATION_URL = 'https://doar.caminhodecasa.org.br/api/pay-hook';
 
 type PixResponse = {
@@ -164,8 +164,6 @@ export class PagBank {
         (link) => link.rel === 'QRCODE.PNG',
       );
       const imageUrl = imageUrlLink?.href ?? '';
-
-      console.log(txid);
 
       // Save charge to FaunaDB with temporary pix code
       await this.fauna.recordCharge({
