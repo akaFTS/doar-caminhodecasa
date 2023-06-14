@@ -10,6 +10,7 @@ import BackButton from 'components/checkout/backButton';
 import ErrorBanner from 'components/checkout/errorBanner';
 import { CheckoutError, PersonalData } from 'types/checkout';
 import { Basket, SimpleBasketItem } from 'types/basket';
+import PagSeguroDisclaimer from 'components/layout/pagSeguroDisclaimer';
 
 type Props = {
   personalData: PersonalData;
@@ -90,6 +91,7 @@ export default function PixCheckout({
       </div>
       {txid !== '' && <PixPoller txid={txid} onPaid={onSuccessfulCheckout} />}
       {error !== null && <ErrorBanner error={error} />}
+      <PagSeguroDisclaimer />
     </main>
   );
 }

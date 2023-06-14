@@ -16,6 +16,7 @@ import {
 } from 'types/checkout';
 import { FullBodyFields } from 'pages/api/utils/misc_utils';
 import { Basket, SimpleBasketItem } from 'types/basket';
+import PagSeguroDisclaimer from 'components/layout/pagSeguroDisclaimer';
 
 function getErrorNumberFromCode(e: AxiosError): CheckoutError {
   if (!e.response || e.response.status === 400) {
@@ -135,6 +136,7 @@ export default function CardCheckout({
             onClick={handleFormSubmit}
           />
         </div>
+        <PagSeguroDisclaimer />
       </form>
     </main>
   );
