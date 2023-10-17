@@ -73,7 +73,6 @@
 
 - name: Comida é Vida
   slug: comida-vida
-  featured: true
   short_description: A campanha contra a fome da Associação Caminho de Casa.
   long_description: >-
     Comida é Vida, a vacina contra a fome da Associação Caminho de Casa, tem por
@@ -108,31 +107,32 @@
 
 - name: Sacolinhas de Natal
   slug: sacolinhas
+  featured: true
   short_description: Ajude a trazer a alegria do Natal para mais de 1200 crianças.
   long_description: >-
     Na medida em que se aproxima o Natal, começamos a perceber uma energia
     positiva que vai contagiando a todos e trazendo à tona os sentimentos de
     fraternidade e compaixão. Com o apoio desses corações generosos, a campanha
     Sacolinhas de Natal tem garantido todos os anos um Natal mais feliz para
-    milhares de crianças.#Neste ano de 2022 a nossa meta é preparar 1.200
-    sacolinhas de Natal para crianças de 0 a 10 anos em 6 comunidades assistidas
-    pela Associação Caminho de Casa: Bela Vista, Buraco do Tatu, Chácara dos
-    Baianos, Chácara Três Meninas, Esmaga-sapo e Kampala.#Os valores arrecadados
+    milhares de crianças.#Neste ano de 2023 a nossa meta é preparar 1.200
+    sacolinhas de Natal para crianças de 0 a 10 anos nas comunidades assistidas
+    pela Associação Caminho de Casa: Bela Vista, Chácara Três Meninas,
+    Jundiapeba, Kampala e Pontilhão da Penha.#Os valores arrecadados
     serão integralmente convertidos em presentes, brinquedos, material escolar,
     livros, material de higiene, fraldas e enxovais e enviados aos núcleos de
     voluntários dentro das comunidades, que farão a montagem das sacolinhas, a
     festa de Natal e a entrega para as crianças cadastradas.#Há muito o que
     fazer e contamos com a generosidade de todos para movimentar essa engrenagem
     do bem!
-  cover_picture: sacolinhas-cover.png
+  cover_picture: sacolinhas-cover.jpg
   slide_pictures:
-    - sacolinhas-1.png
-    - sacolinhas-2.png
+    - sacolinhas-1.jpg
+    - sacolinhas-2.jpg
     - sacolinhas-3.png
-    - sacolinhas-4.png
+    - sacolinhas-4.jpg
     - sacolinhas-5.png
   donations:
     - slug: sacolinha
       name: Sacolinha de Natal
       picture: sacolinha-item.png
-      price: 120
+      price: 140
