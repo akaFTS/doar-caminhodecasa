@@ -28,7 +28,7 @@ function importMJML({ code, name, amount, paymentType }: MailInfo): string {
 
 function getTransport(): Transporter {
   return createTransport({
-    host: 'mail.caminhodecasa.org.br',
+    host: '66.206.23.186',
     port: 587,
     secure: false,
     auth: {
