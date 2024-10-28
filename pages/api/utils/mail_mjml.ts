@@ -6,7 +6,7 @@ export default `<mjml>
     <mj-column>
       <mj-image
         padding="0px 0px"
-        src="https://i.imgur.com/kYvKjuy.jpg"
+        src="https://i.imgur.com/8i0J9lP.png"
       ></mj-image>
     </mj-column>
   </mj-section>
