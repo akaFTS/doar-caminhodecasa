@@ -47,14 +47,16 @@ export async function sendMail(info: MailInfo) {
 
   console.log('will be sending mail');
 
-  await getTransport().sendMail({
-    from: '"Associação Caminho de Casa" <atendimento@caminhodecasa.org.br>',
+  const output = await getTransport().sendMail({
+    from: '"Associação Caminho de Casa" <caminhodecasa@ciclum.net>',
     to: info.email,
     bcc: 'carlos.alberto@caminhodecasa.org.br',
     subject: 'Obrigado por sua doação!',
     text: textVersion,
     html: htmlVersion,
   });
+
+  console.log(output);
 }
 
 export async function sendCiclumPixMail(info: MailInfo) {
