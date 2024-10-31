@@ -28,11 +28,11 @@ function importMJML({ code, name, amount, paymentType }: MailInfo): string {
 
 function getTransport(): Transporter {
   return createTransport({
-    host: '66.206.23.186',
+    host: '54.94.150.100',
     port: 587,
     secure: false,
     auth: {
-      user: 'carlos.alberto@caminhodecasa.org.br',
+      user: 'carlos',
       pass: env.MAIL_PASSWORD,
     },
     ignoreTLS: true,
