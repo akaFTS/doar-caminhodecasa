@@ -39,8 +39,11 @@ export default function CampaignEntry({ campaign }: Props) {
           <p>a partir de</p>
           <h4>R${lowestDonation},00</h4>
         </div>
-        <Link href={`/projetos/${campaign.slug}`}>
-          <a className={styles.donateButton}>Conhecer</a>
+        <Link
+          href={`/projetos/${campaign.slug}`}
+          className={styles.donateButton}
+        >
+          Conhecer
         </Link>
       </footer>
     </article>

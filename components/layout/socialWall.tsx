@@ -36,6 +36,16 @@ export default function SocialWall() {
       img.className = 'j-logo';
       el.prepend(img);
     });
+
+    // Remove the Juicer ads
+    const ads = Array.from(document.querySelectorAll('.juicer-about'));
+    ads.forEach((el) => {
+      el.remove();
+    });
+
+    // Remove the "Load More" button
+    const more = document.querySelector('.j-paginate');
+    more.remove();
   }, [isLoaded]);
 
   const wallRef = useRef();

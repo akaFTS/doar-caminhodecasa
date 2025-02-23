@@ -11,11 +11,9 @@ type Props = {
 
 export default function BackButton({ text, path }: Props) {
   return (
-    <Link href={path}>
-      <a className={styles.button}>
-        <FontAwesomeIcon className={styles.chevron} icon={faChevronLeft} />
-        <span>{text}</span>
-      </a>
+    <Link href={path} className={styles.button}>
+      <FontAwesomeIcon className={styles.chevron} icon={faChevronLeft} />
+      <span>{text}</span>
     </Link>
   );
 }

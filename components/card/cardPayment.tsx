@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Card from 'react-credit-cards';
+import Cards, { Focused } from 'react-credit-cards-2';
 import styles from './cardPayment.module.css';
-import 'react-credit-cards/es/styles-compiled.css';
+import 'react-credit-cards-2/dist/es/styles-compiled.css';
 import CheckoutInput from 'components/checkout/checkoutInput';
 import {
   formatCreditCardNumber,
@@ -16,22 +16,30 @@ type Props = {
   setData: (data: CardData) => void;
 };
 
+function isFocused(str: string): str is Focused {
+  return (
+    str === 'cvc' || str === 'expiry' || str === 'name' || str === 'number'
+  );
+}
+
 export default function Payments({
   data,
   setData,
   shouldFlagBlankFields,
 }: Props) {
-  const [focused, setFocused] = useState('');
+  const [focused, setFocused] = useState<Focused>('');
 
   const handleInputFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-    setFocused(e.target.name);
+    if (isFocused(e.target.name)) {
+      setFocused(e.target.name);
+    }
   };
 
   return (
     <div>
       <div className={styles.cardWrap}>
         <div data-hj-suppress>
-          <Card
+          <Cards
             number={data.number}
             name={data.holderName}
             expiry={data.expiry}

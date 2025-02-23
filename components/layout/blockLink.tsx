@@ -10,10 +10,11 @@ type Props = {
 
 export default function BlockLink({ to, text, secondary }: Props) {
   return (
-    <Link href={to}>
-      <a className={`${styles.button} ${secondary ? styles.secondary : ''}`}>
-        <span>{text}</span>
-      </a>
+    <Link
+      href={to}
+      className={`${styles.button} ${secondary ? styles.secondary : ''}`}
+    >
+      <span>{text}</span>
     </Link>
   );
 }

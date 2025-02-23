@@ -10,8 +10,8 @@ export default function EmptyBasket() {
       <div className={styles.box}>
         <h3>Sua cesta está vazia!</h3>
         <p>Conheça nossos projetos e faça sua contribuição.</p>
-        <Link href="/#projetos">
-          <a className={styles.donateButton}>VER PROJETOS</a>
+        <Link href="/#projetos" className={styles.donateButton}>
+          VER PROJETOS
         </Link>
       </div>
     </main>

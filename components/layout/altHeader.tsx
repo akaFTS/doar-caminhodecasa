@@ -28,16 +28,14 @@ export default function AltHeader() {
       <div className={styles.headerInside}>
         <div className={styles.bar}>
           <div className={styles.leftBar}>
-            <Link href="/">
-              <a className={styles.logoWrap}>
-                <Image
-                  layout="responsive"
-                  src={logo}
-                  alt="Logotipo da Associação"
-                  sizes="6rem"
-                  placeholder="blur"
-                />
-              </a>
+            <Link href="/" className={styles.logoWrap}>
+              <Image
+                layout="responsive"
+                src={logo}
+                alt="Logotipo da Associação"
+                sizes="6rem"
+                placeholder="blur"
+              />
             </Link>
             <div className={styles.call}>
               <h2>
@@ -47,15 +45,13 @@ export default function AltHeader() {
             </div>
           </div>
           <div className={styles.buttonBar}>
-            <Link href="/cesta">
-              <a className={styles.barItem}>
-                {Object.keys(basket).length > 0 ? (
-                  <span className={styles.badge}>
-                    {Object.keys(basket).length}
-                  </span>
-                ) : null}{' '}
-                Minha Cesta
-              </a>
+            <Link href="/cesta" className={styles.barItem}>
+              {Object.keys(basket).length > 0 ? (
+                <span className={styles.badge}>
+                  {Object.keys(basket).length}
+                </span>
+              ) : null}{' '}
+              Minha Cesta
             </Link>
             <div className={styles.separator} />
             <a

@@ -15,25 +15,21 @@ export default function Header() {
 
   return (
     <header className={styles.header}>
-      <Link href="/">
-        <a className={styles.logoWrap}>
-          <Image
-            layout="responsive"
-            src={logo}
-            alt="Logotipo da Associação"
-            sizes="6rem"
-            placeholder="blur"
-          />
-        </a>
+      <Link href="/" className={styles.logoWrap}>
+        <Image
+          layout="responsive"
+          src={logo}
+          alt="Logotipo da Associação"
+          sizes="6rem"
+          placeholder="blur"
+        />
       </Link>
       <div className={styles.buttonBar}>
-        <Link href="/cesta">
-          <a className={styles.barItem}>
-            {Object.keys(basket).length > 0 ? (
-              <span className={styles.badge}>{Object.keys(basket).length}</span>
-            ) : null}{' '}
-            Minha Cesta
-          </a>
+        <Link href="/cesta" className={styles.barItem}>
+          {Object.keys(basket).length > 0 ? (
+            <span className={styles.badge}>{Object.keys(basket).length}</span>
+          ) : null}{' '}
+          Minha Cesta
         </Link>
         <div className={styles.separator} />
         <a
