@@ -47,7 +47,7 @@
     "validator": "^13.5.2"
   },
   "devDependencies": {
-    "@netlify/plugin-nextjs": "^4.40.1",
+    "@netlify/plugin-nextjs": "^5.9.4",
     "@next/bundle-analyzer": "^12.2.3",
     "@types/nodemailer": "^6.4.5",
     "@types/react": "^18.3.18",
