@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import logo from 'public/logo.png';
 import styles from './footer.module.css';
 
@@ -10,11 +10,14 @@ export default function Footer() {
         <div className={styles.flexBlock}>
           <div className={styles.logoWrap}>
             <Image
-              layout="responsive"
               src={logo}
               alt="Logotipo da Associação"
-              sizes="6rem"
               placeholder="blur"
+              sizes="6rem"
+              style={{
+                width: '100%',
+                height: 'auto',
+              }}
             />
           </div>
           <div className={styles.text}>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import styles from './donationEntry.module.css';
 import { useBasket } from 'contexts/basketContext';
 import { Donation } from 'types/campaigns';
@@ -27,12 +27,15 @@ export default function DonationEntry({ donation }: Props) {
     <div className={styles.container}>
       <div className={styles.imageSlot}>
         <Image
-          layout="responsive"
           src={`/${donation.picture}`}
           alt=""
           width={120}
           height={120}
           sizes="6rem"
+          style={{
+            width: '100%',
+            height: 'auto',
+          }}
         />
       </div>
       <div className={styles.info}>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import cx from 'classnames';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import Autoplay from 'embla-carousel-autoplay';
 import useEmblaCarousel from 'embla-carousel-react';
 import styles from './campaignCarousel.module.css';
@@ -32,12 +32,15 @@ export default function CampaignCarousel({ slidePictures }: Props) {
           {slidePictures.map((picture) => (
             <div key={picture} className={styles.slide}>
               <Image
-                layout="responsive"
                 src={`/${picture}`}
                 alt=""
                 width={400}
                 height={400}
                 sizes="30rem"
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                }}
               />
             </div>
           ))}

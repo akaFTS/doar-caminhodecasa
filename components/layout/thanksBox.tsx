@@ -4,7 +4,7 @@ import {
   faInstagram,
 } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import styles from './thanksBox.module.css';
 import thanks from 'public/new-thanks.jpg';
 
@@ -25,7 +25,7 @@ export default function ThanksBox({
     <main className={styles.main}>
       <div className={styles.box}>
         <header className={styles.header}>
-          <Image layout="fill" src={thanks} alt="" />
+          <Image src={thanks} alt="" fill sizes="100vw" />
         </header>
         <main className={styles.content}>
           <h2>Obrigado!</h2>

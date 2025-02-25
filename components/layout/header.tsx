@@ -5,7 +5,7 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import logo from 'public/logo.png';
 import styles from './header.module.css';
 import { useBasket } from 'contexts/basketContext';
@@ -17,11 +17,14 @@ export default function Header() {
     <header className={styles.header}>
       <Link href="/" className={styles.logoWrap}>
         <Image
-          layout="responsive"
           src={logo}
           alt="Logotipo da Associação"
-          sizes="6rem"
           placeholder="blur"
+          sizes="6rem"
+          style={{
+            width: '100%',
+            height: 'auto',
+          }}
         />
       </Link>
       <div className={styles.buttonBar}>

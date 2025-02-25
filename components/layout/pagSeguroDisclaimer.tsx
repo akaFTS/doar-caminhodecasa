@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './pagSeguroDisclaimer.module.css';
 import pagseguro from 'public/pagseguro.png';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 
 export default function PagSeguroDisclaimer() {
   return (
@@ -9,11 +9,14 @@ export default function PagSeguroDisclaimer() {
       <span className={styles.text}>powered by</span>
       <div className={styles.logoWrap}>
         <Image
-          layout="responsive"
           src={pagseguro}
           alt="Logotipo do PagSeguro"
-          sizes="6rem"
           placeholder="blur"
+          sizes="6rem"
+          style={{
+            width: '100%',
+            height: 'auto',
+          }}
         />
       </div>
     </div>

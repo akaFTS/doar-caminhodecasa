@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import Link from 'next/link';
 import styles from './campaignEntry.module.css';
 import { Campaign } from 'types/campaigns';
@@ -18,10 +18,10 @@ export default function CampaignEntry({ campaign }: Props) {
     <article className={styles.campaign}>
       <header className={styles.header}>
         <Image
-          layout="fill"
           className={styles.cover}
           src={`/${campaign.cover_picture}`}
           alt=""
+          fill
           sizes="300px"
         />
       </header>

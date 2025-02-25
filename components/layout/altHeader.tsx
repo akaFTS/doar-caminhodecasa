@@ -5,7 +5,7 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import logo from 'public/logo.png';
 import cover from 'public/hero-back.png';
 import styles from './altHeader.module.css';
@@ -17,24 +17,30 @@ export default function AltHeader() {
   return (
     <header className={styles.header}>
       <Image
-        layout="fill"
         src={cover}
         alt=""
         className={styles.cover}
-        objectFit="cover"
-        objectPosition="center"
         priority
+        fill
+        sizes="100vw"
+        style={{
+          objectFit: 'cover',
+          objectPosition: 'center',
+        }}
       />
       <div className={styles.headerInside}>
         <div className={styles.bar}>
           <div className={styles.leftBar}>
             <Link href="/" className={styles.logoWrap}>
               <Image
-                layout="responsive"
                 src={logo}
                 alt="Logotipo da Associação"
-                sizes="6rem"
                 placeholder="blur"
+                sizes="6rem"
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                }}
               />
             </Link>
             <div className={styles.call}>
