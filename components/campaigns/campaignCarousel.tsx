@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import cx from 'classnames';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import Autoplay from 'embla-carousel-autoplay';
 import useEmblaCarousel from 'embla-carousel-react';
 import styles from './campaignCarousel.module.css';

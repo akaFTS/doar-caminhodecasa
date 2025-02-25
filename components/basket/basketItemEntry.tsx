@@ -1,7 +1,7 @@
 import React from 'react';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import styles from './basketItemEntry.module.css';
 import { BasketItem } from 'types/basket';
 

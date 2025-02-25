@@ -5,7 +5,7 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import logo from 'public/logo.png';
 import styles from './header.module.css';
 import { useBasket } from 'contexts/basketContext';
