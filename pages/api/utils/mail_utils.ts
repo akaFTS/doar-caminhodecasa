@@ -45,27 +45,16 @@ export async function sendMail(info: MailInfo) {
     tags: { img: { format: 'skip' } },
   });
 
-  console.log('will be sending mail');
-
-  const output = await getTransport().sendMail({
-    from: '"Associação Caminho de Casa" <caminhodecasa@ciclum.net>',
-    to: info.email,
-    bcc: 'carlos.alberto@caminhodecasa.org.br',
-    subject: 'Obrigado por sua doação!',
-    text: textVersion,
-    html: htmlVersion,
-  });
-
-  console.log(output);
-}
-
-export async function sendCiclumPixMail(info: MailInfo) {
-  const htmlVersion = `Você recebeu uma transação Pix.<br />Nome: ${info.name}<br />Email: ${info.email}<br />Valor: R$${info.amount},00`;
-
-  await getTransport().sendMail({
-    from: '"Associação Caminho de Casa" <atendimento@caminhodecasa.org.br>',
-    to: 'consultoria@ciclum.net',
-    subject: 'Novo Pix recebido',
-    html: htmlVersion,
-  });
+  try {
+    await getTransport().sendMail({
+      from: '"Associação Caminho de Casa" <caminhodecasa@ciclum.net>',
+      to: info.email,
+      bcc: 'carlos.alberto@caminhodecasa.org.br',
+      subject: 'Obrigado por sua doação!',
+      text: textVersion,
+      html: htmlVersion,
+    });
+  } catch (error) {
+    console.log("can't send mail - is this a development environment?");
+  }
 }

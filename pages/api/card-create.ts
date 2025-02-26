@@ -1,6 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { PagBank } from './utils/pagbank_utils';
 import { sanitizeFields, fieldsAreValid } from './utils/misc_utils';
+import { Fauna } from './utils/fauna_utils';
+import { sendMail } from './utils/mail_utils';
 
 export default async function handler(
   req: NextApiRequest,
@@ -22,6 +24,17 @@ export default async function handler(
     const response = await pag.createCardCharge(body);
 
     if (response.status === 'SUCCESS') {
+      const fauna = new Fauna();
+
+      const charge = await fauna.fetchCharge(response.code);
+      await sendMail({
+        code: charge.chargeCode,
+        name: charge.name,
+        amount: charge.amount,
+        paymentType: charge.paymentType,
+        email: charge.email,
+      });
+
       return res.status(200).json({ orderNumber: response.code });
     }
 

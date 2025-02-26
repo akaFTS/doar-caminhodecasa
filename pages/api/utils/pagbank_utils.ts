@@ -82,12 +82,11 @@ export class PagBank {
         },
       },
     ];
-    const notificationUrls = [NOTIFICATION_URL];
 
     try {
       const { data } = await this.api.post(
         '/orders',
-        { customer, items, charges, notification_urls: notificationUrls },
+        { customer, items, charges },
         { headers: this.headers },
       );
 

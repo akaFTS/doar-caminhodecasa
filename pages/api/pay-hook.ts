@@ -18,20 +18,25 @@ export default async function handler(
 
   const paymentStatus = charges[0].status;
   const paymentMethod = charges[0].payment_method.type;
-  const chargeCode = charges[0].id.replace(/[^A-Z\d]/g, '').substring(4);
-  if (paymentStatus !== 'PAID') {
+
+  // Ignore non-PIX calls
+  if (paymentStatus !== 'PAID' || paymentMethod !== 'PIX') {
     return res.status(200).send(null);
   }
 
   const fauna = new Fauna();
-  if (paymentMethod === 'PIX') {
-    const { qr_codes: qrCodes } = req.body;
-    const txid = qrCodes[0].id;
-    await fauna.updateCharge(txid, {
-      status: 'PAID',
-      chargeCode,
-    });
+  const { qr_codes: qrCodes } = req.body;
+  const txid = qrCodes[0].id;
+  const transaction = await fauna.getPaidStatusAndData(txid);
+  if (transaction.isPaid) {
+    return res.status(200).send(null);
   }
+
+  const chargeCode = charges[0].id.replace(/[^A-Z\d]/g, '').substring(4);
+  await fauna.updateCharge(txid, {
+    status: 'PAID',
+    chargeCode,
+  });
 
   // Send success mail
   const charge = await fauna.fetchCharge(chargeCode);
@@ -42,13 +47,6 @@ export default async function handler(
     paymentType: charge.paymentType,
     email: charge.email,
   });
-
-  // Send an email to Ciclum in case of Pix as the default email from Juno contains no information
-  // await sendCiclumPixMail({
-  //   name: charge.name,
-  //   amount: charge.amount,
-  //   email: charge.email,
-  // });
 
   return res.status(200).send(null);
 }
