@@ -73,7 +73,6 @@
 
 - name: Comida é Vida
   slug: comida-vida
-  featured: true
   short_description: A campanha contra a fome da Associação Caminho de Casa.
   long_description: >-
     Comida é Vida, a vacina contra a fome da Associação Caminho de Casa, tem por
@@ -108,11 +107,12 @@
 
 - name: Sacolinhas de Natal
   slug: sacolinhas
+  featured: true
   short_description: Ajude a trazer a alegria do Natal para mais de 1200 crianças.
   long_description: >-
-    Sacolinhas de Natal 2024: Espalhe Sorrisos e Esperança 🎅🏽🎁#O Natal é um
+    Sacolinhas de Natal 2025: Espalhe Sorrisos e Esperança 🎅🏽🎁#O Natal é um
     momento mágico que desperta fraternidade e compaixão em cada coração.#Com
-    essa energia, nossa campanha Sacolinhas de Natal 2024 tem o objetivo de
+    essa energia, nossa campanha Sacolinhas de Natal 2025 tem o objetivo de
     garantir um Natal inesquecível para 1.200 crianças de 0 a 10 anos das
     comunidades assistidas por nós: Bela Vista, Buraco do Tatu, Chácara Três
     Meninas, Chaparral, Jundiapeba, Kampala e Morro.#As doações arrecadadas
@@ -131,5 +131,5 @@
   donations:
     - slug: sacolinha
       name: Sacolinha de Natal
-      picture: sacolinha-item.png
-      price: 150
+      picture: sacolinha-item.jpg
+      price: 160
