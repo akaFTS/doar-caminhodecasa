@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Charge {
+  id          Int      @id @default(autoincrement())
+  name        String  
+  email       String
+  amount      Float
+  paymentType PaymentType
+  status      Status
+  pixCode     String?
+  chargeCode  String?
+}
+
+enum PaymentType {
+  CREDIT_CARD
+  PIX
+}
+
+enum Status {
+  PENDING
+  PAID
+  DENIED
+}
