@@ -1,14 +1,12 @@
 import { env } from 'process';
-import { query, Client } from 'faunadb';
+import { PrismaClient } from '@prisma/client';
 import { Charge } from './misc_utils';
 
 export class Fauna {
-  client: Client;
+  prisma: PrismaClient;
 
   constructor() {
-    this.client = new Client({
-      secret: env.FAUNADB_SERVER_SECRET,
-    });
+    this.prisma = new PrismaClient();
   }
 
   async recordCharge(charge: Charge) {
@@ -44,10 +42,9 @@ export class Fauna {
 
   async fetchCharge(chargeCode: string): Promise<Charge> {
     try {
-      const response: { data: Charge } = await this.client.query(
-        query.Get(query.Match(query.Index('chargeCode'), chargeCode)),
-      );
-      return response.data;
+      return await this.prisma.charge.findFirst({
+        where: { chargeCode },
+      });
     } catch (error) {
       console.log('An error occurred while fetching: ', error);
       return null;
@@ -60,13 +57,13 @@ export class Fauna {
     chargeCode: string;
   }> {
     try {
-      const response: { data: Charge } = await this.client.query(
-        query.Get(query.Match(query.Index('pixCode'), txid)),
-      );
+      const charge : Charge = await this.prisma.charge.findFirst({
+        where: { pixCode: txid },
+      });
       return {
-        isPaid: response.data.status === 'PAID',
-        total: response.data.amount,
-        chargeCode: response.data.chargeCode,
+        isPaid: charge.status === 'PAID',
+        total: charge.amount,
+        chargeCode: charge.chargeCode,
       };
     } catch (error) {
       console.log('An error occurred while fetching: ', error);

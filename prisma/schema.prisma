@@ -16,7 +16,11 @@ model Charge {
   status      Status
   pixCode     String?
   chargeCode  String?
+
+  @@index([pixCode])
+  @@index([chargeCode])
 }
+
 
 enum PaymentType {
   CREDIT_CARD
