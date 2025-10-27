@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { PagBank } from './utils/pagbank_utils';
 import { sanitizeFields, fieldsAreValid } from './utils/misc_utils';
-import { Fauna } from './utils/fauna_utils';
+import { PrismaUtils } from './utils/prisma_utils';
 import { sendMail } from './utils/mail_utils';
 
 export default async function handler(
@@ -24,9 +24,9 @@ export default async function handler(
     const response = await pag.createCardCharge(body);
 
     if (response.status === 'SUCCESS') {
-      const fauna = new Fauna();
+      const prisma = new PrismaUtils();
 
-      const charge = await fauna.fetchCharge(response.code);
+      const charge = await prisma.fetchCharge(response.code);
       await sendMail({
         code: charge.chargeCode,
         name: charge.name,

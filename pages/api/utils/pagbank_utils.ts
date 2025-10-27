@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
 import { env } from 'process';
-import { Fauna } from './fauna_utils';
+import { PrismaUtils } from './prisma_utils';
 import {
   FullBodyFields,
   PixFields,
@@ -28,7 +28,7 @@ function getFromEnv(variable: string, useSandbox: boolean): string {
 export class PagBank {
   api: AxiosInstance;
 
-  fauna: Fauna;
+  prisma: PrismaUtils;
 
   headers: {
     Authorization: string;
@@ -41,7 +41,7 @@ export class PagBank {
         : 'https://api.pagseguro.com/',
     });
 
-    this.fauna = new Fauna();
+    this.prisma = new PrismaUtils();
     this.headers = {
       Authorization: getFromEnv('PAGBANK_TOKEN', IS_SANDBOX),
     };
@@ -98,12 +98,12 @@ export class PagBank {
         throw Error('REJECTED');
       }
 
-      // Save charge to FaunaDB
+      // Save charge to DB
       const chargeCode = data.charges[0].id
         .replace(/[^A-Z\d]/g, '')
         .substring(4);
 
-      await this.fauna.recordCharge({
+      await this.prisma.recordCharge({
         chargeCode,
         email: body.email,
         name: body.name,
@@ -164,8 +164,8 @@ export class PagBank {
       );
       const imageUrl = imageUrlLink?.href ?? '';
 
-      // Save charge to FaunaDB with temporary pix code
-      await this.fauna.recordCharge({
+      // Save charge to DB with temporary pix code
+      await this.prisma.recordCharge({
         pixCode: txid,
         email: body.email,
         name: body.name,

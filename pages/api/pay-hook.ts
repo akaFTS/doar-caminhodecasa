@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { Fauna } from './utils/fauna_utils';
+import { PrismaUtils } from './utils/prisma_utils';
 import { sendMail } from './utils/mail_utils';
 
 export default async function handler(
@@ -24,22 +24,22 @@ export default async function handler(
     return res.status(200).send(null);
   }
 
-  const fauna = new Fauna();
+  const prisma = new PrismaUtils();
   const { qr_codes: qrCodes } = req.body;
   const txid = qrCodes[0].id;
-  const transaction = await fauna.getPaidStatusAndData(txid);
+  const transaction = await prisma.getPaidStatusAndData(txid);
   if (transaction.isPaid) {
     return res.status(200).send(null);
   }
 
   const chargeCode = charges[0].id.replace(/[^A-Z\d]/g, '').substring(4);
-  await fauna.updateCharge(txid, {
+  await prisma.updateCharge(txid, {
     status: 'PAID',
     chargeCode,
   });
 
   // Send success mail
-  const charge = await fauna.fetchCharge(chargeCode);
+  const charge = await prisma.fetchCharge(chargeCode);
   await sendMail({
     code: charge.chargeCode,
     name: charge.name,

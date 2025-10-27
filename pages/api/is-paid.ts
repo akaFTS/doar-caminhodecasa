@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { Fauna } from './utils/fauna_utils';
+import { PrismaUtils } from './utils/prisma_utils';
 
 export default async function handler(
   req: NextApiRequest,
@@ -11,7 +11,7 @@ export default async function handler(
   }
 
   const txid = req.query.txid as string;
-  const fauna = new Fauna();
-  const data = await fauna.getPaidStatusAndData(txid);
+  const prisma = new PrismaUtils();
+  const data = await prisma.getPaidStatusAndData(txid);
   return res.status(200).json(data);
 }

@@ -1,5 +1,6 @@
 import { SimpleBasketItem } from 'types/basket';
 import { escape, isAlpha, isEmail } from 'validator';
+import { Prisma } from '@prisma/client';
 
 export type PixFields = {
   name: string;
@@ -20,15 +21,7 @@ export type FullBodyFields = PixFields & {
   cvc: string;
 };
 
-export type Charge = {
-  pixCode?: string;
-  chargeCode?: string;
-  email: string;
-  name: string;
-  amount: number;
-  paymentType: 'CREDIT_CARD' | 'PIX';
-  status: 'PENDING' | 'PAID' | 'DENIED';
-};
+export type Charge = Prisma.ChargeGetPayload<Prisma.ChargeFindFirstArgs>;
 
 function sanitizeItems(items: SimpleBasketItem[]): SimpleBasketItem[] {
   return items.map((item) => ({

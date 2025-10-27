@@ -1,37 +1,31 @@
-import { env } from 'process';
-import { PrismaClient } from '@prisma/client';
-import { Charge } from './misc_utils';
+import { Prisma, PrismaClient, Status } from '@prisma/client';
 
-export class Fauna {
+export class PrismaUtils {
   prisma: PrismaClient;
 
   constructor() {
     this.prisma = new PrismaClient();
   }
 
-  async recordCharge(charge: Charge) {
+  async recordCharge(charge: Prisma.ChargeCreateInput) {
     try {
-      await this.client.query(
-        query.Create(query.Collection('doar-payments'), { data: charge }),
-      );
+      await this.prisma.charge.create({
+        data: charge,
+      });
     } catch (error) {
       console.log('An error occurred while recording: ', error);
     }
   }
 
-  async updateCharge(pixCode: string, updatedChargeFields: Partial<Charge>) {
+  async updateCharge(
+    pixCode: string,
+    updatedChargeFields: Prisma.ChargeUpdateInput,
+  ) {
     try {
-      await this.client.query(
-        query.Update(
-          query.Select(
-            ['ref'],
-            query.Get(query.Match(query.Index('pixCode'), pixCode)),
-          ),
-          {
-            data: { ...updatedChargeFields },
-          },
-        ),
-      );
+      await this.prisma.charge.updateMany({
+        where: { pixCode },
+        data: updatedChargeFields,
+      });
     } catch (error) {
       if (error.errorType === 'NotFound') {
         console.log("Can't find entry.");
@@ -40,7 +34,9 @@ export class Fauna {
     }
   }
 
-  async fetchCharge(chargeCode: string): Promise<Charge> {
+  async fetchCharge(
+    chargeCode: string,
+  ): Promise<Prisma.ChargeGetPayload<Prisma.ChargeFindFirstArgs>> {
     try {
       return await this.prisma.charge.findFirst({
         where: { chargeCode },
@@ -57,11 +53,11 @@ export class Fauna {
     chargeCode: string;
   }> {
     try {
-      const charge : Charge = await this.prisma.charge.findFirst({
+      const charge = await this.prisma.charge.findFirst({
         where: { pixCode: txid },
       });
       return {
-        isPaid: charge.status === 'PAID',
+        isPaid: charge.status === Status.PAID,
         total: charge.amount,
         chargeCode: charge.chargeCode,
       };
