@@ -16,6 +16,7 @@ model Charge {
   status      Status
   pixCode     String?
   chargeCode  String?
+  timestamp   DateTime @default(now())
 }
 
 
