@@ -69,7 +69,7 @@
     - slug: kit-limpeza
       name: Kit Higiene e Limpeza
       picture: limpeza.png
-      price: 20
+      price: 5
 
 - name: Comida é Vida
   slug: comida-vida
