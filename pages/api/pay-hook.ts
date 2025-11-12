@@ -6,6 +6,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
+  res.setHeader('Cache-Control', 'no-store');
+
   // Ignore non-POST calls
   if (req.method !== 'POST') {
     return res.status(400).send(null);
@@ -50,3 +52,5 @@ export default async function handler(
 
   return res.status(200).send(null);
 }
+
+export const revalidate = 0;

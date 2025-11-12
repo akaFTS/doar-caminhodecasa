@@ -5,6 +5,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
+  res.setHeader('Cache-Control', 'no-store');
+
   // Ignore non-GET calls
   if (req.method !== 'GET') {
     return res.status(400).send(null);
@@ -15,3 +17,5 @@ export default async function handler(
   const data = await prisma.getPaidStatusAndData(txid);
   return res.status(200).json(data);
 }
+
+export const revalidate = 0;
