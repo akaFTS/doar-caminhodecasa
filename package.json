@@ -9,7 +9,8 @@
     "lint": "next lint --dir pages --dir components --dir data --dir contexts --dir utils --dir types",
     "typecheck": "tsc",
     "validate": "npm ls",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prisma-generate": "prisma generate"
   },
   "prettier": {
     "singleQuote": true,
