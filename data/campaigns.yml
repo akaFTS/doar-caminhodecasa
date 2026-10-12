@@ -73,7 +73,6 @@
 
 - name: Comida é Vida
   slug: comida-vida
-  featured: true
   short_description: A campanha contra a fome da Associação Caminho de Casa.
   long_description: >-
     Comida é Vida, a vacina contra a fome da Associação Caminho de Casa, tem por
@@ -108,28 +107,30 @@
 
 - name: Sacolinhas de Natal
   slug: sacolinhas
+  featured: true
   short_description: Ajude a trazer a alegria do Natal para mais de 1200 crianças.
   long_description: >-
-    Sacolinhas de Natal 2025: Espalhe Sorrisos e Esperança 🎅🏽🎁#O Natal é um
+    Sacolinhas de Natal 2026: Espalhe Sorrisos e Esperança 🎅🏽🎁#O Natal é um
     momento mágico que desperta fraternidade e compaixão em cada coração.#Com
-    essa energia, nossa campanha Sacolinhas de Natal 2025 tem o objetivo de
-    garantir um Natal inesquecível para 1.200 crianças de 0 a 10 anos das
-    comunidades assistidas por nós: Bela Vista, Buraco do Tatu, Chácara Três
-    Meninas, Chácara dos Baianos, Chaparral, Kampala, Limoeiro, Vila Flávia
-    e Morro.#As doações arrecadadas serão convertidas em brinquedos, doces,
-    materiais escolares, livros, enxovais de bebê, fraldas, kits de higiene,
-    roupas e calçados, entregues por nossos voluntários em festas natalinas
-    cheias de alegria.#Contamos com a sua generosidade para transformar vidas!#Um
-    pequeno gesto pode trazer um grande sorriso.#Doe agora e faça parte dessa
-    corrente de amor. 🌟
+    essa energia, nossa campanha Sacolinhas de Natal 2026 tem o objetivo de
+    garantir um Natal inesquecível para 1.600 crianças de 1 a 10 anos das
+    comunidades assistidas pela Associação Caminho de Casa: Bela Vista, Buraco
+    do Tatu, Chácara Três Meninas, Chácara dos Baianos, Chaparral, Kampala,
+    Limoeiro, Vila Aimoré, Vila Flávia e Morro.#As doações arrecadadas
+    serão convertidas em brinquedos, doces, materiais escolares, livros,
+    enxovais de bebê, fraldas, kits de higiene, roupas e calçados, cestas de
+    almoço + proteína para as famílias e festas natalinas com lanches,
+    refrigerantes, brinquedões, muita alegria e diversão.#Contamos com a sua
+    generosidade para transformar vidas!#Um pequeno gesto pode trazer enormes
+    sorrisos. 😊#Doe agora e faça parte dessa corrente de amor. 🌟
   cover_picture: sacolinhas-cover.jpg
   slide_pictures:
-    - sacolinhas-1.jpg
+    - sacolinhas-1.png
     - sacolinhas-2.jpg
     - sacolinhas-3.png
     - sacolinhas-5.png
   donations:
     - slug: sacolinha
       name: Sacolinha de Natal
-      picture: sacolinha-item.jpg
+      picture: sacolinha-item.png
       price: 160

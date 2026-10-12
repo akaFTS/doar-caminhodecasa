@@ -44,8 +44,8 @@ export default function SocialWall() {
     });
 
     // Remove the "Load More" button
-    const more = document.querySelector('.j-paginate');
-    more.remove();
+    // const more = document.querySelector('.j-paginate');
+    // more.remove();
   }, [isLoaded]);
 
   const wallRef = useRef();
