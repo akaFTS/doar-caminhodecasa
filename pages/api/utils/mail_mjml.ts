@@ -1,4 +1,5 @@
 // Old thanks image: https://i.imgur.com/0uBmv64.jpeg
+// Old sacolinhas image: https://i.imgur.com/8i0J9lP.png
 
 export default `<mjml>
 <mj-body>
@@ -6,7 +7,7 @@ export default `<mjml>
     <mj-column>
       <mj-image
         padding="0px 0px"
-        src="https://i.imgur.com/8i0J9lP.png"
+        src="https://i.imgur.com/hnZftry.jpeg"
       ></mj-image>
     </mj-column>
   </mj-section>

@@ -127,10 +127,11 @@
   slide_pictures:
     - sacolinhas-1.png
     - sacolinhas-2.jpg
-    - sacolinhas-3.png
-    - sacolinhas-5.png
+    - sacolinhas-3.jpg
+    - sacolinhas-4.jpg
+    - sacolinhas-5.jpg
   donations:
     - slug: sacolinha
       name: Sacolinha de Natal
       picture: sacolinha-item.png
-      price: 160
+      price: 180
